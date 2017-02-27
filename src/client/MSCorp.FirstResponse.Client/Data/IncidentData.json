@@ -1,0 +1,667 @@
+﻿[
+  {
+    "Id": 1,
+    "CallNumber": "201-4387",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 471-8674",
+    "Title": "Poisoning",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Prakash XXXXX",
+    "UnmaskedReportingParty": "Prakash Paramasivam",
+    "Description": "Someone poisoned the water hole.",
+    "UpdateDescription": "",
+    "Latitude": 47.5877,
+    "Longitude": -122.037877,
+    "Responders": [
+      {
+        "DepartmentType": 3
+      }
+    ],
+    "IncidentCategory": 5
+  },
+  {
+    "Id": 2,
+    "CallNumber": "201-4388",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 685-5267",
+    "Title": "Public Disturbance",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "Beaver Lake Park, 25101 SE 24th St, Sammamish, WA 98075",
+    "ReportingParty": "Darren XXXXX",
+    "UnmaskedReportingParty": "Darren Parker",
+    "Description": "Reports of a domestic disturbance reported by park maintenance.",
+    "UpdateDescription": "",
+    "Latitude": 47.587853,
+    "Longitude": -122.004659,
+    "Responders": [
+      {
+        "DepartmentType": 3
+      }
+    ],
+    "IncidentCategory": 4
+  },
+  {
+    "Id": 3,
+    "CallNumber": "201-4389",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 401-3768",
+    "Title": "Stranger reported near school",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "24072 NE 8th St, Sammamish, WA 98074",
+    "ReportingParty": "Terrence XXXXX",
+    "UnmaskedReportingParty": "Terrence Philip",
+    "Description": "A man acting strangely reported near Inglewood Middle School",
+    "UpdateDescription": "",
+    "Latitude": 47.61672,
+    "Longitude": -122.018394,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 7
+  },
+  {
+    "Id": 4,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 849-2498",
+    "Title": "Stray dog",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "228th Ave NE, Sammamish, WA 98074",
+    "ReportingParty": "Raymond XXXXX",
+    "UnmaskedReportingParty": "Raymond Sam",
+    "Description": "Stray dog acting aggressively towards civilians",
+    "UpdateDescription": "",
+    "Latitude": 47.61563,
+    "Longitude": -122.035515,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 2
+  },
+  {
+    "Id": 5,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 14-7871",
+    "Title": "House on fire",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "24092 SE 12th Pl, Sammamish, WA 98075",
+    "ReportingParty": "Samantha XXXXX",
+    "UnmaskedReportingParty": "Samantha Smith",
+    "Description": "House fire reported",
+    "UpdateDescription": "",
+    "Latitude": 47.588534,
+    "Longitude": -122.055887,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 5
+  },
+  {
+    "Id": 6,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 776-2097",
+    "Title": "Woman involved in golf cart crash",
+    "ReceivedTime": "2016-02-04T17:33:34.8316737+13:00",
+    "Address": "24092 SE 12th Pl, Sammamish, WA 98075",
+    "ReportingParty": "David XXXXX",
+    "UnmaskedReportingParty": "David So",
+    "Description": "Golf cart collision at golf course, one woman with moderate injuries",
+    "UpdateDescription": "",
+    "Latitude": 47.597893,
+    "Longitude": -122.01724,
+    "Responders": [
+      {
+        "DepartmentType": 3
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 7,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 682-6529",
+    "Title": "Car reported stolen",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "24067 NE 29th St, Sammamish, WA 98074",
+    "ReportingParty": "Jay XXXXX",
+    "UnmaskedReportingParty": "Jay Henningsen",
+    "Description": "Car reported stolen from street outside house over night",
+    "UpdateDescription": "",
+    "Latitude": 47.636307,
+    "Longitude": -122.01926,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      },
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 8,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 272-5058",
+    "Title": "Vandalism",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "Ebright Creek Park, 1389 212th Ave SE, Sammamish, WA 98075",
+    "ReportingParty": "Magnus XXXXX",
+    "UnmaskedReportingParty": "Magnus Hedlund",
+    "Description": "Vandalism reported in park, trash can set on fire, police and fire requested",
+    "UpdateDescription": "",
+    "Latitude": 47.597675,
+    "Longitude": -122.05807,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      },
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 5
+  },
+  {
+    "Id": 9,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 825-3849",
+    "Title": "Man fallen in water",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "Beaver Lake, SE 18th Pl, Sammamish, WA 98075",
+    "UnmaskedReportingParty": "Neil Charney",
+    "ReportingParty": "Neil XXXXX",
+    "Description": "A man has fallen in the lake, possible head injury",
+    "UpdateDescription": "",
+    "Latitude": 47.59348,
+    "Longitude": -121.99096,
+    "Responders": [
+      {
+        "DepartmentType": 3
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 10,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 327-3730",
+    "Title": "Speeding",
+    "ReceivedTime": "2016-02-04T17:33:34.8316737+13:00",
+    "Address": "24442 SE 32nd St, WA 98075",
+    "ReportingParty": "Andrew XXXXX",
+    "UnmaskedReportingParty": "Andrew Lan",
+    "Description": "Speeding vehicle",
+    "UpdateDescription": "Speeding vehicle. Driver has collided with the curb. In shock and potentially sustained an injury.",
+    "Latitude": 47.58073,
+    "Longitude": -122.01355,
+    "Responders": [
+      {
+        "DepartmentType": 4
+      }
+    ],
+    "IncidentCategory": 4,
+    "IsHighPriority": true,
+    "SearchArea": {
+      "Polygon": [
+        {
+          "Latitude": 47.584540,
+          "Longitude": -122.022430
+        },
+        {
+          "Latitude": 47.580847,
+          "Longitude": -122.022217
+        },
+        {
+          "Latitude": 47.577210,
+          "Longitude": -122.014425
+        },
+        {
+          "Latitude": 47.577954,
+          "Longitude": -122.003700
+        },
+        {
+          "Latitude": 47.584410,
+          "Longitude": -122.003914
+        }
+      ],
+      "Tickets": [
+        {
+          "Id": 1,
+          "Type": "Traffic Violation",
+          "Violation": "Speeding",
+          "Officer": "Colin Carrelson",
+          "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+          "Latitude": 47.583087,
+          "Longitude": -122.018115,
+          "Speed": 75,
+          "MaxSpeed": 55,
+          "Notes": "Motorist was driving at excessive speed.",
+          "Driver": {
+            "Name": "John Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+          },
+          "Vehicle": {
+            "Make": "Carsoft",
+            "Model": "Logger",
+            "PlateNo": "NGJ4823"
+          }
+        },
+        {
+            "Id": 3,
+            "Type": "Traffic",
+            "Violation": "Impeding Traffic",
+            "Officer": "Colin Jackman",
+            "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+            "Latitude": 47.583709,
+            "Longitude": -122.014188,
+            "Notes": "Motorist was driving at excessive lowspeed holding up traffic.",
+            "Driver": {
+                "Name": "Jerry Smith",
+                "LicenceNo": "243-4560-BLM",
+                "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+                "Phone": "452-486-3367"
+            },
+            "Vehicle": {
+                "Make": "Northvale",
+                "Model": "M22",
+                "PlateNo": "TYE3112"
+            }
+        }
+      ]
+    }
+  },
+  {
+    "Id": 11,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 962-7669",
+    "Title": "Car break in",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "383 220th Pl SE, Sammamish, WA 98074",
+    "UnmaskedReportingParty": "Oliver Lee",
+    "ReportingParty": "Oliver XXXXX",
+    "Description": "Report of an individual wearing an orange hooded jacket breaking into a car",
+    "UpdateDescription": "",
+    "Latitude": 47.60554,
+    "Longitude": -122.04491,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 6
+  },
+  {
+    "Id": 12,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 715-4595",
+    "Title": "Elderly person fallen in home",
+    "ReceivedTime": "2016-02-04T17:34:34.8316737+13:00",
+    "Address": "497 241st Ln SE, Sammamish, WA 98074",
+    "ReportingParty": "Leonor XXXXX",
+    "UnmaskedReportingParty": "Leonor Marques",
+    "Description": "An elderly person has fallen in their home",
+    "UpdateDescription": "",
+    "Latitude": 47.604218,
+    "Longitude": -122.01769,
+    "Responders": [
+      {
+        "DepartmentType": 3
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 13,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 120-9245",
+    "Title": "Domestic disturbance",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "22086 NE 15th St, Sammamish, WA 98074",
+    "ReportingParty": "Isabel XXXXX",
+    "UnmaskedReportingParty": "Isabel Martins",
+    "Description": "Reports of a domestic disturbance reported by neighbor",
+    "UpdateDescription": "",
+    "Latitude": 47.62277,
+    "Longitude": -122.044334,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 14,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 750-136",
+    "Title": "Public Disturbance",
+    "ReceivedTime": "2016-02-04T17:34:34.8316737+13:00",
+    "Address": "Sahalee Way NE, Sammamish, WA 98074",
+    "ReportingParty": "Willem XXXXX",
+    "UnmaskedReportingParty": "Willem Mevius",
+    "Description": "Reports of an altercation between two individuals at bus stop",
+    "UpdateDescription": "",
+    "Latitude": 47.63781,
+    "Longitude": -122.047066,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 15,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 610-4506",
+    "Title": "Car crash",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "26666 NE Ames Lake Rd, Redmond, WA 98053",
+    "ReportingParty": "Darya XXXXX",
+    "UnmaskedReportingParty": "Darya Popkova",
+    "Description": "Car crash, no serious injuries reported, accident is blocking both lanes",
+    "UpdateDescription": "",
+    "Latitude": 47.633244,
+    "Longitude": -121.984085,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 4
+  },
+  {
+    "Id": 16,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 667-7589",
+    "Title": "Cat stuck in tree",
+    "ReceivedTime": "2016-02-04T17:32:34.8316737+13:00",
+    "Address": "22126 NE 11th Pl, Sammamish, WA 98074",
+    "ReportingParty": "Per XXXXX",
+    "UnmaskedReportingParty": "Per Reitzel",
+    "Description": "There is a cat stuck in a tree, requires fire unit with ladder",
+    "UpdateDescription": "",
+    "Latitude": 47.619714,
+    "Longitude": -122.045077,
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 17,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 230-6031",
+    "Title": "Car broken down in middle of road",
+    "ReceivedTime": "2016-02-04T17:32:34.8316737+13:00",
+    "Address": "2368 205th Ave SE, Sammamish, WA 98075",
+    "ReportingParty": "Bruno XXXXX",
+    "UnmaskedReportingParty": "Bruno Torres",
+    "Description": "A car is immobile and blocking traffic",
+    "UpdateDescription": "",
+    "Latitude": 47.58856,
+    "Longitude": -122.06611,
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 4
+  },
+  {
+    "Id": 18,
+    "CallNumber": "201-4390",
+    "Phone": "(555) XXX-XXXX",
+    "UnmaskedPhone": "(555) 184-6348",
+    "Title": "Domestic disturbance",
+    "ReceivedTime": "2016-02-04T17:35:34.8316737+13:00",
+    "Address": "23026 NE 13th St, Sammamish, WA 98074",
+    "ReportingParty": "Louise XXXXX",
+    "UnmaskedReportingParty": "Louise Toubro",
+    "Description": "Reports of a domestic disturbance reported by neighbor",
+    "UpdateDescription": "",
+    "Latitude": 47.620926,
+    "Longitude": -122.030319,
+    "Responders": [
+      {
+        "DepartmentType": 1
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 64,
+    "CallNumber": "201-4450",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Vandalism",
+    "ReceivedTime": "2016-02-04T17:33:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Jón Harry XXXXX",
+    "Description": "arson stolen vehicle smashed windows",
+    "UpdateDescription": "",
+    "Latitude": 47.584699,
+    "Longitude": -122.034366,
+    "UnmaskedReportingParty": "Jón Harry Óskarsson",
+    "UnmaskedPhone": "(555) 184-6332",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 65,
+    "CallNumber": "201-4451",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Man fallen in water",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Brian XXXXX",
+    "Description": "drunk man in water water loud",
+    "UpdateDescription": "",
+    "Latitude": 47.588578,
+    "Longitude": -122.038057,
+    "UnmaskedReportingParty": "Brian Groth",
+    "UnmaskedPhone": "(555) 184-6132",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 66,
+    "CallNumber": "201-4452",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Speeding",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Michael XXXXX",
+    "Description": "intoxicatied individual breaking car driving fast smashed loud",
+    "UpdateDescription": "",
+    "Latitude": 47.586031,
+    "Longitude": -122.039301,
+    "UnmaskedReportingParty": "Michael Zeman",
+    "UnmaskedPhone": "(555) 184-6519",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 67,
+    "CallNumber": "201-4453",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Car break in",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Rok XXXXX",
+    "Description": "Smashed window in car intoxication suspected",
+    "UpdateDescription": "",
+    "Latitude": 47.584352,
+    "Longitude": -122.045352,
+    "UnmaskedReportingParty": "Rok Palcic",
+    "UnmaskedPhone": "(555) 184-6339",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 68,
+    "CallNumber": "201-4454",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Loud threatening behaviour",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Jerry XXXXX",
+    "Description": "Intoxication disturbance loud music",
+    "UpdateDescription": "",
+    "Latitude": 47.587854,
+    "Longitude": -122.039559,
+    "UnmaskedReportingParty": "Jerry Orman",
+    "UnmaskedPhone": "(555) 184-6340",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 69,
+    "CallNumber": "201-4455",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Public Disturbance",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Ivo XXXXX",
+    "Description": "dissonant crazy jazz music",
+    "UpdateDescription": "",
+    "Latitude": 47.588144,
+    "Longitude": -122.037155,
+    "UnmaskedReportingParty": "Ivo Haemels",
+    "UnmaskedPhone": "(555) 184-6355",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 70,
+    "CallNumber": "201-4456",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Public Disturbance",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Palma XXXXX",
+    "Description": "smashed window vandalism breaking into car intoxication",
+    "UpdateDescription": "",
+    "Latitude": 47.584265,
+    "Longitude": -122.038142,
+    "UnmaskedReportingParty": "Palma Tude",
+    "UnmaskedPhone": "(555) 184-6331",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 71,
+    "CallNumber": "201-4457",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Public Disturbance",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Jerry XXXXX",
+    "Description": "drunk intoxication vandalism car",
+    "UpdateDescription": "",
+    "Latitude": 47.588115,
+    "Longitude": -122.040503,
+    "UnmaskedReportingParty": "Jerry Orman",
+    "UnmaskedPhone": "(555) 184-6312",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 72,
+    "CallNumber": "201-4458",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Public Disturbance",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Aaron XXXXX",
+    "Description": "Dancing on cars drunk intoxication disturbance",
+    "UpdateDescription": "",
+    "Latitude": 47.583165,
+    "Longitude": -122.039215,
+    "UnmaskedReportingParty": "Aaron Painter",
+    "UnmaskedPhone": "(555) 184-6531",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  },
+  {
+    "Id": 73,
+    "CallNumber": "201-4459",
+    "Phone": "(555) XXX-XXXX",
+    "Title": "Public Disturbance",
+    "ReceivedTime": "2016-02-04T17:32:34.828662+13:00",
+    "Address": "Pine Lake Park, 2401 228th Ave Se, Sammamish, WA  98075",
+    "ReportingParty": "Stuart XXXXX",
+    "Description": "Intoxication disturbance smashed blocking loud",
+    "UpdateDescription": "",
+    "Latitude": 47.588549,
+    "Longitude": -122.037069,
+    "UnmaskedReportingParty": "Stuart Munson",
+    "UnmaskedPhone": "(555) 184-6323",
+    "Responders": [
+      {
+        "DepartmentType": 2
+      }
+    ],
+    "IncidentCategory": 1
+  }
+]

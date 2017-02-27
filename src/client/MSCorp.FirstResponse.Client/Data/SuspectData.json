@@ -1,0 +1,42 @@
+﻿[
+  {
+    "Name": "Jay Henningsen",
+    "EyeColor": "Blue",
+    "HairColor": "Brown",
+    "SkinColor": "White",
+    "Sex": "Male",
+    "SuspectSearchImage": "JayHenningsen.jpg"
+  },
+  {
+    "Name": "Joe Andreshak",
+    "EyeColor": "Brown",
+    "HairColor": "Black",
+    "SkinColor": "White",
+    "Sex": "Male",
+    "SuspectSearchImage": "JoeAndreshak.jpg"
+  },
+  {
+    "Name": "Joy Miller",
+    "EyeColor": "Green",
+    "HairColor": "Black",
+    "SkinColor": "Brown",
+    "Sex": "Female",
+    "SuspectSearchImage": "JoyMiller.jpg"
+  },
+  {
+    "Name": "Joao Casqueiro",
+    "EyeColor": "Brown",
+    "HairColor": "Red",
+    "SkinColor": "White",
+    "Sex": "Male",
+    "SuspectSearchImage": "JoaoCasqueiro.jpg"
+  },
+  {
+    "Name": "Billie Jo Murray",
+    "EyeColor": "Blue",
+    "HairColor": "Black",
+    "SkinColor": "White",
+    "Sex": "Female",
+    "SuspectSearchImage": "BillieJoMurray.jpg"
+  }
+]

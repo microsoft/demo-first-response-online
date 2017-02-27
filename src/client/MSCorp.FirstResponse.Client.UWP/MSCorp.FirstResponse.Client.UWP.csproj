@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{9BEE8034-D7F9-431D-B74A-EBFF17E8FB09}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MSCorp.FirstResponse.Client.UWP</RootNamespace>
+    <AssemblyName>MSCorp.FirstResponse.Client.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>C8C056CBF55A9986273F057D7D0FBC55E9442847</PackageCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="..\Common\city_Amsterdam.jpg">
+      <Link>Assets\Cities\city_Amsterdam.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Bangalore.jpg">
+      <Link>Assets\Cities\city_Bangalore.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Birmingham.jpg">
+      <Link>Assets\Cities\city_Birmingham.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Chicago.jpg">
+      <Link>Assets\Cities\city_Chicago.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Copenhagen.jpg">
+      <Link>Assets\Cities\city_Copenhagen.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Frankfurt.jpg">
+      <Link>Assets\Cities\city_Frankfurt.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Johannesburg.jpg">
+      <Link>Assets\Cities\city_Johannesburg.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Mexico.jpg">
+      <Link>Assets\Cities\city_Mexico.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Milan.jpg">
+      <Link>Assets\Cities\city_Milan.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Prague.jpg">
+      <Link>Assets\Cities\city_Prague.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_SaoPaulo.jpg">
+      <Link>Assets\Cities\city_SaoPaulo.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Seattle.jpg">
+      <Link>Assets\Cities\city_Seattle.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Seoul.jpg">
+      <Link>Assets\Cities\city_Seoul.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Singapore.jpg">
+      <Link>Assets\Cities\city_Singapore.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Taipei.jpg">
+      <Link>Assets\Cities\city_Taipei.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_TelAviv.jpg">
+      <Link>Assets\Cities\city_TelAviv.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Toronto.jpg">
+      <Link>Assets\Cities\city_Toronto.jpg</Link>
+    </Content>
+    <Content Include="..\Common\city_Washington.jpg">
+      <Link>Assets\Cities\city_Washington.jpg</Link>
+    </Content>
+    <Content Include="..\Common\Fonts\TitilliumWeb-Light.ttf">
+      <Link>Assets\Fonts\TitilliumWeb-Light.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Common\Fonts\TitilliumWeb-Regular.ttf">
+      <Link>Assets\Fonts\TitilliumWeb-Regular.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Windows_TemporaryKey.pfx" />
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IncidentInfoIcon.xaml.cs">
+      <DependentUpon>IncidentInfoIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ResponderIcon.xaml.cs">
+      <DependentUpon>ResponderIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TicketIcon.xaml.cs">
+      <DependentUpon>TicketIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserIcon.xaml.cs">
+      <DependentUpon>UserIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\NativeStyleEffect.cs" />
+    <Compile Include="Effects\FormEntryNativeStyleEffect.cs" />
+    <Compile Include="Extensions\BorderExtensions.cs" />
+    <Compile Include="Extensions\ColorExtensions.cs" />
+    <Compile Include="Extensions\RandomAccessStreamReferenceExtensions.cs" />
+    <Compile Include="Extensions\RectangleExtensions.cs" />
+    <Compile Include="Extensions\VisualTreeHelperExtensions.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\HeatMapManager.cs" />
+    <Compile Include="Maps\Heat\HeatMapLayer.cs" />
+    <Compile Include="Maps\PushpinManager.cs" />
+    <Compile Include="Maps\CoordinateConverter.cs" />
+    <Compile Include="Maps\ResponderManager.cs" />
+    <Compile Include="Maps\RouteManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\CustomMapRenderer.cs" />
+    <Compile Include="Renderers\NoBarsScrollViewerRenderer.cs" />
+    <Compile Include="Renderers\RoundedBoxViewRenderer.cs" />
+    <Compile Include="Services\MockPositionChangedEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Common\HeatMap\CanvasHeatMaps.js">
+      <Link>Assets\CanvasHeatMaps.js</Link>
+    </Content>
+    <Content Include="..\Common\HeatMap\HeatMap.html">
+      <Link>Assets\HeatMap.html</Link>
+    </Content>
+    <Content Include="Assets\Background.png" />
+    <Content Include="Assets\bg_button.png" />
+    <Content Include="Assets\Filter\button_nearby.png" />
+    <Content Include="Assets\Filter\button_previous.png" />
+    <Content Include="Assets\Filter\button_similar.png" />
+    <Content Include="Assets\Filter\filter_fire.png" />
+    <Content Include="Assets\Filter\filter_medic.png" />
+    <Content Include="Assets\Filter\filter_police.png" />
+    <Content Include="Assets\HeatMapChecked.png" />
+    <Content Include="Assets\HeatMapUnChecked.png" />
+    <Content Include="Assets\Icons\icon_alert.png" />
+    <Content Include="Assets\Icons\icon_animal.png" />
+    <Content Include="Assets\Icons\icon_fire.png" />
+    <Content Include="Assets\Icons\icon_officer.png" />
+    <Content Include="Assets\Icons\icon_other.png" />
+    <Content Include="Assets\Icons\icon_pedestrian.png" />
+    <Content Include="Assets\Icons\icon_stranger.png" />
+    <Content Include="Assets\Icons\icon_car.png" />
+    <Content Include="Assets\ico_check.png" />
+    <Content Include="Assets\map_icon_Satellite_off.png" />
+    <Content Include="Assets\map_icon_Satellite_on.png" />
+    <Content Include="Assets\IncidentsChecked.png" />
+    <Content Include="Assets\IncidentsUnChecked.png" />
+    <Content Include="Assets\Login\login_password_icon.png" />
+    <Content Include="Assets\Login\login_username_icon.png" />
+    <Content Include="Assets\Logout.png" />
+    <Content Include="Assets\Nav\nav_accept.png" />
+    <Content Include="Assets\Nav\nav_cancel.png" />
+    <Content Include="Assets\Nav\nav_car.png" />
+    <Content Include="Assets\Nav\nav_car_center.png" />
+    <Content Include="Assets\Nav\nav_location.png" />
+    <Content Include="Assets\Nav\nav_ticket.png" />
+    <Content Include="Assets\Nav\radius.png" />
+    <Content Include="Assets\Pins\pins_bkgd.png" />
+    <Content Include="Assets\Pins\pins_car_alert.png" />
+    <Content Include="Assets\Pins\pin_alert.png" />
+    <Content Include="Assets\Pins\pin_animal.png" />
+    <Content Include="Assets\Pins\pin_arrest.png" />
+    <Content Include="Assets\Pins\pin_car.png" />
+    <Content Include="Assets\Pins\pin_officer.png" />
+    <Content Include="Assets\Pins\pin_other.png" />
+    <Content Include="Assets\Pins\pin_pedestrian.png" />
+    <Content Include="Assets\Pins\pin_siren.png" />
+    <Content Include="Assets\Pins\pin_stranger.png" />
+    <Content Include="Assets\PowerBI.png" />
+    <Content Include="Assets\Profile\Adambig.jpg" />
+    <Content Include="Assets\Profile\Benbig.jpg" />
+    <Content Include="Assets\Profile\Charliebig.jpg" />
+    <Content Include="Assets\Profile\smontgomery.jpg" />
+    <Content Include="Assets\RespondersChecked.png" />
+    <Content Include="Assets\RespondersUnChecked.png" />
+    <Content Include="Assets\SignIn-Logo.png" />
+    <Content Include="Assets\Suspect\BillieJoMurray.jpg" />
+    <Content Include="Assets\Suspect\JayHenningsen.jpg" />
+    <Content Include="Assets\Suspect\JoaoCasqueiro.jpg" />
+    <Content Include="Assets\Suspect\JoeAndreshak.jpg" />
+    <Content Include="Assets\Suspect\JoyMiller.jpg" />
+    <Content Include="Assets\Ticket\Suspect_ico_new_ticket.png" />
+    <Content Include="Assets\Ticket\Ico_close_white.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Controls\IncidentInfoIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ResponderIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TicketIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSCorp.FirstResponse.Client\MSCorp.FirstResponse.Client.csproj">
+      <Project>{22488b19-48a3-43ea-b50d-5a839cf85353}</Project>
+      <Name>MSCorp.FirstResponse.Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+</Project>

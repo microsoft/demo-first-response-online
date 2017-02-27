@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="MSCorp.FirstResponse.Client.Views.Templates.ResponderListItemTemplate"  
+    xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ResponderCodeStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid 
+            Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28"/>
+                <RowDefinition Height="28" />
+            </Grid.RowDefinitions>
+            <controls:RoundedBoxView 
+                Grid.Column="0" 
+                Grid.RowSpan="2"
+                HeightRequest="38" 
+                WidthRequest="38"       
+                CornerRadius="24"
+                RoundedBackgroudColor="{Binding StatusColor}" 
+                HorizontalOptions="Center" 
+                VerticalOptions="Center" />
+            <Label 
+                Grid.Column="0" 
+                Grid.RowSpan="2"          
+                Text="{Binding ResponderCode}"
+                Style="{StaticResource ResponderCodeStyle}" />
+            <Label 
+                Grid.Row="0" 
+                Grid.Column="1"
+                Grid.RowSpan="2"     
+                Text="{Binding ResponderDepartment}"  
+                TextColor="White" 
+                VerticalOptions="Center"
+                HorizontalOptions="Start" />
+            <Label
+                Grid.Column="2"
+                Grid.RowSpan="2" 
+                Text="{Binding Status, Converter={StaticResource StringToUpperConverter}}" 
+                TextColor="{Binding StatusColor}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start"
+                Margin="0,0,12,0"
+                HorizontalTextAlignment="End"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

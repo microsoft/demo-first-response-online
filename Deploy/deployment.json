@@ -1,0 +1,247 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "prefix_name": {
+      "type": "string"
+    },
+	"sql_user_password" : {
+	  "type": "securestring",
+      "defaultValue": "f1r4tR3sp0Ns1"
+	
+	}
+  },
+  "variables": {
+    "sql_user_name": "[concat(parameters('prefix_name'), '-admin')]",
+    "sql_user_password": "[parameters('sql_user_password')]",
+    "sql_server_name": "[concat(parameters('prefix_name'), '-sqlserver')]",
+    "sql_master_server_database": "[concat(parameters('prefix_name'), '-master')]",
+    "sql_ambo_server_database": "[concat(parameters('prefix_name'), '-ambo')]",
+    "sql_fire_server_database": "[concat(parameters('prefix_name'), '-fire')]",
+    "sql_police_server_database": "[concat(parameters('prefix_name'), '-police')]",
+    "sql_elastic_pool": "[concat(parameters('prefix_name'), '-pool')]",
+    "sql_reporting_database": "[concat(parameters('prefix_name'), '-reporting')]",
+	"azure_search_name": "[concat(parameters('prefix_name'), 's')]",
+    "azure_search_index_name": "people",
+	"document_db_name": "[concat(parameters('prefix_name'), '-docdb')]",
+    "location": "[resourceGroup().location]"
+  },
+  "resources": [
+    {
+      "comments": "### Create SQL Db ###",
+      "name": "[variables('sql_server_name')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[variables('location')]",
+      "apiVersion": "2014-04-01-preview",
+      "properties": {
+        "administratorLogin": "[variables('sql_user_name')]",
+        "administratorLoginPassword": "[parameters('sql_user_password')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+		  "name": "[variables('sql_elastic_pool')]",
+          "type": "elasticPools",
+		  "location": "[variables('location')]",
+		  "apiVersion": "2014-04-01-preview",
+		  "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sql_server_name'))]"
+          ],
+		  "properties": {
+			"edition": "Basic",
+			"dtu": 100,
+			"databaseDtuMin": 0,
+			"databaseDtuMax": 5,
+			"storageMB": 10000
+		  }
+		},
+		{
+          "name": "[variables('sql_police_server_database')]",
+          "type": "databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sql_server_name'))]"
+          ],
+          "properties": {
+            "edition": "Standard",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "S1"
+          }
+        },
+        {
+          "name": "[variables('sql_ambo_server_database')]",
+          "type": "databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sql_server_name'))]"
+          ],
+          "properties": {
+            "edition": "Standard",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "S1"
+          }
+        },
+        {
+          "name": "[variables('sql_fire_server_database')]",
+          "type": "databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sql_server_name'))]"
+          ],
+          "properties": {
+            "edition": "Standard",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "S1"
+          }
+        },
+		{
+          "name": "[variables('sql_master_server_database')]",
+          "type": "databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sql_server_name'))]"
+          ],
+          "properties": {
+            "edition": "Standard",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "S1"
+          }
+        },
+        {
+          "name": "[variables('sql_reporting_database')]",
+          "type": "databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sql_server_name'))]"
+          ],
+          "properties": {
+            "edition": "Standard",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "S1"
+          }
+        },
+        {
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sql_server_name'))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          },
+          "type": "firewallrules"
+        },
+        {
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sql_server_name'))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "AllConnectionsAllowed",
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "255.255.255.255"
+          },
+          "type": "firewallrules"
+        }
+      ]
+    },
+	{
+      "comments": "### Create Search ###",
+      "apiVersion": "2015-02-28",
+      "name": "[variables('azure_search_name')]",
+      "type": "Microsoft.Search/searchServices",
+      "location": "[variables('location')]",
+      "properties": {
+        "sku": {
+          "name": "standard"
+        }
+      }
+    },
+	{
+      "comments": "### Create Document Db ###",
+      "apiVersion": "2015-04-08",
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "name": "[variables('document_db_name')]",
+      "location": "[variables('location')]",
+      "properties": {
+        "name": "[variables('document_db_name')]",
+        "databaseAccountOfferType": "Standard"
+      }
+    }
+  ],
+  "outputs": {
+    "SQLUsername": {
+      "type": "string",
+      "value": "[variables('sql_user_name')]"
+    },
+    "SQLPassword": {
+      "type": "string",
+      "value": "[variables('sql_user_password')]"
+    },
+	"SQLServer": {
+      "type": "string",
+      "value": "[variables('sql_server_name')]"
+    },
+	"SQLMasterDatabase": {
+      "type": "string",
+      "value": "[variables('sql_master_server_database')]"
+    },
+	"SQLAmboDatabase": {
+      "type": "string",
+      "value": "[variables('sql_ambo_server_database')]"
+    },
+	"SQLFireDatabase": {
+      "type": "string",
+      "value": "[variables('sql_fire_server_database')]"
+    },
+	"SQLPoliceDatabase": {
+      "type": "string",
+      "value": "[variables('sql_police_server_database')]"
+    },
+    "SearchApiKey": {
+      "type": "string",
+      "value": "[listAdminKeys(variables('azure_search_name'), '2015-02-28').primaryKey]"
+    },
+    "SearchServiceUrl": {
+      "type": "string",
+      "value": "[concat('https://', variables('azure_search_name') ,'.search.windows.net')]"
+    },
+	"SearchServiceName": {
+      "type": "string",
+      "value": "[variables('azure_search_name')]"
+    },
+    "DocumentDbUri": {
+      "type": "string",
+      "value": "[reference(variables('document_db_name')).documentEndpoint]"
+    },
+    "DocumentDbAuthKey": {
+      "type": "string",
+      "value": "[listkeys(variables('document_db_name'), '2015-04-08').primaryMasterKey]"
+    },
+    "SearchIndexName":{
+        "type": "string",
+        "value": "[variables('azure_search_index_name')]"
+    },
+    "SQLReportingDatabase":{
+        "type": "string",
+        "value": "[variables('sql_reporting_database')]"
+    },
+	"SQLElasticPool" :{
+		"type": "string",
+        "value": "[variables('sql_elastic_pool')]"
+	}
+  }
+}

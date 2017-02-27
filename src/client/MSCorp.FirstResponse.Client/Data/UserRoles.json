@@ -1,0 +1,26 @@
+﻿[
+  {
+    "RoleName": "Supervisor",
+    "Name": "Evan Dodds",
+    "UserName": "edodds",
+    "UserRoleImage": "Adambig.jpg"
+  },
+  {
+    "RoleName": "Attending Officer",
+    "Name": "John Clarkson",
+    "UserName": "jclarkson",
+    "UserRoleImage": "Benbig.jpg"
+  },
+  {
+    "RoleName": "Officer",
+    "Name": "Ben Martens",
+    "UserName": "bmartens",
+    "UserRoleImage": "Charliebig.jpg"
+  },
+  {
+    "RoleName": "Attending Officer",
+    "Name": "Scott Montgomery",
+    "UserName": "smontgomery",
+    "UserRoleImage": "smontgomery.jpg"
+  }
+]

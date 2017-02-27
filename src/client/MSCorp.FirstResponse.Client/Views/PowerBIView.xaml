@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MSCorp.FirstResponse.Client.Views.PowerBIView"  
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"   
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    BackgroundColor="#80FFFFFF">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="PowerBiHeaderStyle" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="{StaticResource TitilliumLight}" />
+                <Setter Property="Margin" Value="12, 0"/>
+            </Style>
+
+            <Style x:Key="PowerBiCloseButtonStyle" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="1"
+            DurationIn="400"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Grid
+        ColumnSpacing="0"
+        HeightRequest="768"
+        WidthRequest="1024"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        BackgroundColor="{StaticResource DarkGrayColor}"
+        RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource TerciaryDarkGray}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Label 
+                Grid.Column="0"
+                Text="Power BI"
+                Style="{StaticResource PowerBiHeaderStyle}" />
+            <Grid
+                HorizontalOptions="End"
+                WidthRequest="50"
+                Grid.Column="1">
+                <Image
+                    HorizontalOptions="Center"
+                    WidthRequest="15"
+                    Style="{StaticResource PowerBiCloseButtonStyle}">
+                    <Image.Source>
+                        <OnPlatform
+                            x:TypeArguments="ImageSource"
+                            Android="ico_close_white"
+                            iOS="ticket/Ico_close_white"
+                            WinPhone="Assets/Ticket/Ico_close_white.png"/>
+                    </Image.Source>
+                </Image>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding ClosePopupCommand}"
+                        NumberOfTapsRequired="1" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Grid>
+        <AbsoluteLayout
+            Grid.Row="1">
+            <WebView 
+                Source="{Binding PowerBIPageURL}"
+			    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+			    AbsoluteLayout.LayoutFlags="All" />
+        </AbsoluteLayout>
+    </Grid>
+</pages:PopupPage>

@@ -1,0 +1,50 @@
+﻿[
+  {
+    "id": 2,
+    "Latitude": 47.594612,
+    "Longitude": -122.026981,
+    "ResponderDepartment": 2,
+    "RouteId": 1,
+    "Status": 1
+  },
+  {
+    "id": 3,
+    "Latitude": 47.578817,
+    "Longitude": -122.051171,
+    "ResponderDepartment": 3,
+    "RouteId": 2,
+    "Status": 1
+  },
+  {
+    "id": 4,
+    "Latitude": 47.587962,
+    "Longitude": -122.013098,
+    "ResponderDepartment": 1,
+    "RouteId": 1,
+    "Status": 1
+  },
+  {
+    "id": 5,
+    "Latitude": 47.602932,
+    "Longitude": -122.013862,
+    "ResponderDepartment": 3,
+    "RouteId": 2,
+    "Status": 1
+  },
+  {
+    "id": 6,
+    "Latitude": 47.601701,
+    "Longitude": -122.035668,
+    "ResponderDepartment": 2,
+    "RouteId": 1,
+    "Status": 1
+  },
+  {
+    "id": 7,
+    "Latitude": 47.588451,
+    "Longitude": -122.035609,
+    "ResponderDepartment": 1,
+    "RouteId": 2,
+    "Status": 1
+  }
+]

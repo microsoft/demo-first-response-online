@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Name="Template"
+    xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client"
+    xmlns:imageCircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"   
+    x:Class="MSCorp.FirstResponse.Client.Views.Templates.SuspectListItemTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="TitleListStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="0,12,0,0" />
+            </Style>
+
+            <Style x:Key="SubTitleListStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+            <Style x:Key="ImageListStyle" TargetType="imageCircle:CircleImage">
+                <Setter Property="Aspect" Value="AspectFill"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="WidthRequest" Value="45"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid 
+            HeightRequest="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="45" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:CheckBox 
+                Grid.Column="0" 
+                IsVisible="{Binding Selectable, Source={x:Reference Template}}}"
+                Marked="{Binding SuspectSelected, Mode=TwoWay}"
+                HeightRequest="20"
+                WidthRequest="20"
+                Size="20"/>
+            <imageCircle:CircleImage
+                Grid.Column="1"
+                Source="{Binding SuspectSearchImage, Converter={StaticResource SuspectImageConverter}}"
+                Style="{StaticResource ImageListStyle}" />
+            <StackLayout Grid.Column="2">
+                <Label
+                    Text="{Binding Name}"
+                    Style="{StaticResource TitleListStyle}"/>
+                <Label
+                    Text="{Binding ., Converter={StaticResource SuspectDescriptionConverter}}}"
+                    Style="{StaticResource SubTitleListStyle}"/>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

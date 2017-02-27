@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+    <!-- HEADER -->
+        <LinearLayout
+            android:id="@+id/incident_marker_title_area"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp">
+            <ImageView
+                android:src="@drawable/icon_car"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/incident_marker_icon" />
+            <TextView
+                android:text="Title"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/incident_marker_title"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+    <!-- CONTENT -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="250dp"
+            android:layout_width="250dp"
+            android:padding="24dp"
+            android:background="@drawable/bg_info">
+            <TextView
+                android:text="Description"
+                android:textColor="#ccc"
+                android:textSize="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/incident_marker_description_label" />
+            <TextView
+                android:text="Here the description"
+                android:textColor="#fff"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/incident_marker_description" />
+            <TextView
+                android:text="Location"
+                android:textColor="#ccc"
+                android:textSize="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/incident_marker_location_label" />
+            <TextView
+                android:text="Here the location"
+                android:textColor="#fff"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/incident_marker_location" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

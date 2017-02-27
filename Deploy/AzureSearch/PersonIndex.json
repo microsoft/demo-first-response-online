@@ -1,0 +1,131 @@
+{
+  "name": "people",
+  "fields": [
+    {
+      "name": "Id",
+      "type": "Edm.String",
+      "key": true,
+      "searchable": false
+    },
+    {
+      "name": "FirstName",
+      "type": "Edm.String",
+      "searchable": true,
+      "sortable": true,
+      "analyzer": "phonetic"
+    },
+    {
+      "name": "LastName",
+      "type": "Edm.String",
+      "searchable": true,
+      "sortable": true,
+      "analyzer": "phonetic"
+    },
+    {
+      "name": "EyeColor",
+      "type": "Edm.String",
+      "searchable": true,
+      "sortable": true,
+      "facetable": true,
+      "analyzer": "en.lucene"
+    },
+    {
+      "name": "HairColor",
+      "type": "Edm.String",
+      "searchable": true,
+      "sortable": true,
+      "facetable": true,
+      "analyzer": "en.lucene"
+    },
+    {
+      "name": "Sex",
+      "type": "Edm.String",
+      "searchable": true,
+      "sortable": true,
+      "facetable": true,
+      "analyzer": "en.lucene"
+    },
+    {
+      "name": "YearOfBirth",
+      "type": "Edm.Int32",
+      "searchable": false,
+      "sortable": true,
+      "facetable": true
+    },
+    {
+      "name": "City",
+      "type": "Edm.String",
+      "searchable": true,
+      "sortable": true,
+      "facetable": true,
+      "analyzer": "en.lucene"
+    },
+    {
+      "name": "Region",
+      "type": "Edm.String",
+      "searchable": true,
+      "sortable": true,
+      "facetable": true,
+      "analyzer": "en.lucene"
+    },
+    {
+      "name": "State",
+      "type": "Edm.String",
+      "searchable": true,
+      "sortable": true,
+      "facetable": true,
+      "analyzer": "en.lucene"
+    },
+    {
+      "name": "HomeLocation",
+      "type": "Edm.GeographyPoint",
+      "searchable": false,
+      "filterable": true,
+      "retrievable": false,
+      "sortable": true,
+      "facetable": false,
+      "key": false,
+      "indexAnalyzer": null,
+      "searchAnalyzer": null,
+      "analyzer": null
+    },
+    {
+      "name": "SuspectSearchImage",
+      "type": "Edm.String",
+      "searchable": false,
+      "sortable": false,
+      "facetable": false
+    }
+  ],
+  "scoringProfiles": [
+    {
+      "name": "location",
+      "text": null,
+      "functions": [
+        {
+          "fieldName": "HomeLocation",
+          "freshness": null,
+          "interpolation": "linear",
+          "magnitude": null,
+          "distance": {
+            "referencePointParameter": "referencePoint",
+            "boostingDistance": 100
+          },
+          "tag": null,
+          "type": "distance",
+          "boost": 35
+        }
+      ],
+      "functionAggregation": "sum"
+    }
+  ],
+  "defaultScoringProfile": "location",
+  "analyzers": [
+    {
+      "name": "phonetic",
+      "@odata.type": "#Microsoft.Azure.Search.CustomAnalyzer",
+      "tokenizer": "standard",
+      "tokenFilters": [ "lowercase", "asciifolding", "phonetic" ]
+    }
+  ]
+}

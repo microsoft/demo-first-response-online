@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="ResponderIconView">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4" misplaced="YES">
+                    <rect key="frame" x="3" y="6.5" width="24" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.023529411764705882" green="0.65098039215686276" blue="0.047058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="5"/>
+                <constraint firstAttribute="centerY" secondItem="4" secondAttribute="centerY" id="6"/>
+                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" constant="3" id="7"/>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="3" id="8"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="NameLabel" destination="4" id="name-outlet-4"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="Adambig.jpg" width="200" height="200"/>
+        <image name="Background.png" width="1920" height="1080"/>
+        <image name="Benbig.jpg" width="200" height="200"/>
+        <image name="bg_button.png" width="179" height="49"/>
+        <image name="bg_info.png" width="370" height="392"/>
+        <image name="Charliebig.jpg" width="200" height="200"/>
+        <image name="cities/city_Amsterdam.jpg" width="776" height="440"/>
+        <image name="cities/city_Bangalore.jpg" width="776" height="440"/>
+        <image name="cities/city_Birmingham.jpg" width="776" height="440"/>
+        <image name="cities/city_Chicago.jpg" width="776" height="440"/>
+        <image name="cities/city_Copenhagen.jpg" width="776" height="440"/>
+        <image name="cities/city_Frankfurt.jpg" width="776" height="440"/>
+        <image name="cities/city_Johannesburg.jpg" width="776" height="440"/>
+        <image name="cities/city_Mexico.jpg" width="776" height="440"/>
+        <image name="cities/city_Milan.jpg" width="776" height="440"/>
+        <image name="cities/city_Prague.jpg" width="776" height="440"/>
+        <image name="cities/city_SaoPaulo.jpg" width="776" height="440"/>
+        <image name="cities/city_Seattle.jpg" width="776" height="440"/>
+        <image name="cities/city_Seoul.jpg" width="776" height="440"/>
+        <image name="cities/city_Singapore.jpg" width="776" height="440"/>
+        <image name="cities/city_Taipei.jpg" width="776" height="440"/>
+        <image name="cities/city_TelAviv.jpg" width="776" height="440"/>
+        <image name="cities/city_Toronto.jpg" width="776" height="440"/>
+        <image name="cities/city_Washington.jpg" width="776" height="440"/>
+        <image name="Default-568h.png" width="320" height="568"/>
+        <image name="Default-Portrait.png" width="768" height="1004"/>
+        <image name="Default.png" width="320" height="480"/>
+        <image name="heatmap_checked.png" width="256" height="256"/>
+        <image name="heatmap_unchecked.png" width="256" height="256"/>
+        <image name="ico_check.png" width="11" height="9"/>
+        <image name="ico_close_black.png" width="13" height="13"/>
+        <image name="ico_dropdown.png" width="12" height="7"/>
+        <image name="Icon-60.png" width="60" height="60"/>
+        <image name="Icon-76.png" width="76" height="76"/>
+        <image name="Icon-Small-40.png" width="40" height="40"/>
+        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="icons/icon_alert.png" width="80" height="80"/>
+        <image name="icons/icon_animal.png" width="80" height="80"/>
+        <image name="icons/icon_car.png" width="80" height="80"/>
+        <image name="icons/icon_fire.png" width="80" height="80"/>
+        <image name="icons/icon_officer.png" width="80" height="80"/>
+        <image name="icons/icon_other.png" width="80" height="80"/>
+        <image name="icons/icon_pedestrian.png" width="80" height="80"/>
+        <image name="icons/icon_stranger.png" width="80" height="80"/>
+        <image name="incidents_checked.png" width="190" height="60"/>
+        <image name="incidents_unchecked.png" width="190" height="60"/>
+        <image name="login/login_logo.png" width="299" height="159"/>
+        <image name="login/login_password_icon.png" width="16" height="14"/>
+        <image name="login/login_username_icon.png" width="12" height="17"/>
+        <image name="logout.png" width="256" height="256"/>
+        <image name="map_icon_Satellite_off.png" width="48" height="48"/>
+        <image name="map_icon_Satellite_on.png" width="48" height="48"/>
+        <image name="pins/nav_map.png" width="45" height="52"/>
+        <image name="pins/pin_alert.png" width="36" height="48"/>
+        <image name="pins/pin_animal.png" width="36" height="48"/>
+        <image name="pins/pin_arrest.png" width="36" height="48"/>
+        <image name="pins/pin_car.png" width="36" height="48"/>
+        <image name="pins/pin_officer.png" width="36" height="48"/>
+        <image name="pins/pin_other.png" width="36" height="48"/>
+        <image name="pins/pin_pedestrian.png" width="36" height="48"/>
+        <image name="pins/pin_siren.png" width="36" height="48"/>
+        <image name="pins/pin_stranger.png" width="36" height="48"/>
+        <image name="pins/pins_bkgd.png" width="50" height="67"/>
+        <image name="powerbi.png" width="250" height="250"/>
+        <image name="responders_checked.png" width="190" height="60"/>
+        <image name="responders_unchecked.png" width="190" height="60"/>
+        <image name="signin_logo.png" width="299" height="159"/>
+        <image name="suspects/suspect_BillieJoMurray.jpg" width="200" height="200"/>
+        <image name="suspects/suspect_JayHenningsen.jpg" width="200" height="200"/>
+        <image name="suspects/suspect_JoaoCasqueiro.jpg" width="200" height="200"/>
+        <image name="suspects/suspect_JoeAndreshak.jpg" width="200" height="200"/>
+        <image name="suspects/suspect_JoyMiller.jpg" width="200" height="200"/>
+        <image name="ticket/Ico_close_white.png" width="13" height="13"/>
+        <image name="ticket/Suspect_ico_new_ticket.png" width="15" height="20"/>
+    </resources>
+</document>

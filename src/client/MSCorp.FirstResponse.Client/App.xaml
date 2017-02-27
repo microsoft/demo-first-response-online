@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MSCorp.FirstResponse.Client.App"
+             xmlns:converters="clr-namespace:MSCorp.FirstResponse.Client.Converters;assembly=MSCorp.FirstResponse.Client"
+             xmlns:effects="clr-namespace:MSCorp.FirstResponse.Client.Effects;assembly=MSCorp.FirstResponse.Client">
+	<Application.Resources>
+        <ResourceDictionary>
+            
+            <!-- COLORS -->
+            <Color x:Key="WhiteColor">#ffffff</Color>
+            <Color x:Key="BlackColor">#000000</Color>
+            <Color x:Key="BlueColor">#2196F3</Color>
+            <Color x:Key="DarkGrayColor">#182227</Color>
+            <Color x:Key="TerciaryDarkGray">#263238</Color>
+            <Color x:Key="GrayColor">#B0BEC5</Color>
+            <Color x:Key="LightGrayColor">#ECEFF1</Color>
+            <Color x:Key="SecondaryDarkGray">#0D1417</Color>
+            <Color x:Key="RouteColor">#0370B5</Color>
+            <Color x:Key="SearchPolygonColor">#80808080</Color>
+
+            <!-- CONVERTERS -->
+            <converters:CitiesImageConverter x:Key="CitiesImageConverter" />
+            <converters:SuspectImageConverter x:Key="SuspectImageConverter" />
+            <converters:SuspectDescriptionConverter x:Key="SuspectDescriptionConverter" />
+            <converters:CountToBoolConverter x:Key="CountToBoolConverter" />
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <converters:ItemsToHeightConverter x:Key="ItemsToHeightConverter" />
+            <converters:IconsImageConverter x:Key="IconsImageConverter" />
+            <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
+            <converters:UserRoleImageConverter x:Key="UserRoleImageConverter" />
+            <converters:UserRoleToBoolConverter x:Key="UserRoleToBoolConverter" />
+            <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
+
+            <!-- FONT TYPES -->
+            <OnPlatform x:Key="TitilliumLight"
+                        x:TypeArguments="x:String"
+                        iOS="TitilliumWeb-Light"
+                        Android="Fonts/TitilliumWeb-Light.ttf#Titillium Web"
+                        WinPhone="/Assets/Fonts/TitilliumWeb-Light.ttf#Titillium Web"/>
+
+            <OnPlatform x:Key="TitilliumRegular"
+                        x:TypeArguments="x:String"
+                        iOS="TitilliumWeb-Regular"
+                        Android="Fonts/TitilliumWeb-Regular.ttf#Titillium Web"
+                        WinPhone="/Assets/Fonts/TitilliumWeb-Regular.ttf#Titillium Web"/>
+
+            <!-- FONT SIZES -->
+            <OnPlatform 
+                x:Key="LittleSize"
+                x:TypeArguments="x:Double"
+                iOS="11"
+                Android="12"
+                WinPhone="12"/>
+
+            <OnPlatform 
+                x:Key="MidMediumSize"
+                x:TypeArguments="x:Double"
+                iOS="12"
+                Android="14"
+                WinPhone="14"/>
+
+            <OnPlatform 
+                x:Key="MediumSize"
+                x:TypeArguments="x:Double"
+                iOS="14"
+                Android="16"
+                WinPhone="16"/>
+
+            <OnPlatform 
+                x:Key="LargeSize"
+                x:TypeArguments="x:Double"
+                iOS="16"
+                Android="18"
+                WinPhone="18"/>
+
+            <OnPlatform 
+                x:Key="LargerSize"
+                x:TypeArguments="x:Double"
+                iOS="18"
+                Android="20"
+                WinPhone="20"/>
+
+            <OnPlatform 
+                x:Key="BigSize"
+                x:TypeArguments="x:Double"
+                iOS="20"
+                Android="24"
+                WinPhone="24"/>
+
+            <OnPlatform 
+                x:Key="ExtraBigSize"
+                x:TypeArguments="x:Double"
+                iOS="24"
+                Android="32"
+                WinPhone="32"/>
+
+            <OnPlatform 
+                x:Key="HugeSize"
+                x:TypeArguments="x:Double"
+                iOS="32"
+                Android="48"
+                WinPhone="48"/>
+            
+            <!-- STYLES -->
+            <Style x:Key="LabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MidMediumSize}" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource TitilliumLight}" />
+            </Style>
+
+            <Style x:Key="EntryStyle"
+                   TargetType="{x:Type Entry}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="PlaceholderColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargeSize}" />
+                <Setter Property="HorizontalOptions"
+                        Value="FillAndExpand" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource TitilliumLight}" />
+                <Setter Property="Opacity"
+                        Value="0.6" />
+                <Setter Property="effects:ApplyNativeStyleEffect.ApplyNativeStyle"
+                        Value="True" />
+            </Style>
+
+            <Style x:Key="UwpEntryStyle"
+                   TargetType="{x:Type Entry}"
+                   BasedOn="{StaticResource EntryStyle}">
+                <Setter Property="BackgroundColor" 
+                        Value="Transparent" />
+            </Style>
+
+            
+          
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

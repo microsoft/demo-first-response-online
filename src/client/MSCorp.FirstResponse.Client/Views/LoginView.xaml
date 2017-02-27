@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MSCorp.FirstResponse.Client.Views.LoginView"
+             xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client"
+             xmlns:animations="clr-namespace:MSCorp.FirstResponse.Client.Animations;assembly=MSCorp.FirstResponse.Client"
+             xmlns:triggers="clr-namespace:MSCorp.FirstResponse.Client.Triggers;assembly=MSCorp.FirstResponse.Client"
+             BackgroundColor="{StaticResource DarkGrayColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="SignInPanelStyle" TargetType="Grid">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="MinimumHeightRequest" Value="320" />
+            </Style>
+
+            <Style x:Key="SignInLogoStyle" TargetType="Image">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,48,0,48" />
+            </Style>
+
+            <Style x:Key="LoginButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource BlueColor}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="Margin" Value="0,48,0,0" />
+            </Style>
+
+            <Style x:Key="ZoneDescriptionPanelStyle" TargetType="StackLayout">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="92,0,0,88" />
+            </Style>
+
+            <Style x:Key="ZoneDescriptionTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize" Value="{StaticResource MidMediumSize}" />
+                <Setter Property="Opacity" Value="0.6" />
+            </Style>
+            
+            <animations:FadeInAnimation
+                x:Key="LoginAnimation"
+                Direction="Up"
+                Target="{x:Reference LoginPanel}">
+                <animations:FadeInAnimation.Duration>
+                    <OnPlatform 
+                        x:TypeArguments="x:String" 
+                        Android="1000"
+                        iOS="2000"
+                        WinPhone="1500"/>
+                </animations:FadeInAnimation.Duration>
+            </animations:FadeInAnimation>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <triggers:BeginAnimation
+                Animation="{StaticResource LoginAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <Grid>
+        <!-- BACKGROUND -->
+        <Image Aspect="AspectFill">
+            <Image.Source>
+                <OnPlatform 
+                    x:TypeArguments="ImageSource"
+                    iOS="Background"
+                    WinPhone="Assets\Background.png"/>
+            </Image.Source>
+        </Image>
+        <!-- LOGIN -->
+        <ScrollView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="240" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid
+                    x:Name="LoginPanel"
+                    Grid.Column="1"
+                    Style="{StaticResource SignInPanelStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image 
+                        Grid.Row="0"
+                        Style="{StaticResource SignInLogoStyle}">
+                        <Image.Source>
+                            <OnPlatform 
+                                x:TypeArguments="ImageSource"
+                                Android="login_logo.png"
+                                iOS="login/login_logo"
+                                WinPhone="Assets\SignIn-Logo.png"/>
+                        </Image.Source>
+                    </Image>
+                    <Grid Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <controls:EntryWithIcon
+                            Grid.Row="0"
+                            Placeholder="Username"
+                            Text="{Binding UserName, Mode=TwoWay}">
+                            <controls:EntryWithIcon.Icon>
+                                <OnPlatform 
+                                    x:TypeArguments="ImageSource"
+                                    Android="login_username_icon"  
+                                    iOS="login/login_username_icon"
+                                    WinPhone="Assets\Login\login_username_icon.png"/>
+                            </controls:EntryWithIcon.Icon>
+                        </controls:EntryWithIcon>
+                        <controls:EntryWithIcon
+                            Grid.Row="2"
+                            Placeholder="Password"
+                            IsPassword="True"
+                            Text="{Binding Password, Mode=TwoWay}">
+                            <controls:EntryWithIcon.Icon>
+                                <OnPlatform 
+                                    x:TypeArguments="ImageSource"
+                                    Android="login_password_icon"  
+                                    iOS="login/login_password_icon"
+                                    WinPhone="Assets\Login\login_password_icon.png"/>
+                            </controls:EntryWithIcon.Icon>
+                        </controls:EntryWithIcon>
+                        <Button 
+                            x:Name="Test"
+                            Grid.Row="3"  
+                            Text="ENTER" 
+                            Command="{Binding LoginCommand}"
+                            Style="{StaticResource LoginButtonStyle}"/>
+                        <ActivityIndicator Grid.Row="4"  
+                                           IsRunning="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}"
+                                           VerticalOptions="Center"
+                                           Color="{StaticResource BlueColor}"
+                                           HorizontalOptions="Center">
+                            <ActivityIndicator.WidthRequest>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    iOS="100"
+                                    Android="100"
+                                    WinPhone="400" />
+                            </ActivityIndicator.WidthRequest>
+                        </ActivityIndicator>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollView>
+
+        <StackLayout 
+            Style="{StaticResource ZoneDescriptionPanelStyle}">
+            <Label       
+                Text="{Binding City.CityName}"
+                Style="{StaticResource ZoneDescriptionTextStyle}"/>
+            <Label 
+                Text="{Binding City.Coordinates}"  
+                Style="{StaticResource ZoneDescriptionTextStyle}"/>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer        
+                    Command="{Binding SelectCityCommand}"    
+                    NumberOfTapsRequired="1" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </Grid>
+</ContentPage>

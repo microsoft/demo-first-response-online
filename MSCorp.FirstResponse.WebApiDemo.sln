@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API\MSCorp.FirstResponse.WebApiDemo", "src\API\MSCorp.FirstResponse.WebApiDemo\MSCorp.FirstResponse.WebApiDemo.csproj", "{B04F63DC-63EE-4B23-AC68-ACD9C7444ACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API\MSCorp.FirstResponse.WebApiDemo.Data", "src\API\MSCorp.FirstResponse.WebApiDemo.Data\MSCorp.FirstResponse.WebApiDemo.Data.csproj", "{1DBF6812-08E4-471B-98D6-A4947762451F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B04F63DC-63EE-4B23-AC68-ACD9C7444ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04F63DC-63EE-4B23-AC68-ACD9C7444ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04F63DC-63EE-4B23-AC68-ACD9C7444ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04F63DC-63EE-4B23-AC68-ACD9C7444ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DBF6812-08E4-471B-98D6-A4947762451F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DBF6812-08E4-471B-98D6-A4947762451F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DBF6812-08E4-471B-98D6-A4947762451F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DBF6812-08E4-471B-98D6-A4947762451F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+	EndGlobalSection
+EndGlobal

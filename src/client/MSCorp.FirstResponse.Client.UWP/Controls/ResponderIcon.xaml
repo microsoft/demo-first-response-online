@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="MSCorp.FirstResponse.Client.UWP.Controls.ResponderIcon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MSCorp.FirstResponse.Client.UWP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <Grid 
+        Height="48"
+        Width="48">
+        <Grid  
+            Height="28"
+            Width="28">
+            <Ellipse                
+                Fill="White" />
+            <Ellipse         
+                x:Name="StatusColor" 
+                Width="26" 
+                Height="26" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                Fill="Green"/>
+            <TextBlock 
+                Text="P1" 
+                x:Name="ResponderType" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                FontSize="12"
+                Foreground="White" 
+                Margin="0" 
+                Padding="1,0,0,2" />
+        </Grid>
+        <Image 
+            x:Name="ResponderImage"
+            Source="ms-appx:///Assets/Nav/nav_car.png" 
+            Visibility="Collapsed"/>
+    </Grid>
+</UserControl>

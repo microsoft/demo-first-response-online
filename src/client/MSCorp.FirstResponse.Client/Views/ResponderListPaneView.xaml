@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    x:Name="ResponderListPane"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="MSCorp.FirstResponse.Client.Views.ResponderListPaneView" 
+    xmlns:templates="clr-namespace:MSCorp.FirstResponse.Client.Views.Templates;assembly=MSCorp.FirstResponse.Client"
+    xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="controls:ToggleButton">
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="BackgroundColor" Value="{StaticResource SecondaryDarkGray}" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid             
+            BackgroundColor="{StaticResource DarkGrayColor}"
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                BackgroundColor="{StaticResource SecondaryDarkGray}">
+                <controls:ToggleButton 
+                    Grid.Column="0"
+                    Text="all services"  
+                    Animate="True"
+                    Checked="{Binding AllRespondersChecked, Mode=TwoWay}"
+                    Command="{Binding FilterClearRespondersCommand}" />
+                <controls:ToggleButton
+                    Grid.Column="1"   
+                    Text="fire trucks"
+                    Animate="True"
+                    Checked="{Binding FireRespondersChecked, Mode=TwoWay}"
+                    Command="{Binding FilterFireRespondersCommand}" />
+                <controls:ToggleButton
+                    Grid.Column="2"                     
+                    Text="ambulances"    
+                    Animate="True"
+                    Checked="{Binding MedicalRespondersChecked, Mode=TwoWay}"
+                    Command="{Binding FilterMedicalRespondersCommand}" />
+                <controls:ToggleButton
+                    Grid.Column="3"     
+                    Text="policies"
+                    Animate="True"
+                    Checked="{Binding PoliceRespondersChecked, Mode=TwoWay}"
+                    Command="{Binding FilterPoliceRespondersCommand}" />
+            </Grid>
+            <ListView 
+                Grid.Row="1"
+                ItemsSource="{Binding ResponderList}" 
+                HasUnevenRows="True"
+                CachingStrategy="RecycleElement"
+                SeparatorVisibility="None"
+                BackgroundColor="{StaticResource DarkGrayColor}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <templates:ResponderListItemTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

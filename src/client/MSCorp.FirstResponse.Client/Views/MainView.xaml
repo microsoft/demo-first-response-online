@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MSCorp.FirstResponse.Client.Views.MainView" 
+    xmlns:imageCircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"   
+    xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client"
+    xmlns:views="clr-namespace:MSCorp.FirstResponse.Client.Views;assembly=MSCorp.FirstResponse.Client"
+    MasterBehavior="Split">
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ImageListStyle" TargetType="imageCircle:CircleImage">
+                <Setter Property="Aspect" Value="AspectFill"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderColor" Value="{StaticResource BlueColor}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="ProfileDataPanelStyle" TargetType="StackLayout">
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+
+            <Style x:Key="TitleListStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="Margin" Value="0,12,12,0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="SubTitleListStyle" TargetType="Label" BasedOn="{StaticResource TitleListStyle}">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="TextColor" Value="{StaticResource GrayColor}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,6,12,0"/>
+            </Style>
+
+            <Style x:Key="PowerBIButtonStyle" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            
+            <Style x:Key="HeatMapButtonStyle" TargetType="controls:ToggleButton">
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="LogoutButtonStyle" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
+    <MasterDetailPage.Master>
+        <ContentPage 
+            Title=" ">
+            <Grid
+                ColumnSpacing="0"
+                RowSpacing="0"
+                BackgroundColor="{StaticResource DarkGrayColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="88"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid 
+                    Grid.Row="0"
+                    BackgroundColor="{StaticResource TerciaryDarkGray}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- PROFILE IMAGE -->
+                    <imageCircle:CircleImage
+                        Grid.Column="1" 
+                        Source="{Binding SelectedUser.UserRoleImage, Converter={StaticResource UserRoleImageConverter}}"
+                        Style="{StaticResource ImageListStyle}"/>
+                    <!-- PROFILE DATA -->
+                    <StackLayout 
+                        Grid.Column="2" 
+                        Style="{StaticResource ProfileDataPanelStyle}">
+                        <Label 
+                            Text="{Binding SelectedUser.DisplayUserName}"
+                            Style="{StaticResource TitleListStyle}"/>
+                        <Label 
+                            Text="{Binding SelectedUser.RoleName}"
+                            Style="{StaticResource SubTitleListStyle}"/>
+                    </StackLayout>
+                    <!-- POWER BI -->
+                    <Grid  
+                        Grid.Column="3"
+                        IsVisible="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}">
+                        <Image
+                            Style="{StaticResource PowerBIButtonStyle}"
+                            IsVisible="{Binding SelectedUser.RoleName, Converter={StaticResource UserRoleToBoolConverter}}">
+                            <Image.Source>
+                                <OnPlatform 
+                                    x:TypeArguments="ImageSource"
+                                    Android="powerbi"
+                                    iOS="powerbi"
+                                    WinPhone="Assets/PowerBI.png"/>
+                            </Image.Source>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding PowerBICommand}"    
+                                    NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <!-- HEATMAP -->
+                    <controls:ToggleButton 
+                        Grid.Column="4"
+                        Checked="{Binding HeatMap, Mode=TwoWay}"
+                        Style="{StaticResource HeatMapButtonStyle}">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform 
+                                x:TypeArguments="ImageSource"
+                                Android="heatmap_checked"
+                                iOS="heatmap_checked"
+                                WinPhone="Assets/HeatMapChecked.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform 
+                                x:TypeArguments="ImageSource"
+                                Android="heatmap_unchecked"
+                                iOS="heatmap_unchecked"
+                                WinPhone="Assets/HeatMapUnChecked.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                    </controls:ToggleButton>
+                    <!-- LOGOUT -->
+                    <Image 
+                        Grid.Column="5"   
+                        Style="{StaticResource LogoutButtonStyle}">
+                        <Image.Source>
+                            <OnPlatform 
+                                x:TypeArguments="ImageSource"
+                                Android="logout"
+                                iOS="logout"
+                                WinPhone="Assets/Logout.png"/>
+                        </Image.Source>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding LogoutCommand}"    
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <Grid 
+                    Grid.Row="1"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!-- INCIDENTS -->
+                    <controls:ToggleButton 
+                        Grid.Column="0"   
+                        Animate="True"
+                        Checked="{Binding IncidentToggleButtonChecked, Mode=TwoWay}"
+                        Command="{Binding SelectorCommand}"
+                        CommandParameter="Incidents">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform 
+                                x:TypeArguments="ImageSource"
+                                Android="incidents_checked"
+                                iOS="incidents_checked"
+                                WinPhone="Assets/IncidentsChecked.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform 
+                                x:TypeArguments="ImageSource"
+                                Android="incidents_unchecked"
+                                iOS="incidents_unchecked"
+                                WinPhone="Assets/IncidentsUnChecked.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                    </controls:ToggleButton>
+                    <!-- RESPONDERS -->
+                    <controls:ToggleButton 
+                        Grid.Column="1" 
+                        Animate="True"
+                        Checked="{Binding ResponderToggleButtonChecked, Mode=TwoWay}" 
+                        Command="{Binding SelectorCommand}"
+                        CommandParameter="Responders">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform 
+                                x:TypeArguments="ImageSource"
+                                Android="responders_checked"
+                                iOS="responders_checked"
+                                WinPhone="Assets/RespondersChecked.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform 
+                                x:TypeArguments="ImageSource"
+                                Android="responders_unchecked"
+                                iOS="responders_unchecked"
+                                WinPhone="Assets/RespondersUnChecked.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                    </controls:ToggleButton>
+                </Grid>
+                <!-- INCIDENT LIST -->
+                <Grid  
+                    Grid.Row="2"    
+                    ColumnSpacing="0"
+                    RowSpacing="0"
+                    VerticalOptions="Start"
+                    IsVisible="{Binding IncidentToggleButtonChecked}">
+                    <views:IncidentListPaneView                  
+                        BindingContext="{Binding IncidentListViewModel}"/>
+                </Grid>
+                <!-- RESPONDER LIST -->
+                <Grid  
+                    Grid.Row="2"  
+                    ColumnSpacing="0"
+                    RowSpacing="0"
+                    VerticalOptions="Start" 
+                    IsVisible="{Binding ResponderToggleButtonChecked}">
+                    <views:ResponderListPaneView   
+                        BindingContext="{Binding ResponderListViewModel}" />
+                </Grid>
+                <!-- INCIDENT DETAILS -->
+                <views:IncidentDetailView 
+                    Grid.Row="1"  
+                    Grid.RowSpan="2"
+                    BindingContext="{Binding IncidentDetailViewModel}"
+                    IsVisible="{Binding Incident, Converter={StaticResource NullToBoolConverter}, ConverterParameter=Inverse}" />
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <ContentPage>
+            <AbsoluteLayout>
+                <!-- Map -->
+                <controls:CustomMap   
+                    x:Name="FirstResponseMap"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0"    
+                    CurrentIncident="{Binding IncidentListViewModel.SelectedIncident, Mode=TwoWay}"     
+                    Incidents="{Binding IncidentListViewModel.IncidentList}"
+                    Responders="{Binding ResponderListViewModel.FullResponderList}"
+                    Routes="{Binding ResponderListViewModel.RouteList}"     
+                    Locations="{Binding HeatData}"
+                    MapType="{Binding MapType}"
+                    IsHeatMapVisible="{Binding HeatMap}"
+                    IsForceNavigation="{Binding ForceNavigation, Mode=TwoWay}"
+                    Intensity="1"
+                    Radius="1000"
+                    RouteColor="{StaticResource RouteColor}" 
+                    SearchPolygonColor="{StaticResource SearchPolygonColor}" />
+                <!-- Satellite map selector -->
+                <controls:ToggleButton 
+                  Animate="True"
+                  BindingContext="{x:Reference FirstResponseMap}"
+                  Command="{Binding MapTypeCommand}"
+                  Checked="false"
+                  AbsoluteLayout.LayoutBounds=".90,.95,50,50"
+                  AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <controls:ToggleButton.CheckedImage>
+                        <OnPlatform 
+                          x:TypeArguments="ImageSource"
+                          Android="map_icon_Satellite_on"
+                          iOS="map_icon_Satellite_on"
+                          WinPhone="Assets/map_icon_Satellite_on.png"/>
+                    </controls:ToggleButton.CheckedImage>
+                    <controls:ToggleButton.UnCheckedImage>
+                        <OnPlatform 
+                          x:TypeArguments="ImageSource"
+                          Android="map_icon_Satellite_off"
+                          iOS="map_icon_Satellite_off"
+                          WinPhone="Assets/map_icon_Satellite_off.png"/>
+                    </controls:ToggleButton.UnCheckedImage>
+                </controls:ToggleButton>
+            </AbsoluteLayout>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

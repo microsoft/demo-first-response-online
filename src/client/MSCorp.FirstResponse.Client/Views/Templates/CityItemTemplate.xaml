@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="MSCorp.FirstResponse.Client.Views.Templates.CityItemTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            
+            <Style x:Key="CityLabelStyle" TargetType="Label">
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid                   
+            BackgroundColor="{StaticResource WhiteColor}"
+            WidthRequest="300"     
+            Margin="0, 0, 12, 12">
+            <Grid.HeightRequest>
+                <OnPlatform  
+                    x:TypeArguments="x:Double"
+                    Android="100"
+                    iOS="250"
+                    WinPhone="250"/>
+            </Grid.HeightRequest>
+            <Grid.InputTransparent>
+                <OnPlatform 
+                    x:TypeArguments="x:Boolean"
+                    Android="True"
+                    iOS="False"
+                    WinPhone="False"/>
+            </Grid.InputTransparent>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image 
+                Grid.Row="0"
+                Source="{Binding CityImage, Converter={StaticResource CitiesImageConverter}}"
+                Aspect="AspectFill">
+                <Image.IsVisible>
+                    <OnPlatform 
+                        x:TypeArguments="x:Boolean"
+                        Android="False"
+                        iOS="True"
+                        WinPhone="True"/>
+                </Image.IsVisible>
+            </Image>
+            <Grid
+                Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Text="{Binding CityName}"
+                    FontSize="Medium" 
+                    Style="{StaticResource CityLabelStyle}"/>
+                <Label 
+                    Grid.Row="1"
+                    Text="{Binding EventDate}"
+                    FontSize="Micro"
+                    Style="{StaticResource CityLabelStyle}"/>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

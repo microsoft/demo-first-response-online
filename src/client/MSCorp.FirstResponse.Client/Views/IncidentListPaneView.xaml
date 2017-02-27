@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="MSCorp.FirstResponse.Client.Views.IncidentListPaneView"   
+    xmlns:templates="clr-namespace:MSCorp.FirstResponse.Client.Views.Templates;assembly=MSCorp.FirstResponse.Client">
+    <ContentView.Content>
+        <Grid
+            BackgroundColor="{StaticResource DarkGrayColor}">
+            <ListView 
+                SelectedItem="{Binding SelectedIncident, Mode=TwoWay}"   
+                ItemsSource="{Binding IncidentList}"   
+                HasUnevenRows="True"
+                CachingStrategy="RecycleElement"
+                SeparatorVisibility="None"
+                BackgroundColor="{StaticResource DarkGrayColor}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <templates:IncidentListItemTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

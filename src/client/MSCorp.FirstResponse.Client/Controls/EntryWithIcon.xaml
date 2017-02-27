@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="Control"
+             x:Class="MSCorp.FirstResponse.Client.Controls.EntryWithIcon">
+    <Grid.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryWithIconLineStyle" TargetType="BoxView">
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="BackgroundColor" Value="{StaticResource WhiteColor}" />
+            </Style>
+        </ResourceDictionary>
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="1" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!--ICON-->
+    <Image 
+        Grid.Row="0"
+        Grid.Column="0"
+        Source="{Binding Icon, Source={x:Reference Control}}" 
+        HeightRequest="16"
+        VerticalOptions="Center"
+        Aspect="AspectFit" />
+
+    <!--ENTRY-->
+    <Entry 
+        Grid.Row="0"
+        Grid.Column="1"
+        Placeholder="{Binding Placeholder, Source={x:Reference Control}}"
+        IsPassword="{Binding IsPassword,  Source={x:Reference Control}}"
+        Text="{Binding Text, Source={x:Reference Control}}">
+        <Entry.Style>
+            <OnPlatform x:TypeArguments="Style"
+                        iOS="{StaticResource EntryStyle}"
+                        Android="{StaticResource EntryStyle}"
+                        WinPhone="{StaticResource UwpEntryStyle}"/>
+        </Entry.Style>
+    </Entry>
+
+    <!--BOTTOM LINE-->
+    <BoxView 
+        Grid.Row="1"
+        Grid.ColumnSpan="2" 
+        Style="{StaticResource EntryWithIconLineStyle}" />
+</Grid>

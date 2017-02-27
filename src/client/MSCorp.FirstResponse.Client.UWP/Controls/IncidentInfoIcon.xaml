@@ -1,0 +1,166 @@
+﻿<UserControl
+    x:Class="MSCorp.FirstResponse.Client.UWP.Controls.IncidentInfoIcon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MSCorp.FirstResponse.Client.UWP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        
+        <Storyboard x:Name="PriorityIconStoryboard" RepeatBehavior="Forever" >
+            <ColorAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)"
+                Storyboard.TargetName="PulseEllipse">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF44336"/>
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="#FFFF9800"/>
+                <EasingColorKeyFrame KeyTime="0:0:2" Value="#FFF44336"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        
+    </UserControl.Resources>
+
+    <Grid 
+        Height="60" 
+        Width="60">
+        <Grid     
+            x:Name="ButtonOne" 
+            Margin="-185,-338,-185,-54"
+            Canvas.ZIndex="999">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Grid.Transitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="56"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Path 
+                Fill="{StaticResource PrimaryDarkGrayBrush}" 
+                Grid.RowSpan="2" UseLayoutRounding="False"
+                Margin="40,25.5,40,48" 
+                Data="M0,4.23469 L20,4.15816 L20,18 L11.7571,18 L10,20.612 L8.24287,18 L0,18 L0,4.23469 z" 
+                Stretch="Fill"
+                d:LayoutOverrides="LeftPosition, RightPosition" 
+                Grid.Row="1" />
+            <Grid 
+                x:Name="Header"
+                Background="White" 
+                Width="350" 
+                Height="56" 
+                Margin="40,-9,40,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image 
+                        x:Name="HeaderImage" 
+                        Source="ms-appx:///Assets/Icons/icon_car.png" 
+                        Width="40" 
+                        Margin="10,0,0,0"/>
+                    <TextBlock
+                        Grid.Column="1" 
+                        x:Name="IncidentTitle" 
+                        Text="Title" 
+                        TextTrimming="CharacterEllipsis"
+                        FontSize="16" 
+                        Padding="10,0,40,0"   
+                        FontWeight="SemiBold" 
+                        Foreground="{StaticResource PrimaryDarkGrayBrush}" 
+                        VerticalAlignment="Center" />
+                </Grid>
+                <Button 
+                    Style="{StaticResource CrossButtonStyle}" 
+                    Height="20" 
+                    Margin="0,6,8,0" 
+                    Foreground="{StaticResource PrimaryDarkGrayBrush}"  
+                    HorizontalAlignment="Right"
+                    Click="OnCloseButtonClicked" 
+                    VerticalAlignment="Top"/>
+            </Grid>
+            <Grid 
+                Grid.Row="1" 
+                Width="350">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="92*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel 
+                    Margin="28,72,28,2" 
+                    Orientation="Vertical"
+                    Grid.ColumnSpan="2">
+                    <TextBlock 
+                        Text="Description" 
+                        Style="{StaticResource SubtitleTextBlockStyle}" 
+                        Margin="0"/>
+                    <TextBlock 
+                        x:Name="IncidentDetails"
+                        Text="j aklsjdkl asjdkla sjdklajs dlkj sakldjask dlj asdj aksjdklajs kajsklajslajs klj kljakdljasdjksjkljs klajs kla"
+                        Style="{StaticResource BodyTextBlockStyle}" 
+                        MaxLines="2"
+                        Margin="0,8,0,0" />
+                    <TextBlock
+                        Text="Location"
+                        Style="{StaticResource SubtitleTextBlockStyle}"/>
+                    <TextBlock
+                        x:Name="IncidentLocation" 
+                        Text="j aklsjdkl asjdkla sjdklajs dlkj sakldjask dlj asdj aksjdklajs kajsklajslajs klj kljakdljasdjksjkljs klajs kla"
+                        Style="{StaticResource BodyTextBlockStyle}"
+                        MaxLines="2" 
+                        Margin="0,8,0,0" />
+                </StackPanel>
+            </Grid>
+            <Button 
+                Grid.Row="2"
+                Height="40"
+                Width="120"
+                Content="Navigate" 
+                Click="OnNavigateButtonClick" 
+                Style="{StaticResource RoundedButtonStyle}"
+                Margin="4,16,4,0" 
+                HorizontalAlignment="Center"/>
+        </Grid>
+        <Grid>
+            <Image
+                x:Name="IconImage" 
+                Source="ms-appx:///Assets/Pins/pins_bkgd.png" 
+                Tapped="OnIconImageTapped" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom"/>
+            <Path 
+                x:Name="BackEllipse" 
+                Data="M36,18 C36,27.9411 18,48.143 18,47.8571 C18.1429,48.0002 0,27.9411 0,18 C0,8.05887 8.05887,0 18,0 C27.9411,0 36,8.05887 36,18 z" 
+                Fill="#ECEFF1" 
+                HorizontalAlignment="Center"
+                Height="54" 
+                Stretch="Fill" 
+                VerticalAlignment="Top"
+                Width="40"
+                UseLayoutRounding="False" />
+            <Path
+                x:Name="PulseEllipse" 
+                Data="M36,18 C36,27.9411 18,48.143 18,47.8571 C18.1429,48.0002 0,27.9411 0,18 C0,8.05887 8.05887,0 18,0 C27.9411,0 36,8.05887 36,18 z" 
+                Fill="#FFF44336" 
+                HorizontalAlignment="Center"
+                Height="52" 
+                Stretch="Fill" 
+                VerticalAlignment="Top"
+                Width="38" 
+                UseLayoutRounding="False"
+                Margin="0,1,0,0" />
+            <Image 
+                x:Name="PriorityImage" 
+                Source="ms-appx:///Assets/Pins/pins_car_alert.png" 
+                Tapped="OnIconImageTapped"  
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom" />
+        </Grid>
+    </Grid>
+</UserControl>

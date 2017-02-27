@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client"
+             xmlns:effects="clr-namespace:MSCorp.FirstResponse.Client.Effects;assembly=MSCorp.FirstResponse.Client"
+             xmlns:behaviors="clr-namespace:MSCorp.FirstResponse.Client.Behaviors;assembly=MSCorp.FirstResponse.Client"
+             xmlns:templates="clr-namespace:MSCorp.FirstResponse.Client.Views.Templates;assembly=MSCorp.FirstResponse.Client"
+             x:Class="MSCorp.FirstResponse.Client.Views.SuspectPopupView"
+             BackgroundColor="#80FFFFFF">
+  <pages:PopupPage.Resources>
+    <ResourceDictionary>
+
+
+      <Style x:Key="IdentifyLogoStyle" TargetType="Image">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+      </Style>
+      <Style x:Key="IdentifyCloseButtonStyle" TargetType="Image">
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="Margin" Value="0,10,0,0"/>
+        <Setter Property="WidthRequest" Value="15" />
+        <Setter Property="HorizontalOptions" Value="Center"/>
+      </Style>
+      <Style x:Key="IdentifyHeaderStyle" TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="{StaticResource TitilliumLight}" />
+      </Style>
+      <Style x:Key="EntryStyle" TargetType="{x:Type Entry}" >
+        <Setter Property="TextColor" Value="{StaticResource LightGrayColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource DarkGrayColor}" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="HeightRequest" Value="45" />
+        <Setter Property="effects:ApplyFormEntryNativeStyleEffect.ApplyFormEntryNativeStyle" Value="True" />
+      </Style>
+      <Style x:Key="PickerStyle" TargetType="{x:Type Picker}" >
+        <Setter Property="TextColor" Value="{StaticResource LightGrayColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource DarkGrayColor}" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="HeightRequest" Value="45" />
+        <Setter Property="effects:ApplyFormEntryNativeStyleEffect.ApplyFormEntryNativeStyle" Value="True" />
+      </Style>
+      <Style x:Key="TicketLabelStyle" TargetType="{x:Type Label}" >
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Margin" Value="0, 10, 0, 0"/>
+        <Setter Property="TextColor" Value="{StaticResource GrayColor}"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontFamily" Value="{StaticResource TitilliumRegular}" />
+      </Style>
+
+    </ResourceDictionary>
+  </pages:PopupPage.Resources>
+  <pages:PopupPage.Animation>
+    <animations:ScaleAnimation
+      PositionIn="Center"
+      PositionOut="Center"
+      ScaleIn="1.2"
+      ScaleOut="1"
+      DurationIn="400"
+      DurationOut="100"
+      EasingIn="SinOut"
+      EasingOut="SinIn"
+      HasBackgroundAnimation="True"/>
+  </pages:PopupPage.Animation>
+
+    <Grid ColumnSpacing="0"
+          BackgroundColor="{StaticResource DarkGrayColor}"
+          x:Name="FrameContainer"
+          HeightRequest="650"
+          WidthRequest="500"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          RowSpacing="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="65"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0"
+            BackgroundColor="{StaticResource TerciaryDarkGray}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="45"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0"
+               WidthRequest="15"
+               Style="{StaticResource IdentifyLogoStyle}">
+          <Image.Source>
+            <OnPlatform
+                x:TypeArguments="ImageSource"
+                Android="suspect_ico_new_ticket"
+                iOS="ticket/Suspect_ico_new_ticket"
+                WinPhone="Assets/Ticket/Suspect_ico_new_ticket.png"/>
+          </Image.Source>
+        </Image>
+        <Label Grid.Column="1"
+               Text="Identify"
+               Style="{StaticResource IdentifyHeaderStyle}" />
+        <Grid HorizontalOptions="End"
+            WidthRequest="50"
+            Grid.Column="2">
+            <Image
+                HorizontalOptions="Center"
+                Style="{StaticResource IdentifyCloseButtonStyle}">
+              <Image.Source>
+                <OnPlatform
+                    x:TypeArguments="ImageSource"
+                    Android="ico_close_white"
+                    iOS="ticket/Ico_close_white"
+                    WinPhone="Assets/Ticket/Ico_close_white.png"/>
+              </Image.Source>
+            </Image>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding ClosePopupCommand}"
+                    NumberOfTapsRequired="1" />
+            </Grid.GestureRecognizers>
+        </Grid>
+      </Grid>
+
+      <controls:NoBarsScrollViewer Grid.Row="1">
+      <StackLayout Padding="55,30,55,20"
+                   Spacing="0">
+
+        <Label Text="Identity Search"
+               Style="{StaticResource TicketLabelStyle}"/>
+        <Entry Text="{Binding Name}"
+               Style="{StaticResource EntryStyle}" />
+
+        <Label Text="Sex"
+               Style="{StaticResource TicketLabelStyle}"/>
+        <controls:BindablePicker SelectedItem="{Binding Sex}" 
+                                 Style="{StaticResource PickerStyle}"
+                                 ItemsSource="{Binding SexTypes}" />
+          
+
+        <Label Text="Eye Color"
+               Style="{StaticResource TicketLabelStyle}"/>
+        <controls:BindablePicker SelectedItem="{Binding EyeColor}" 
+                                 Style="{StaticResource PickerStyle}"
+                                 ItemsSource="{Binding EyeColorTypes}" />
+
+        <Label Text="Hair Color"
+               Style="{StaticResource TicketLabelStyle}"/>
+        <controls:BindablePicker SelectedItem="{Binding HairColor}" 
+                                 Style="{StaticResource PickerStyle}"
+                                 ItemsSource="{Binding HairColorTypes}" />
+
+        <!-- Suspects Search Button -->
+        <controls:ImageButton ImageButtonText="Search"
+                              ImageButtonCommand="{Binding SearchCommand}"
+                              VerticalOptions="Center"
+                              HeightRequest="50"
+                              WidthRequest="120"
+                              HorizontalOptions="End"/>
+
+        <StackLayout Orientation="Horizontal">
+          <Label Text="Males"
+                 Style="{StaticResource TicketLabelStyle}"/>
+          <Label Text="{Binding Males.Count}"
+                 HorizontalOptions="EndAndExpand"
+                 Style="{StaticResource TicketLabelStyle}"/>
+        </StackLayout>
+
+        <BoxView HeightRequest="1" Color="{StaticResource GrayColor}" />
+          
+        <Label Text="No results"
+               IsVisible="{Binding Males.Count, Converter={StaticResource CountToBoolConverter}, ConverterParameter='Inverse'}"
+               Style="{StaticResource TicketLabelStyle}"/>
+          
+        <ListView HeightRequest="{Binding Males.Count, Converter={StaticResource ItemsToHeightConverter}, ConverterParameter=60}"
+                    IsVisible="{Binding Males.Count, Converter={StaticResource CountToBoolConverter}}"
+                    ItemsSource="{Binding Males}"
+                    HasUnevenRows="True"
+                    behaviors:ItemTappedCommandListView.ItemTappedCommand="{Binding ItemSelectedCommand}"
+                    CachingStrategy="RecycleElement"
+                    SeparatorVisibility="None"
+                    BackgroundColor="{StaticResource DarkGrayColor}">
+              <ListView.ItemTemplate>
+              <DataTemplate>
+                <ViewCell>
+                    <templates:SuspectListItemTemplate Selectable="True" />
+                </ViewCell>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+        
+        
+        <StackLayout Orientation="Horizontal">
+          <Label Text="Females"
+                 Style="{StaticResource TicketLabelStyle}"/>
+          <Label Text="{Binding Females.Count}"
+                 HorizontalOptions="EndAndExpand"
+                 Style="{StaticResource TicketLabelStyle}"/>
+        </StackLayout>
+          
+        <BoxView HeightRequest="1" Color="{StaticResource GrayColor}" />
+
+        <Label Text="No results"
+               IsVisible="{Binding Females.Count, Converter={StaticResource CountToBoolConverter}, ConverterParameter='Inverse'}"
+               Style="{StaticResource TicketLabelStyle}"/>
+          
+        <ListView HeightRequest="{Binding Females.Count, Converter={StaticResource ItemsToHeightConverter}, ConverterParameter=60}"
+                  IsVisible="{Binding Females.Count, Converter={StaticResource CountToBoolConverter}}"
+                  ItemsSource="{Binding Females}"
+                  HasUnevenRows="True"
+                  behaviors:ItemTappedCommandListView.ItemTappedCommand="{Binding ItemSelectedCommand}"
+                  CachingStrategy="RecycleElement"
+                  SeparatorVisibility="None"
+                  BackgroundColor="{StaticResource DarkGrayColor}">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                  <templates:SuspectListItemTemplate Selectable="True" />
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Done Button -->
+        <controls:ImageButton ImageButtonText="Done"
+                              ImageButtonCommand="{Binding DoneCommand}"
+                              VerticalOptions="Center"
+                              HeightRequest="50"
+                              WidthRequest="120"
+                              HorizontalOptions="End"/>
+
+      </StackLayout>
+      </controls:NoBarsScrollViewer>
+    </Grid>
+</pages:PopupPage>

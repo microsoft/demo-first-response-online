@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:templates="clr-namespace:MSCorp.FirstResponse.Client.Views.Templates;assembly=MSCorp.FirstResponse.Client"
+             x:Class="MSCorp.FirstResponse.Client.Views.IncidentDetailView"
+             BackgroundColor="{StaticResource DarkGrayColor}">
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <Style x:Key="IncidentDetailLabelStyle" TargetType="{x:Type Label}" >
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Margin" Value="0, 10, 0, 0"/>
+        <Setter Property="TextColor" Value="{StaticResource GrayColor}"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontFamily" Value="{StaticResource TitilliumRegular}" />
+      </Style>
+      <Style x:Key="IncidentDetailValueStyle" TargetType="{x:Type Label}" >
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="0, 1, 0, 0"/>
+        <Setter Property="TextColor" Value="{StaticResource LightGrayColor}"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontFamily" Value="{StaticResource TitilliumRegular}" />
+      </Style>
+      <Style x:Key="IncidentButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="BackgroundColor" Value="{StaticResource DarkGrayColor}" />
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="120" />
+        <Setter Property="Margin" Value="0,20,0,20" />
+        <Setter Property="BorderRadius" Value="20" />
+        <Setter Property="BorderColor" Value="White" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="FontFamily" Value="{StaticResource TitilliumRegular}" />
+      </Style>
+      <Style x:Key="CloseButtonStyle" TargetType="Image">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="WidthRequest" Value="15" />
+        <Setter Property="HorizontalOptions" Value="End"/>
+      </Style>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <ScrollView BackgroundColor="{StaticResource DarkGrayColor}">
+
+      
+    <StackLayout Padding="20,10,20,20" Spacing="0">
+
+      <Grid HorizontalOptions="End"
+            WidthRequest="40">
+          <Image 
+              Style="{StaticResource CloseButtonStyle}"
+              HorizontalOptions="End">
+              <Image.Source>
+                  <OnPlatform
+                      x:TypeArguments="ImageSource"
+                      Android="ico_close_white"
+                      iOS="ticket/Ico_close_white"
+                      WinPhone="Assets/Ticket/Ico_close_white.png"/>
+              </Image.Source>
+          </Image>
+          <Grid.GestureRecognizers>
+              <TapGestureRecognizer
+                  Command="{Binding CloseIncidentCommand}"
+                  NumberOfTapsRequired="1" />
+          </Grid.GestureRecognizers>
+      </Grid>
+        
+      <Label
+          Text="DETAILS"
+          Style="{StaticResource IncidentDetailValueStyle}"/>
+      <Label
+          Text="Location"
+          Style="{StaticResource IncidentDetailLabelStyle}"/>
+      <Label
+          Text="{Binding Incident.Address}"
+          Style="{StaticResource IncidentDetailValueStyle}"/>
+      <Label
+          Text="Phone"
+          Style="{StaticResource IncidentDetailLabelStyle}"/>
+      <Label
+          Text="{Binding Incident.Phone}"
+          Style="{StaticResource IncidentDetailValueStyle}"/>
+      <Label
+          Text="Reporting party"
+          Style="{StaticResource IncidentDetailLabelStyle}"/>
+      <Label
+          Text="{Binding Incident.ReportingParty}"
+          Style="{StaticResource IncidentDetailValueStyle}"/>
+      <Label
+          Text="Call number"
+          Style="{StaticResource IncidentDetailLabelStyle}"/>
+      <Label
+          Text="{Binding Incident.CallNumber}"
+          Style="{StaticResource IncidentDetailValueStyle}"/>
+      <Label
+          Text="Received time"
+          Style="{StaticResource IncidentDetailLabelStyle}"/>
+      <Label
+          Text="{Binding Incident.ReceivedTime, StringFormat='{0:F}'}"
+          Style="{StaticResource IncidentDetailValueStyle}"/>
+
+      <!-- NOTES SEPARATOR -->
+      <BoxView HeightRequest="1" Color="{StaticResource GrayColor}" Margin="0,20,0,20" />
+
+      <Label Text="NOTES"
+         Style="{StaticResource IncidentDetailLabelStyle}"/>
+      <Label Text="{Binding Incident.Description}"
+         Style="{StaticResource IncidentDetailValueStyle}"/>
+
+      <!-- Identify SEPARATOR -->
+      <BoxView HeightRequest="1" Color="{StaticResource GrayColor}" Margin="0,10,0,0" />
+
+      <!-- Suspects BUTTONS -->
+      <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+        <controls:ImageButton ImageButtonText="New Ticket"
+                              ImageButtonCommand="{Binding NewTicketCommand}"
+                              VerticalOptions="Center"
+                              HeightRequest="50"
+                              WidthRequest="120"
+                              IsVisible="{Binding Suspects.Count, Converter={StaticResource CountToBoolConverter}}" />
+
+        <controls:ImageButton ImageButtonText="Identify"
+                              ImageButtonCommand="{Binding IdentifySuspectCommand}"
+                              VerticalOptions="Center"
+                              HeightRequest="50"
+                              WidthRequest="120"
+                              IsVisible="{Binding Incident.ReadyToIdentify}" />
+
+        <!-- android navigation -->
+        <controls:ImageButton ImageButtonText="Navigate"
+                              ImageButtonCommand="{Binding ForceNavigationCommand}"
+                              VerticalOptions="Center"
+                              HeightRequest="50"
+                              WidthRequest="120">
+            <controls:ImageButton.IsVisible>
+                <OnPlatform
+                    x:TypeArguments="x:Boolean"
+                    Android="True"
+                    iOS="False"
+                    WinPhone="False" />
+            </controls:ImageButton.IsVisible>
+        </controls:ImageButton>
+      </StackLayout>
+
+      <Label Text="OFFENDER(S)"
+         Style="{StaticResource IncidentDetailLabelStyle}"/>
+
+      <ListView HeightRequest="{Binding Suspects.Count, Converter={StaticResource ItemsToHeightConverter}, ConverterParameter=60}"
+                    IsVisible="{Binding Suspects.Count, Converter={StaticResource CountToBoolConverter}}"
+                    ItemsSource="{Binding Suspects}"
+                    HasUnevenRows="True"
+                    CachingStrategy="RecycleElement"
+                    SeparatorVisibility="None"
+                    BackgroundColor="{StaticResource DarkGrayColor}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <templates:SuspectListItemTemplate />
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+      
+    </StackLayout>
+  </ScrollView>
+ 
+</ContentView>

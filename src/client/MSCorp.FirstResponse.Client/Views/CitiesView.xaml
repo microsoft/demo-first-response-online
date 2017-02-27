@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MSCorp.FirstResponse.Client.Views.CitiesView"  
+    xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client"
+    xmlns:effects="clr-namespace:MSCorp.FirstResponse.Client.Effects;assembly=MSCorp.FirstResponse.Client"
+    xmlns:templates="clr-namespace:MSCorp.FirstResponse.Client.Views.Templates;assembly=MSCorp.FirstResponse.Client"
+    BackgroundColor="{StaticResource DarkGrayColor}"
+    BarBackgroundColor="{StaticResource TerciaryDarkGray}"
+    BarTextColor="{StaticResource WhiteColor}"
+    Title="Settings">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="InfoLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            <Style x:Key="MockSwitchStyle" TargetType="Switch">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="PowerBiEntryStyle" TargetType="Entry"
+                   BasedOn="{StaticResource EntryStyle}">
+                <Setter Property="WidthRequest" Value="350" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style x:Key="LoginButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource BlueColor}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="Margin" Value="0,48,0,0" />
+            </Style>
+
+            <Style x:Key="EntryStyle" TargetType="{x:Type Entry}" >
+                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkGrayColor}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="effects:ApplyFormEntryNativeStyleEffect.ApplyFormEntryNativeStyle" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage
+        Title="Cities">
+        <ContentPage.Icon>
+            <OnPlatform        
+                x:TypeArguments="FileImageSource"
+                iOS="Cities"/>
+        </ContentPage.Icon>
+        <Grid>
+            <!-- BACKGROUND -->
+            <Image Aspect="AspectFill"
+                   Grid.Row="0">
+                <Image.Source>
+                    <OnPlatform 
+                    x:TypeArguments="ImageSource"
+                    iOS="Background"
+                    WinPhone="Assets\Background.png"/>
+                </Image.Source>
+            </Image>
+            <!-- CITIES -->
+            <ScrollView
+                Grid.Row="0"  
+                Margin="12">
+                <controls:WrapView           
+                    Orientation="Horizontal"
+                    ItemsSource="{Binding Cities}"
+                    ItemClickCommand="{Binding CitySelectedCommand}">
+                    <controls:WrapView.ItemTemplate>
+                        <DataTemplate>
+                            <templates:CityItemTemplate/>
+                        </DataTemplate>
+                    </controls:WrapView.ItemTemplate>
+                </controls:WrapView>
+            </ScrollView>
+        </Grid>
+    </ContentPage>
+    <ContentPage
+        Title="Other"
+        BindingContext="{Binding ConfigViewModel}">
+        <ContentPage.Icon>
+            <OnPlatform        
+                x:TypeArguments="FileImageSource"
+                iOS="Settings"/>
+        </ContentPage.Icon>
+        <Grid>
+            <!-- BACKGROUND -->
+            <Image Aspect="AspectFill"
+                   Grid.Row="0">
+                <Image.Source>
+                    <OnPlatform
+                    x:TypeArguments="ImageSource"
+                    iOS="Background"
+                    WinPhone="Assets\Background.png"/>
+                </Image.Source>
+            </Image>
+            <ScrollView                    
+                VerticalOptions="Start">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="350" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="1">
+                        <!-- USE MOCK -->
+                        <Label
+                        Text="Use Mock Services"
+                        Style="{StaticResource InfoLabelStyle}" />
+                        <Switch
+                        IsToggled="{Binding UseMockService}"
+                        Style="{StaticResource MockSwitchStyle}" />
+                        <!-- SERVICE ENDPOINT -->
+                        <Label
+                        Text="Service Endpoint"
+                        Style="{StaticResource InfoLabelStyle}" />
+                        <Entry
+                        Text="{Binding ServiceEndpoint, Mode=TwoWay}"
+                        Style="{StaticResource EntryStyle}" />
+                        <!-- USER SPEED -->
+                        <Label
+                        Text="User Speed"
+                        Style="{StaticResource InfoLabelStyle}" />
+                        <Entry
+                        Text="{Binding UserSpeed, Mode=TwoWay}"
+                        Style="{StaticResource EntryStyle}" />
+                        <Button
+                        Text="Apply"
+                        Style="{StaticResource LoginButtonStyle}"
+                        Command="{Binding SaveChangesCommand}"/>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </ContentPage>
+</TabbedPage>
