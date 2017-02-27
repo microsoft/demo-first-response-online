@@ -259,3 +259,5 @@ output/**
 tools/NUnit.ConsoleRunner/**
 *.BAK
 *.orig
+
+!/Deploy/**/*dll
