@@ -43,13 +43,15 @@ As part of the demo you could find a PowerBI report for the city of Seattle that
 1. Install [Power BI command line tool](https://github.com/Microsoft/PowerBI-Cli)  
   `npm install powerbi-cli -g`
 2. [Create a workspace collection](https://docs.microsoft.com/en-us/azure/power-bi-embedded/power-bi-embedded-get-started) and get the Access Key
-3. Creates a new workspaced within a workspace collection  
+3. Create a new workspaced within a workspace collection  
   `powerbi create-workspace -c <collection> -k <accessKey>`  
   Copy the WorkspaceId to use it in the next step.
-4. Imports the PBIX file  
+4. Import the PBIX file  
   `powerbi import -c <collection> -w <workspaceId> -k <accessKey> -f "./PowerBI/Police Supervisor Dashboard.pbix" -n [name]`  
+5. Get your ReportId  
+  `powerbi get-reports -c <collection> -w <workspaceId> -k <accessKey>`  
   Copy the ReportId to use it in the next step.
-5. Open the Web.config file located at src\API\MSCorp.FirstResponse.WebApiDemo\ and update the PowerBI appSettings in order to complete this setup.
+6. Open the Web.config file located at src\API\MSCorp.FirstResponse.WebApiDemo\ and update the PowerBI appSettings in order to complete this setup.
 
 ### Clean up
 
