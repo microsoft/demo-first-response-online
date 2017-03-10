@@ -1,8 +1,10 @@
 ﻿using ImageCircle.Forms.Plugin.UWP;
 using MSCorp.FirstResponse.Client.UWP.Renderers;
+using Plugin.Toasts.UWP;
 using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.ViewManagement;
+using Xamarin.Forms;
 
 namespace MSCorp.FirstResponse.Client.UWP
 {
@@ -16,6 +18,8 @@ namespace MSCorp.FirstResponse.Client.UWP
             Xamarin.FormsMaps.Init(GlobalSetting.BingMapsAPIKey);
             ImageCircleRenderer.Init();
             RoundedBoxViewRenderer.Init();
+            DependencyService.Register<ToastNotification>();
+            ToastNotification.Init();
 
             NativeCustomize();
         }
@@ -28,8 +32,8 @@ namespace MSCorp.FirstResponse.Client.UWP
                 var titleBar = ApplicationView.GetForCurrentView().TitleBar;
                 if (titleBar != null)
                 {
-                    titleBar.BackgroundColor = (Color)App.Current.Resources["NativeAccentColor"];
-                    titleBar.ButtonBackgroundColor = (Color)App.Current.Resources["NativeAccentColor"];
+                    titleBar.BackgroundColor = (Windows.UI.Color)App.Current.Resources["NativeAccentColor"];
+                    titleBar.ButtonBackgroundColor = (Windows.UI.Color)App.Current.Resources["NativeAccentColor"];
                 }
             }
 

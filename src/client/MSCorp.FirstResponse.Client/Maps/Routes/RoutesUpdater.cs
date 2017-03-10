@@ -12,6 +12,7 @@ namespace MSCorp.FirstResponse.Client.Maps.Routes
     public class RoutesUpdater
     {
         public event EventHandler<Route> RouteStep;
+        public event EventHandler<Route> RouteHalfCompleted;
         public event EventHandler<Route> RouteCompleted;
 
         private readonly ConcurrentDictionary<string, Route> _routes;
@@ -64,6 +65,11 @@ namespace MSCorp.FirstResponse.Client.Maps.Routes
                         }
                         else
                         {
+                            if (route.ArrivedToMiddle) {
+                                var halfHandler = RouteHalfCompleted;
+                                halfHandler?.Invoke(this, route);
+                            }
+
                             CalculateRouteStep(route);
 
                             var handler = RouteStep;

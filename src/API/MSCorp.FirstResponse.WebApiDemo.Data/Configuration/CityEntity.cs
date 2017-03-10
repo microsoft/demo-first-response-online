@@ -33,7 +33,10 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Configuration
                         
             city
                .HasMany(c => c.Responders)
-               .WithOptional();            
+               .WithOptional();
+
+            city
+              .HasRequired(c => c.AmbulancePosition);
         }
     }
 }

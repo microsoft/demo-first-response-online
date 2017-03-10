@@ -47,6 +47,8 @@ namespace MSCorp.FirstResponse.Client.Maps
 
         public abstract void RemoveAllResponders();
 
+        public abstract void RemoveResponder(ResponderModel responder);
+
         public void LoadTickets(IEnumerable<TicketModel> tickets)
         {
             foreach (var ticket in tickets)

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using MSCorp.FirstResponse.WebApiDemo.Data.Context;
 using MSCorp.FirstResponse.WebApiDemo.Data.Entities;
 
+
 namespace MSCorp.FirstResponse.WebApiDemo.Data.Repositories
 {
     public class CitiesRepository : ICitiesRepository
@@ -19,6 +20,7 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Repositories
         {
             return await _context
                     .Cities
+                    .Include(c => c.AmbulancePosition)
                     .ToListAsync();
         }
 

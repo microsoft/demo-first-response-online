@@ -54,6 +54,7 @@ This project uses some third-party assets with a license that requires attributi
 - [ACR User Dialogs](https://github.com/aritchie/userdialogs): by Allan Ritchie
 - [Xamarin.Forms Animation Helpers](https://github.com/jsuarezruiz/Xamanimation): by Javier Suárez
 - [Popup Page Plugin for Xamarin Forms](https://github.com/rotorgames/Rg.Plugins.Popup): by Rotorgames
+- [Toasts Notification Plugin](https://github.com/EgorBo/Toasts.Forms.Plugin): by Adam Pedley
 
 ## Screens
 

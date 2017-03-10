@@ -73,6 +73,7 @@
     <Compile Include="Context\FirstResponseContext.cs" />
     <Compile Include="Context\SeattleSeed.cs" />
     <Compile Include="Context\Seed.cs" />
+    <Compile Include="Entities\AmbulancePosition.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Driver.cs" />
     <Compile Include="Entities\HeatMapPoint.cs" />

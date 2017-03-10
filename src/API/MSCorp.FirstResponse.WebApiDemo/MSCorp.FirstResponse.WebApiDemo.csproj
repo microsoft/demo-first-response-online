@@ -247,10 +247,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="..\..\deployment\AzureSearch\PersonData.json">
+    <Content Include="..\..\..\Deploy\AzureSearch\PersonData.json">
       <Link>Index\PersonData.json</Link>
     </Content>
-    <Content Include="..\..\deployment\AzureSearch\PersonIndex.json">
+    <Content Include="..\..\..\Deploy\AzureSearch\PersonIndex.json">
       <Link>Index\PersonIndex.json</Link>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
@@ -298,7 +298,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55787</DevelopmentServerPort>
+          <DevelopmentServerPort>50002</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:50002/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -5,13 +5,26 @@ namespace MSCorp.FirstResponse.Client.Models
 {
     public class ResponderModel : ExtendedBindableObject
     {
+        private ResponseStatus status;
+
         public int Id { get; set; }
         public DepartmentType ResponderDepartment { get; set; }
-        public ResponseStatus Status { get; set; }
+        public ResponseStatus Status {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+                RaisePropertyChanged(() => Status);
+            }
+        }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public int IncidentId { get; set; }
         public int RouteId { get; set; }
+        public bool IsPriority { get; set; }
         public IncidentModel Incident { get; set; }
         public ResponderRequestModel Request { get; set; }
 

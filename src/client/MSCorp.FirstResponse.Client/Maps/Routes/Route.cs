@@ -70,6 +70,14 @@ namespace MSCorp.FirstResponse.Client.Maps.Routes
             }
         }
 
+        public bool ArrivedToMiddle
+        {
+            get
+            {
+                return _lastRoutePositionIndex == (TotalPositions / 2);
+            }
+        }
+
         public Route(Geoposition[] routePositions)
         {
             if (!routePositions.Any())

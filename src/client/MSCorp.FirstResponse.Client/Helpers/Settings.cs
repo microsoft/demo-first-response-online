@@ -29,6 +29,10 @@ namespace MSCorp.FirstResponse.Client.Helpers
 
         private const string UserLongitudeKey = "user_longitude";
 
+        private const string AmbulanceLatitudeKey = "ambulance_latitude";
+
+        private const string AmbulanceLongitudeKey = "ambulance_longitude";
+
         private const string UseMockServiceKey = "use_mock_services_key";
 
         private const string ServiceEndpointKey = "service_endpoint_address";
@@ -38,6 +42,29 @@ namespace MSCorp.FirstResponse.Client.Helpers
         private const string UserSpeedKey = "user_speed";
         #endregion
 
+        public static double AmbulanceLatitude
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault<double>(AmbulanceLatitudeKey, GlobalSetting.UserLatitude);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<double>(AmbulanceLatitudeKey, value);
+            }
+        }
+
+        public static double AmbulanceLongitude
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault<double>(AmbulanceLongitudeKey, GlobalSetting.UserLongitude);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<double>(AmbulanceLongitudeKey, value);
+            }
+        }
 
         public static double UserLatitude
         {

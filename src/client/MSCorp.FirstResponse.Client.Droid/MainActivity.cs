@@ -4,6 +4,8 @@ using Android.Content.PM;
 using Android.OS;
 using ImageCircle.Forms.Plugin.Droid;
 using MSCorp.FirstResponse.Client.Droid.Renderers;
+using Plugin.Toasts;
+using Xamarin.Forms;
 
 namespace MSCorp.FirstResponse.Client.Droid
 {
@@ -28,6 +30,8 @@ namespace MSCorp.FirstResponse.Client.Droid
             UserDialogs.Init(this);
             ImageCircleRenderer.Init();
             RoundedBoxViewRenderer.Init();
+            DependencyService.Register<ToastNotification>();
+            ToastNotification.Init(this);
 
             LoadApplication(new App());
         }

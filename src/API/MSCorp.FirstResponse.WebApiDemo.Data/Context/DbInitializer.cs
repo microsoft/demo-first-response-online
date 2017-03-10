@@ -24,8 +24,9 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
 
                 foreach (City c in cities)
                 {
-                    var responders = Seed.GetResponders(c);
+                    var responders = Seed.GetResponders(c);                    
                     var heatMap = Seed.GetHeatMap(c);
+
                     context.Responders.AddRange(responders);
                     context.HeatMapPoints.AddRange(heatMap);
                 }

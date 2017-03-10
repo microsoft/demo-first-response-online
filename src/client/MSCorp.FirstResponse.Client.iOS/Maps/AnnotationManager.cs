@@ -173,6 +173,17 @@ namespace MSCorp.FirstResponse.Client.iOS.Maps
             }
         }
 
+        public override void RemoveResponder(ResponderModel responder)
+        {
+            var responderAnnotation = _nativeMap.Annotations.OfType<ResponderAnnotation>()
+                                                            .FirstOrDefault(r => r.Responder.Id == responder.Id);
+
+            if (responderAnnotation != null)
+            {
+                _nativeMap.RemoveAnnotation(responderAnnotation);
+            }
+        }
+        
         protected override void AddIncidentToMap(IncidentModel incident)
         {
             var annotation = new IncidentAnnotation(new

@@ -15,5 +15,6 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Entities
         public string PhoneFormat { get; set; }
         public ICollection<Responder> Responders { get; set; } = new List<Responder>();
         public ICollection<HeatMapPoint> HeatMapPoints { get; set; } = new List<HeatMapPoint>();
+        public AmbulancePosition AmbulancePosition { get; set; }
     }
 }

@@ -71,6 +71,8 @@ namespace MSCorp.FirstResponse.Client.ViewModels
             Settings.SelectedCity = selectedEvent.CityId;
             Settings.UserLatitude = selectedEvent.Latitude;
             Settings.UserLongitude = selectedEvent.Longitude;
+            Settings.AmbulanceLatitude = selectedEvent.AmbulancePosition.Latitude;
+            Settings.AmbulanceLongitude = selectedEvent.AmbulancePosition.Longitude;
             await NavigationService.NavigateToAsync<LoginViewModel>(selectedEvent);
             await NavigationService.RemoveBackStackAsync();
         }

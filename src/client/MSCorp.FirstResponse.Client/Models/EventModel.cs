@@ -13,5 +13,6 @@ namespace MSCorp.FirstResponse.Client.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public string Coordinates => $"{Latitude}, {Longitude}";
+        public AmbulanceModel AmbulancePosition { get; set; }
     }
 }

@@ -231,6 +231,14 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Toasts.Forms.Plugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Toasts.Forms.Plugin.3.1.4\lib\Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Toasts.Forms.Plugin.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Toasts.Forms.Plugin.3.1.4\lib\Xamarin.iOS10\Toasts.Forms.Plugin.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Xamarin.Forms.2.3.3.175\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
@@ -617,6 +625,26 @@
     <BundleResource Include="Resources\Cities%403x.png" />
     <BundleResource Include="Resources\Cities%402x.png" />
     <BundleResource Include="Resources\smontgomery.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic20.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic1.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic2.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic3.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic4.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic5.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic6.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic7.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic8.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic9.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic10.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic11.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic12.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic13.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic14.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic15.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic16.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic17.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic18.jpg" />
+    <BundleResource Include="Resources\suspects\suspect_ProfilePic19.jpg" />
     <Content Include="Resources\ticket\Suspect_ico_new_ticket%402x.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
 using Android.Graphics.Drawables;
@@ -18,6 +20,12 @@ namespace MSCorp.FirstResponse.Client.Droid.Maps.Icons
             : base()
         {
             Responder = responder;
+
+            if (responder != null)
+            {
+                responder.PropertyChanged += UpdateColor;
+            }
+
             _inflater = LayoutInflater.From(Xamarin.Forms.Forms.Context);
             _responderIconView = _inflater.Inflate(Resource.Layout.responder_icon_content, null);
 
@@ -31,6 +39,13 @@ namespace MSCorp.FirstResponse.Client.Droid.Maps.Icons
 
             Bitmap icon = _responderIconView.AsBitmap(Xamarin.Forms.Forms.Context, 60, 60);
             MarkerOptions.SetIcon(BitmapDescriptorFactory.FromBitmap(icon));
+        }
+
+        private void UpdateColor(object sender, PropertyChangedEventArgs e)
+        {
+            var responderType = _responderIconView.FindViewById<TextView>(Resource.Id.responder_type);
+            GradientDrawable drawable = (GradientDrawable)responderType.Background;
+            drawable.SetColor((sender as ResponderModel).StatusColor.ToAndroid());
         }
 
         public ResponderModel Responder { get; }

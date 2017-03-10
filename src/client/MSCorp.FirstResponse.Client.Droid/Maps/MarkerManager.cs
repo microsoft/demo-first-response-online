@@ -188,6 +188,20 @@ namespace MSCorp.FirstResponse.Client.Droid.Maps
             }
         }
 
+        public override void RemoveResponder(ResponderModel responder)
+        {
+            if (_responderPushpinMappings.ContainsKey(responder.Id))
+            {
+                Marker marker = GetMarkerForResponder(responder);
+                _responderPushpinMappings.Remove(responder.Id);
+
+                if (marker != null)
+                {
+                    marker.Remove();
+                }
+            }
+        }
+
         protected override void AddTicketToMap(TicketModel ticket)
         {
             var ticketIcon = new TicketIcon(ticket);

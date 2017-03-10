@@ -252,6 +252,15 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
             RemoveIcons(allResponderIcons);
         }
 
+        public override void RemoveResponder(ResponderModel responder)
+        {
+            var responderIcon = _mapItems.Items.OfType<ResponderIcon>().FirstOrDefault(icon => icon.Responder.Id == responder.Id);
+            if (responderIcon != null)
+            {
+                _mapItems?.Items?.Remove(responderIcon);
+            }
+        }
+
         private void RemoveIncidentsIcons(List<MapIcon> icons)
         {
             if (icons != null)

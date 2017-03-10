@@ -3,11 +3,15 @@ using BingMapsRESTToolkit;
 using MSCorp.FirstResponse.WebApiDemo.Data.Entities;
 using MSCorp.FirstResponse.WebApiDemo.Data.Enums;
 using MSCorp.FirstResponse.WebApiDemo.MapService;
+using System.Linq;
 
 namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
 {
     public static class Seed
     {
+
+
+
         private static int routeRadius = 2000;
 
         public static User[] GetUsers()
@@ -39,6 +43,19 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
             }
 
             return heatMap;
+        }
+
+        public static AmbulancePosition GetAmbulancePosition(City city)
+        {
+            var original = new Coordinate(city.Latitude, city.Longitude);
+            var point = MapPointGenerator.GetPoint(original, 500);
+            var ambulancePosition = new AmbulancePosition
+            {
+                CityId = city.Id,
+                Latitude = point.Latitude,
+                Longitude = point.Longitude
+            };
+            return ambulancePosition;
         }
 
         public static Responder[] GetResponders(City city)
@@ -163,6 +180,12 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
                     PhoneFormat = "(2) ####-####", PhoneLength = 8, PhoneMasked = "(2) XXXX-XXXX"
                 }
             };
+
+            cities.ToList().ForEach(city =>
+            {
+                var ambulancePosition = Seed.GetAmbulancePosition(city);
+                city.AmbulancePosition = ambulancePosition;
+            });
 
             return cities;
         }

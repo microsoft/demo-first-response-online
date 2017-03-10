@@ -12,7 +12,7 @@ namespace MSCorp.FirstResponse.Client
         public const string SuspectJsonDataFile = "Data/SuspectData.json";
         public const string HeatPointsJsonDataFile = "Data/HeatData.json";
 
-        public const string ServiceEndpoint = "http://localhost:50002/"; // "http://fro-api.azurewebsites.net/";
+        public const string ServiceEndpoint = "http://localhost:50002/";
 
         public const bool UseMockServiceDefault = false;
         public const int DefaultMockCityId= 0;

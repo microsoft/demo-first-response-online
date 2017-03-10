@@ -17,17 +17,8 @@ namespace MSCorp.FirstResponse.WebApiDemo.Controllers
     [AllowAnonymous, RoutePrefix("api/person")]
     public class PersonController : ApiController
     {
-
         private readonly Random _random = new Random();
-
-        private readonly IList<string> _images = new List<string> {
-                "JayHenningsen.jpg",
-                "JoeAndreshak.jpg",
-                "JoyMiller.jpg",
-                "JoaoCasqueiro.jpg",
-                "BillieJoMurray.jpg"
-            };
-
+        
         /// <summary>
         /// Performs a search on an Azure Search index, the values searched for are set in the web config. Returns the result set from the search.
         /// </summary>
@@ -58,7 +49,6 @@ namespace MSCorp.FirstResponse.WebApiDemo.Controllers
             return searchResult;
         }
 
-
         /// <summary>
         /// Performs a search on an Azure Search index, the values searched for are set in the web config. Returns the result set from the search.
         /// </summary>
@@ -82,7 +72,8 @@ namespace MSCorp.FirstResponse.WebApiDemo.Controllers
                 SearchMode = SearchMode.All,
                 Facets = AzureSearchConfig.SearchIndexFacets,
                 ScoringProfile = AzureSearchConfig.ScoringProfileName,
-                ScoringParameters = new[] { scoringParam }
+                ScoringParameters = new[] { scoringParam },
+                Select = new[] { "FirstName", "LastName", "EyeColor", "HairColor", "Sex", "SuspectSearchImage" }
             };
 
             DocumentSearchResult searchResult = await client.Documents.SearchAsync(searchText, parameters);
@@ -95,19 +86,11 @@ namespace MSCorp.FirstResponse.WebApiDemo.Controllers
                     EyeColor = d.Document["EyeColor"].ToString(),
                     HairColor = d.Document["HairColor"].ToString(),
                     Sex = d.Document["Sex"].ToString(),
-                    //SuspectSearchImage = d.Document["SuspectSearchImage"].ToString()
-                    SuspectSearchImage = GetImage()
+                    SuspectSearchImage = d.Document["SuspectSearchImage"].ToString()
                 };
             });
 
             return persons;
-        }
-
-        private string GetImage()
-        {
-            var imageIndex = _random.Next(_images.Count - 1);
-            var image = _images[imageIndex];
-            return image;
         }
     }
 }

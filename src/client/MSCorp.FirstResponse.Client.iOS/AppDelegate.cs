@@ -2,6 +2,9 @@
 using UIKit;
 using ImageCircle.Forms.Plugin.iOS;
 using MSCorp.FirstResponse.Client.iOS.Renderers;
+using Plugin.Toasts;
+using Xamarin.Forms;
+using UserNotifications;
 
 namespace MSCorp.FirstResponse.Client.iOS
 {
@@ -24,7 +27,26 @@ namespace MSCorp.FirstResponse.Client.iOS
             Xamarin.FormsMaps.Init();
             ImageCircleRenderer.Init();
             RoundedBoxViewRenderer.Init();
+            DependencyService.Register<ToastNotification>();
+            ToastNotification.Init();
             LoadApplication(new App());
+
+            // Request Permissions
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                // Request Permissions
+                UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
+                {
+                    // Do something if needed
+                });
+            }
+            else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+                UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+
+                app.RegisterUserNotificationSettings(notificationSettings);
+            }
 
             return base.FinishedLaunching(app, options);
         }

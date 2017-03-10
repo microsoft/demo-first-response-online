@@ -48,7 +48,7 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
 
         public static City GetCity()
         {
-            return
+            var city = 
                 new City
                 {
                     Id = 35,
@@ -61,6 +61,8 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
                     PhoneLength = 7,
                     EventDate = ""
                 };
+            city.AmbulancePosition = Seed.GetAmbulancePosition(city);
+            return city;
         }
     }
 }

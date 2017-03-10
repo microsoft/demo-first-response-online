@@ -1,15 +1,19 @@
 ﻿using MSCorp.FirstResponse.Client.Controls;
 using MSCorp.FirstResponse.Client.Extensions;
+using MSCorp.FirstResponse.Client.Helpers;
 using MSCorp.FirstResponse.Client.Maps.Routes;
 using MSCorp.FirstResponse.Client.Models;
 using MSCorp.FirstResponse.Client.Services.Dialog;
 using MSCorp.FirstResponse.Client.Services.Incidents;
 using MSCorp.FirstResponse.Client.ViewModels.Base;
+using Plugin.Toasts;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace MSCorp.FirstResponse.Client.Maps
@@ -31,6 +35,8 @@ namespace MSCorp.FirstResponse.Client.Maps
         private Task _updaterTask;
         private CancellationTokenSource _updaterTokenSource;
 
+        private bool userNotified;
+
         protected readonly CustomMap FormsMap;
         protected readonly AbstractRouteManager RouteManager;
         protected readonly AbstractPushpinManager PushpinManager;
@@ -43,6 +49,7 @@ namespace MSCorp.FirstResponse.Client.Maps
             _routeUpdater = routeManager.RouteUpdater;
             _routeUpdater.RouteStep += OnRouteStep;
             _routeUpdater.RouteCompleted += OnRouteCompleted;
+            _routeUpdater.RouteHalfCompleted += OnRouteHalfCompleted;
 
             _updaterTokenSource = new CancellationTokenSource();
         }
@@ -141,6 +148,7 @@ namespace MSCorp.FirstResponse.Client.Maps
                 return;
             }
 
+            userNotified = false;
 
             Geoposition currentUserPosition = PushpinManager.GetCurrentUserPosition();
             IEnumerable<Geoposition> userRoutePositions = RouteManager.GetCurrentUserRoute();
@@ -173,6 +181,76 @@ namespace MSCorp.FirstResponse.Client.Maps
             UpdatePushpinPosition(e);
         }
 
+        private async void OnRouteHalfCompleted(object sender, Route e)
+        {
+            System.Diagnostics.Debug.WriteLine($"Route {e.Id} half completed.");
+
+            if (e is Route<UserRole>)
+            {
+                if (!userNotified)
+                {
+                    userNotified = true;
+
+                    // send toast notification
+                    var notificator = DependencyService.Get<IToastNotificator>();
+
+                    var options = new NotificationOptions()
+                    {
+                        Title = "Dispatch updated incident",
+                        IsClickable = true,
+                        ClearFromHistory = true
+                    };
+
+                    var result = await notificator.Notify(options);
+                    if (result?.Action == NotificationAction.Clicked)
+                    {
+                        await RequestAmbulanceOnIncident();
+                    }
+                }
+            }
+        }
+
+        private async Task RequestAmbulanceOnIncident()
+        {
+            // search or create ambulance responder
+            var ambulance = new ResponderModel
+            {
+                Id = 9,
+                ResponderDepartment = DepartmentType.Ambulance,
+                Status = ResponseStatus.EnRoute,
+                Longitude = Settings.AmbulanceLongitude,
+                Latitude = Settings.AmbulanceLatitude
+            };
+
+            // add responder to map
+            this.PushpinManager.RemoveResponder(ambulance);
+            this.PushpinManager.AddResponders(new List<ResponderModel>() { ambulance });
+
+            // locate attending incident (can differ from selected)
+            IncidentModel currentIncident = FormsMap.Incidents?.FirstOrDefault(i => i.Id == CurrentUserStatus.AttendingIncidentId);
+
+            // create route from ambulance to incident
+            var routeAmbulance = await this.RouteManager.CalculateRoute(new Geoposition()
+            {
+                Latitude = ambulance.Latitude,
+                Longitude = ambulance.Longitude
+            }, new Geoposition() {
+                Latitude = currentIncident.Latitude,
+                Longitude = currentIncident.Longitude
+            });
+
+            // start route movement
+            var route = new Route<ResponderModel>(routeAmbulance.ToArray());
+            route.Element = ambulance;
+            route.AddStartPoint(new Geoposition()
+                {
+                    Latitude = ambulance.Latitude,
+                    Longitude = ambulance.Longitude
+                });
+            route.Init();
+            _routeUpdater.AddRoute(route);
+        }
+
         private async void OnRouteCompleted(object sender, Route e)
         {
             System.Diagnostics.Debug.WriteLine($"Route {e.Id} completed.");
@@ -203,6 +281,9 @@ namespace MSCorp.FirstResponse.Client.Maps
 
                 var defaultRoute = _predefinedRoutes.ElementAt(nextPredefinedRouteIndex);
                 AssignRouteToResponder(responder, defaultRoute);
+            } else if (responder.Status == ResponseStatus.EnRoute)
+            {
+                responder.Status = ResponseStatus.Busy;
             }
         }
 

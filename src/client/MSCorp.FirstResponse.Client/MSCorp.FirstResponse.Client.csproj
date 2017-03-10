@@ -92,6 +92,7 @@
     <Compile Include="Maps\Heat\HeatMapRenderParameters.cs" />
     <Compile Include="Maps\IncidentsObserver.cs" />
     <Compile Include="Maps\MapManager.cs" />
+    <Compile Include="Models\AmbulanceModel.cs" />
     <Compile Include="Models\DriverModel.cs" />
     <Compile Include="Maps\AbstractPushpinManager.cs" />
     <Compile Include="Maps\AbstractResponderManager.cs" />
@@ -351,6 +352,10 @@
     </Reference>
     <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Toasts.Forms.Plugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Toasts.Forms.Plugin.3.1.4\lib\netstandard1.1\Toasts.Forms.Plugin.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

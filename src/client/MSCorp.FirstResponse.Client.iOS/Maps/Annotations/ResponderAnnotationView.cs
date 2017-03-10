@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel;
 using MapKit;
 using MSCorp.FirstResponse.Client.Models;
 using UIKit;
@@ -31,6 +33,19 @@ namespace MSCorp.FirstResponse.Client.iOS.Maps.Annotations
             : base(annotation, CustomReuseIdentifier)
         {
             Responder = responder;
+            if (responder != null) {
+                responder.PropertyChanged += UpdateColor;
+            }
+
+        }
+
+        private void UpdateColor(object sender, PropertyChangedEventArgs e)
+        {
+            if (_iconView != null)
+            {
+                _iconView.BackgroundColor = (sender as ResponderModel).StatusColor.ToUIColor();
+                _iconView.LoadResponderData(Responder);
+            }
         }
 
         public override void MovedToSuperview()

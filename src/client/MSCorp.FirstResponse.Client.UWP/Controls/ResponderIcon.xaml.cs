@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Windows.Devices.Geolocation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using System.ComponentModel;
 
 namespace MSCorp.FirstResponse.Client.UWP.Controls
 {
@@ -13,6 +14,13 @@ namespace MSCorp.FirstResponse.Client.UWP.Controls
         public ResponderIcon(ResponderModel responder)
         {
             InitializeComponent();
+
+
+            if (responder != null)
+            {
+                responder.PropertyChanged += UpdateStatus;
+            }
+
             Responder = responder;
 
             if (responder.ResponderDepartment == DepartmentType.Responder)
@@ -36,14 +44,9 @@ namespace MSCorp.FirstResponse.Client.UWP.Controls
         public IReadOnlyList<BasicGeoposition> IncidentResponsePath { get; set; }
         public DateTime IncidentArrivalTime { get; set; }
 
-        public EventHandler StatusUpdated;
-
-        public void UpdateStatus(ResponseStatus status)
+        public void UpdateStatus(object sender, PropertyChangedEventArgs e)
         {
-            Responder.Status = status;
-            StatusColor.Fill = new SolidColorBrush(Responder.StatusColor.ToMediaColor());
-
-            StatusUpdated?.Invoke(this, null);
+            StatusColor.Fill = new SolidColorBrush((sender as ResponderModel).StatusColor.ToMediaColor());
         }
     }
 }

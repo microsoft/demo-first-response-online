@@ -15,43 +15,43 @@ namespace MSCorp.FirstResponse.WebApiDemo.Controllers
     {
         readonly Lazy<RangeShardMap<int>> _shardMap = new Lazy<RangeShardMap<int>>(GetShardMap);
 
-        [HttpGet, Route]
-        public IEnumerable<IncidentModel> GetIncidents()
+        [HttpGet, Route("{cityId:int}")]
+        public IEnumerable<IncidentModel> GetIncidents(int cityId)
         {
             string connectionString = ShardManagmentConfig.GetCredentialsConnectionString();
             Shard[] shards = _shardMap.Value.GetShards().ToArray();
 
-            var query = IncidentQuery;
+            var query = GetIncidentsQuery(cityId);
 
             var incidents = QueryHelper.ExecuteMultiShardQuery(connectionString, query, shards);
             return incidents;
         }
 
-        [HttpGet, Route("ambulance")]
-        public IList<IncidentModel> GetAmbulanceIncidents()
+        [HttpGet, Route("ambulance/{cityId:int}")]
+        public IList<IncidentModel> GetAmbulanceIncidents(int cityId)
         {
             string connectionString = ShardManagmentConfig.GetCredentialsConnectionString();
             Shard shard = _shardMap.Value.GetMappingForKey((int)DepartmentType.Ambulance).Shard;
 
-            return QueryHelper.ExecuteMultiShardQuery(connectionString, IncidentQuery, shard);
+            return QueryHelper.ExecuteMultiShardQuery(connectionString, GetIncidentsQuery(cityId), shard);
         }
 
-        [HttpGet, Route("police")]
-        public IList<IncidentModel> GetPoliceIncidents()
+        [HttpGet, Route("police/{cityId:int}")]
+        public IList<IncidentModel> GetPoliceIncidents(int cityId)
         {
             string connectionString = ShardManagmentConfig.GetCredentialsConnectionString();
             Shard shard = _shardMap.Value.GetMappingForKey((int)DepartmentType.Police).Shard;
 
-            return QueryHelper.ExecuteMultiShardQuery(connectionString, IncidentQuery, shard);
+            return QueryHelper.ExecuteMultiShardQuery(connectionString, GetIncidentsQuery(cityId), shard);
         }
 
-        [HttpGet, Route("fire")]
-        public IList<IncidentModel> GetFireIncidents()
+        [HttpGet, Route("fire/{cityId:int}")]
+        public IList<IncidentModel> GetFireIncidents(int cityId)
         {
             string connectionString = ShardManagmentConfig.GetCredentialsConnectionString();
             Shard shard = _shardMap.Value.GetMappingForKey((int)DepartmentType.Fire).Shard;
 
-            return QueryHelper.ExecuteMultiShardQuery(connectionString, IncidentQuery, shard);
+            return QueryHelper.ExecuteMultiShardQuery(connectionString, GetIncidentsQuery(cityId), shard);
         }
 
         private static RangeShardMap<int> GetShardMap()
@@ -63,7 +63,12 @@ namespace MSCorp.FirstResponse.WebApiDemo.Controllers
             return shardMapManager.GetRangeShardMap<int>(ShardManagmentConfig.ShardMapName);
         }
 
-        private static string IncidentQuery => @"
+
+
+        private static string GetIncidentsQuery(int cityId)
+        {
+
+            var query = $@"
                      SELECT 
                         i.Id, 
                         i.CityId, 
@@ -84,7 +89,11 @@ namespace MSCorp.FirstResponse.WebApiDemo.Controllers
                         i.SearchAreaId
                     FROM 
                         dbo.Incidents AS i
+                    Where i.CityId = {cityId} 
                 ";
+
+            return query;
+        }
 
     }
 }

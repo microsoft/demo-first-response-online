@@ -66,18 +66,18 @@ namespace MSCorp.FirstResponse.Client.Data
         {
             return new List<EventModel>
             {
-                new EventModel { CityId = 0, CityName = "Seattle", CityImage = "Seattle", EventDate = "", Latitude = 47.609093, Longitude = -122.015057},
-                new EventModel { CityId = 1, CityName = "Chicago", CityImage = "Chicago", EventDate = "January 19-20, 2017", Latitude = 41.880367, Longitude = -87.732912},
-                new EventModel { CityId = 2, CityName = "Johannesburg", CityImage = "Johannesburg", EventDate = "February 6-7, 2017", Latitude = -26.2041028, Longitude = 28.047305100000017},
-                new EventModel { CityId = 3, CityName = "Frankfurt", CityImage = "Frankfurt", EventDate = "February 9-10, 2017", Latitude = 50.1109221, Longitude = 8.682126700000026},
-                new EventModel { CityId = 4, CityName = "Washington, D.C", CityImage = "Washington", EventDate = "March 6-7, 2017", Latitude = 38.9071923, Longitude = -77.03687070000001},
-                new EventModel { CityId = 5, CityName = "Singapore", CityImage = "Singapore", EventDate = "March 13-14, 2017", Latitude = 1.35115, Longitude = 103.87268 },
-                new EventModel { CityId = 6, CityName = "Bangalore", CityImage = "Bangalore", EventDate = "March 16-17, 2017", Latitude = 12.966763, Longitude = 77.587637 },
-                new EventModel { CityId = 7, CityName = "Milan", CityImage = "Milan", EventDate = "March 20-21, 2017 ", Latitude = 45.468124, Longitude = 9.1826 },
-                new EventModel { CityId = 8, CityName = "Amsterdam", CityImage = "Amsterdam", EventDate = "March 23-24, 2017", Latitude = 52.332933, Longitude = 4.885974 },
-                new EventModel { CityId = 9, CityName = "Birmingham", CityImage = "Birmingham", EventDate = "March 27-28, 2017", Latitude = 52.4862, Longitude = -1.8904 },
-                new EventModel { CityId = 10, CityName = "Copenhagen", CityImage = "Copenhagen", EventDate = "March 30-31, 2017", Latitude = 12.500027, Longitude = 55.675055 },
-                new EventModel { CityId = 11, CityName = "Seoul", CityImage = "Seoul", EventDate = "April 27-28, 2017", Latitude = 37.566535, Longitude = 126.97796919999996 },
+                new EventModel { CityId = 0, CityName = "Seattle", CityImage = "Seattle", EventDate = "", Latitude = 47.609093, Longitude = -122.015057, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506}},
+                new EventModel { CityId = 1, CityName = "Chicago", CityImage = "Chicago", EventDate = "January 19-20, 2017", Latitude = 41.880367, Longitude = -87.732912, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506}},
+                new EventModel { CityId = 2, CityName = "Johannesburg", CityImage = "Johannesburg", EventDate = "February 6-7, 2017", Latitude = -26.2041028, Longitude = 28.047305100000017, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506}},
+                new EventModel { CityId = 3, CityName = "Frankfurt", CityImage = "Frankfurt", EventDate = "February 9-10, 2017", Latitude = 50.1109221, Longitude = 8.682126700000026, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506}},
+                new EventModel { CityId = 4, CityName = "Washington, D.C", CityImage = "Washington", EventDate = "March 6-7, 2017", Latitude = 38.9071923, Longitude = -77.03687070000001, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506}},
+                new EventModel { CityId = 5, CityName = "Singapore", CityImage = "Singapore", EventDate = "March 13-14, 2017", Latitude = 1.35115, Longitude = 103.87268, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506} },
+                new EventModel { CityId = 6, CityName = "Bangalore", CityImage = "Bangalore", EventDate = "March 16-17, 2017", Latitude = 12.966763, Longitude = 77.587637, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506} },
+                new EventModel { CityId = 7, CityName = "Milan", CityImage = "Milan", EventDate = "March 20-21, 2017 ", Latitude = 45.468124, Longitude = 9.1826, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506} },
+                new EventModel { CityId = 8, CityName = "Amsterdam", CityImage = "Amsterdam", EventDate = "March 23-24, 2017", Latitude = 52.332933, Longitude = 4.885974, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506} },
+                new EventModel { CityId = 9, CityName = "Birmingham", CityImage = "Birmingham", EventDate = "March 27-28, 2017", Latitude = 52.4862, Longitude = -1.8904, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506} },
+                new EventModel { CityId = 10, CityName = "Copenhagen", CityImage = "Copenhagen", EventDate = "March 30-31, 2017", Latitude = 12.500027, Longitude = 55.675055, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506} },
+                new EventModel { CityId = 11, CityName = "Seoul", CityImage = "Seoul", EventDate = "April 27-28, 2017", Latitude = 37.566535, Longitude = 126.97796919999996, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506} },
             };
         }
         
