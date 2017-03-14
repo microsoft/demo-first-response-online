@@ -32,11 +32,11 @@ namespace MSCorp.FirstResponse.Client.iOS.Maps.Annotations
         public ResponderAnnotationView(IMKAnnotation annotation, ResponderModel responder)
             : base(annotation, CustomReuseIdentifier)
         {
-            Responder = responder;
             if (responder != null) {
                 responder.PropertyChanged += UpdateColor;
             }
 
+            Responder = responder;
         }
 
         private void UpdateColor(object sender, PropertyChangedEventArgs e)

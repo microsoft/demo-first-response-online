@@ -73,6 +73,7 @@ namespace MSCorp.FirstResponse.WebApiDemo.Controllers
                 Facets = AzureSearchConfig.SearchIndexFacets,
                 ScoringProfile = AzureSearchConfig.ScoringProfileName,
                 ScoringParameters = new[] { scoringParam },
+                Top = 10,
                 Select = new[] { "FirstName", "LastName", "EyeColor", "HairColor", "Sex", "SuspectSearchImage" }
             };
 

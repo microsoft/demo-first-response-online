@@ -19,12 +19,13 @@ namespace MSCorp.FirstResponse.Client.Droid.Maps.Icons
         public ResponderIcon(ResponderModel responder)
             : base()
         {
-            Responder = responder;
 
             if (responder != null)
             {
                 responder.PropertyChanged += UpdateColor;
             }
+
+            Responder = responder;
 
             _inflater = LayoutInflater.From(Xamarin.Forms.Forms.Context);
             _responderIconView = _inflater.Inflate(Resource.Layout.responder_icon_content, null);

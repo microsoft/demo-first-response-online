@@ -351,7 +351,7 @@
     },
     {
         "Id": "15",
-        "FirstName": "Fran�ois",
+        "FirstName": "François",
         "LastName": "Ajenstat",
         "EyeColor": "Green",
         "HairColor": "Brown",
@@ -1626,8 +1626,8 @@
     },
     {
         "Id": "66",
-        "FirstName": "Erzs�bet",
-        "LastName": "Bal�zs",
+        "FirstName": "Erzsébet",
+        "LastName": "Balázs",
         "EyeColor": "Hazel",
         "HairColor": "Black",
         "Sex": "Male",
@@ -1851,8 +1851,8 @@
     },
     {
         "Id": "75",
-        "FirstName": "Mikl�s",
-        "LastName": "Bark�czi",
+        "FirstName": "Miklós",
+        "LastName": "Barkóczi",
         "EyeColor": "Hazel",
         "HairColor": "Blonde",
         "Sex": "Female",
@@ -2176,7 +2176,7 @@
     },
     {
         "Id": "88",
-        "FirstName": "Bal�zs",
+        "FirstName": "Balázs",
         "LastName": "Belinszki",
         "EyeColor": "Green",
         "HairColor": "Brown",
@@ -2326,8 +2326,8 @@
     },
     {
         "Id": "94",
-        "FirstName": "K�lm�n",
-        "LastName": "B�res",
+        "FirstName": "Kálmán",
+        "LastName": "Béres",
         "EyeColor": "Hazel",
         "HairColor": "Brown",
         "Sex": "Female",
@@ -2701,7 +2701,7 @@
     },
     {
         "Id": "109",
-        "FirstName": "Brynja Sigr�dur",
+        "FirstName": "Brynja Sigrídur",
         "LastName": "Blomsterberg",
         "EyeColor": "Hazel",
         "HairColor": "Blonde",
@@ -3026,7 +3026,7 @@
     },
     {
         "Id": "122",
-        "FirstName": "J�rg",
+        "FirstName": "Jörg",
         "LastName": "Bott",
         "EyeColor": "Hazel",
         "HairColor": "Red",
@@ -3576,7 +3576,7 @@
     },
     {
         "Id": "144",
-        "FirstName": "P�ter",
+        "FirstName": "Péter",
         "LastName": "Budai",
         "EyeColor": "Green",
         "HairColor": "Brown",
@@ -5177,7 +5177,7 @@
     {
         "Id": "208",
         "FirstName": "Petra",
-        "LastName": "Chvojkov�",
+        "LastName": "Chvojková",
         "EyeColor": "Hazel",
         "HairColor": "Red",
         "Sex": "Male",
@@ -5676,7 +5676,7 @@
     },
     {
         "Id": "228",
-        "FirstName": "Mar�a Jes�s",
+        "FirstName": "María Jesús",
         "LastName": "Cuesta",
         "EyeColor": "Hazel",
         "HairColor": "Black",
@@ -5751,7 +5751,7 @@
     },
     {
         "Id": "231",
-        "FirstName": "Gon�alo",
+        "FirstName": "Gonçalo",
         "LastName": "Cunha",
         "EyeColor": "Hazel",
         "HairColor": "Black",
@@ -7876,7 +7876,7 @@
     },
     {
         "Id": "316",
-        "FirstName": "P�ter",
+        "FirstName": "Péter",
         "LastName": "Fischer",
         "EyeColor": "Green",
         "HairColor": "Brown",
@@ -9752,7 +9752,7 @@
     {
         "Id": "391",
         "FirstName": "Nurhan",
-        "LastName": "G�ran",
+        "LastName": "Güran",
         "EyeColor": "Brown",
         "HairColor": "Brown",
         "Sex": "Male",
@@ -10276,7 +10276,7 @@
     },
     {
         "Id": "412",
-        "FirstName": "Zolt�n",
+        "FirstName": "Zoltán",
         "LastName": "Harmath",
         "EyeColor": "Blue",
         "HairColor": "Brown",
@@ -11426,7 +11426,7 @@
     },
     {
         "Id": "458",
-        "FirstName": "Bego�a",
+        "FirstName": "Begoña",
         "LastName": "Hurtado",
         "EyeColor": "Brown",
         "HairColor": "Black",
@@ -11927,7 +11927,7 @@
     {
         "Id": "478",
         "FirstName": "Francisco",
-        "LastName": "Javier Castrej�n",
+        "LastName": "Javier Castrejón",
         "EyeColor": "Blue",
         "HairColor": "Black",
         "Sex": "Female",
@@ -12051,7 +12051,7 @@
     },
     {
         "Id": "483",
-        "FirstName": "Christiane R�nnow",
+        "FirstName": "Christiane Rønnow",
         "LastName": "Jensen",
         "EyeColor": "Blue",
         "HairColor": "Black",
@@ -12126,7 +12126,7 @@
     },
     {
         "Id": "486",
-        "FirstName": "Thomas S�ndergaard",
+        "FirstName": "Thomas Søndergaard",
         "LastName": "Jensen",
         "EyeColor": "Green",
         "HairColor": "Black",
@@ -12377,7 +12377,7 @@
     {
         "Id": "496",
         "FirstName": "Irene",
-        "LastName": "J�ergensen",
+        "LastName": "Jøergensen",
         "EyeColor": "Brown",
         "HairColor": "Brown",
         "Sex": "Male",
@@ -12477,7 +12477,7 @@
     {
         "Id": "500",
         "FirstName": "Reto",
-        "LastName": "K�ch",
+        "LastName": "Käch",
         "EyeColor": "Hazel",
         "HairColor": "Red",
         "Sex": "Male",
@@ -12752,7 +12752,7 @@
     {
         "Id": "511",
         "FirstName": "Petr",
-        "LastName": "Kar�sek",
+        "LastName": "Karásek",
         "EyeColor": "Brown",
         "HairColor": "Brown",
         "Sex": "Male",
@@ -13826,7 +13826,7 @@
     },
     {
         "Id": "554",
-        "FirstName": "Ren�",
+        "FirstName": "René",
         "LastName": "Kl?o",
         "EyeColor": "Blue",
         "HairColor": "Red",
@@ -14026,7 +14026,7 @@
     },
     {
         "Id": "562",
-        "FirstName": "D�niel",
+        "FirstName": "Dániel",
         "LastName": "Koczka",
         "EyeColor": "Hazel",
         "HairColor": "Brown",
@@ -14501,8 +14501,8 @@
     },
     {
         "Id": "581",
-        "FirstName": "J�zsef",
-        "LastName": "Kr�nitz",
+        "FirstName": "József",
+        "LastName": "Kránitz",
         "EyeColor": "Blue",
         "HairColor": "Black",
         "Sex": "Female",
@@ -15502,7 +15502,7 @@
     {
         "Id": "621",
         "FirstName": "Johan",
-        "LastName": "Letz�n",
+        "LastName": "Letzén",
         "EyeColor": "Blue",
         "HairColor": "Blonde",
         "Sex": "Female",
@@ -15977,7 +15977,7 @@
     {
         "Id": "640",
         "FirstName": "Michael",
-        "LastName": "L�b",
+        "LastName": "Löb",
         "EyeColor": "Brown",
         "HairColor": "Red",
         "Sex": "Male",
@@ -16077,7 +16077,7 @@
     {
         "Id": "644",
         "FirstName": "Arturo",
-        "LastName": "L�pez",
+        "LastName": "López",
         "EyeColor": "Hazel",
         "HairColor": "Blonde",
         "Sex": "Male",
@@ -16302,7 +16302,7 @@
     {
         "Id": "653",
         "FirstName": "Tibor",
-        "LastName": "Luk�cs",
+        "LastName": "Lukács",
         "EyeColor": "Green",
         "HairColor": "Brown",
         "Sex": "Male",
@@ -16601,7 +16601,7 @@
     },
     {
         "Id": "665",
-        "FirstName": "Ren� Lund",
+        "FirstName": "René Lund",
         "LastName": "Madsen",
         "EyeColor": "Blue",
         "HairColor": "Red",
@@ -17177,7 +17177,7 @@
     {
         "Id": "688",
         "FirstName": "Frank",
-        "LastName": "Mart�nez",
+        "LastName": "Martínez",
         "EyeColor": "Hazel",
         "HairColor": "Blonde",
         "Sex": "Male",
@@ -17651,7 +17651,7 @@
     },
     {
         "Id": "707",
-        "FirstName": "Jo�o",
+        "FirstName": "João",
         "LastName": "Mena",
         "EyeColor": "Brown",
         "HairColor": "Blonde",
@@ -18976,7 +18976,7 @@
     },
     {
         "Id": "760",
-        "FirstName": "Tom�s",
+        "FirstName": "Tomás",
         "LastName": "Navarro",
         "EyeColor": "Blue",
         "HairColor": "Brown",
@@ -19326,7 +19326,7 @@
     },
     {
         "Id": "774",
-        "FirstName": "G�sli",
+        "FirstName": "Gísli",
         "LastName": "Olafsson",
         "EyeColor": "Green",
         "HairColor": "Red",
@@ -19576,8 +19576,8 @@
     },
     {
         "Id": "784",
-        "FirstName": "J�n Harry",
-        "LastName": "�skarsson",
+        "FirstName": "Jón Harry",
+        "LastName": "Óskarsson",
         "EyeColor": "Green",
         "HairColor": "Brown",
         "Sex": "Male",
@@ -22002,7 +22002,7 @@
     {
         "Id": "881",
         "FirstName": "Stefan",
-        "LastName": "Ri�ling",
+        "LastName": "Rißling",
         "EyeColor": "Hazel",
         "HairColor": "Blonde",
         "Sex": "Female",
@@ -22277,7 +22277,7 @@
     {
         "Id": "892",
         "FirstName": "Sebastian",
-        "LastName": "R�ttel",
+        "LastName": "Röttel",
         "EyeColor": "Blue",
         "HairColor": "Black",
         "Sex": "Male",
@@ -22927,7 +22927,7 @@
     {
         "Id": "918",
         "FirstName": "Ken",
-        "LastName": "S�nchez",
+        "LastName": "Sánchez",
         "EyeColor": "Brown",
         "HairColor": "Brown",
         "Sex": "Male",
@@ -22952,7 +22952,7 @@
     {
         "Id": "919",
         "FirstName": "Yolanda",
-        "LastName": "S�nchez",
+        "LastName": "Sánchez",
         "EyeColor": "Green",
         "HairColor": "Blonde",
         "Sex": "Male",
@@ -23051,7 +23051,7 @@
     },
     {
         "Id": "923",
-        "FirstName": "Jos� ",
+        "FirstName": "José",
         "LastName": "Saraiva",
         "EyeColor": "Brown",
         "HairColor": "Black",
@@ -23552,7 +23552,7 @@
     {
         "Id": "943",
         "FirstName": "Martin",
-        "LastName": "Schm�llerl",
+        "LastName": "Schmöllerl",
         "EyeColor": "Blue",
         "HairColor": "Blonde",
         "Sex": "Female",
@@ -26576,7 +26576,7 @@
     },
     {
         "Id": "1064",
-        "FirstName": "Bj�rn",
+        "FirstName": "Bjørn",
         "LastName": "Tollevsen",
         "EyeColor": "Brown",
         "HairColor": "Blonde",
@@ -26651,8 +26651,8 @@
     },
     {
         "Id": "1067",
-        "FirstName": "Andr�s",
-        "LastName": "T�th",
+        "FirstName": "András",
+        "LastName": "Tóth",
         "EyeColor": "Green",
         "HairColor": "Brown",
         "Sex": "Female",

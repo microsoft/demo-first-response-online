@@ -3,12 +3,10 @@ using MSCorp.FirstResponse.Client.Extensions;
 using MSCorp.FirstResponse.Client.Helpers;
 using MSCorp.FirstResponse.Client.Maps.Routes;
 using MSCorp.FirstResponse.Client.Models;
-using MSCorp.FirstResponse.Client.Services.Dialog;
 using MSCorp.FirstResponse.Client.Services.Incidents;
 using MSCorp.FirstResponse.Client.ViewModels.Base;
 using Plugin.Toasts;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -192,6 +190,7 @@ namespace MSCorp.FirstResponse.Client.Maps
                     userNotified = true;
 
                     // send toast notification
+                    // send toast notification
                     var notificator = DependencyService.Get<IToastNotificator>();
 
                     var options = new NotificationOptions()
@@ -201,54 +200,54 @@ namespace MSCorp.FirstResponse.Client.Maps
                         ClearFromHistory = true
                     };
 
-                    var result = await notificator.Notify(options);
-                    if (result?.Action == NotificationAction.Clicked)
-                    {
-                        await RequestAmbulanceOnIncident();
-                    }
+                    await notificator.Notify(options);
+                    await RequestAmbulanceOnIncident();
                 }
             }
         }
 
         private async Task RequestAmbulanceOnIncident()
         {
-            // search or create ambulance responder
-            var ambulance = new ResponderModel
-            {
-                Id = 9,
-                ResponderDepartment = DepartmentType.Ambulance,
-                Status = ResponseStatus.EnRoute,
-                Longitude = Settings.AmbulanceLongitude,
-                Latitude = Settings.AmbulanceLatitude
-            };
-
-            // add responder to map
-            this.PushpinManager.RemoveResponder(ambulance);
-            this.PushpinManager.AddResponders(new List<ResponderModel>() { ambulance });
-
             // locate attending incident (can differ from selected)
             IncidentModel currentIncident = FormsMap.Incidents?.FirstOrDefault(i => i.Id == CurrentUserStatus.AttendingIncidentId);
-
-            // create route from ambulance to incident
-            var routeAmbulance = await this.RouteManager.CalculateRoute(new Geoposition()
+            if (currentIncident.IsHighPriority)
             {
-                Latitude = ambulance.Latitude,
-                Longitude = ambulance.Longitude
-            }, new Geoposition() {
-                Latitude = currentIncident.Latitude,
-                Longitude = currentIncident.Longitude
-            });
+                // search or create ambulance responder
+                var ambulance = new ResponderModel
+                {
+                    Id = 8,
+                    ResponderDepartment = DepartmentType.Ambulance,
+                    Status = ResponseStatus.EnRoute,
+                    Longitude = Settings.AmbulanceLongitude,
+                    Latitude = Settings.AmbulanceLatitude
+                };
 
-            // start route movement
-            var route = new Route<ResponderModel>(routeAmbulance.ToArray());
-            route.Element = ambulance;
-            route.AddStartPoint(new Geoposition()
+                // add responder to map
+                this.PushpinManager.RemoveResponder(ambulance);
+                this.PushpinManager.AddResponders(new List<ResponderModel>() { ambulance });
+
+                // create route from ambulance to incident
+                var routeAmbulance = await this.RouteManager.CalculateRoute(new Geoposition()
+                {
+                    Latitude = ambulance.Latitude,
+                    Longitude = ambulance.Longitude
+                }, new Geoposition()
+                {
+                    Latitude = currentIncident.Latitude,
+                    Longitude = currentIncident.Longitude
+                });
+
+                // start route movement
+                var route = new Route<ResponderModel>(routeAmbulance.ToArray());
+                route.Element = ambulance;
+                route.AddStartPoint(new Geoposition()
                 {
                     Latitude = ambulance.Latitude,
                     Longitude = ambulance.Longitude
                 });
-            route.Init();
-            _routeUpdater.AddRoute(route);
+                route.Init();
+                _routeUpdater.AddRoute(route);
+            }
         }
 
         private async void OnRouteCompleted(object sender, Route e)

@@ -113,6 +113,7 @@
     <Compile Include="Maps\MapDrawingManager.cs" />
     <Compile Include="Maps\ResponderManager.cs" />
     <Compile Include="Maps\RouteManager.cs" />
+    <Compile Include="UserNotificationCenterDelegate.cs" />
     <Compile Include="Views\ResponderIconView.cs" />
     <Compile Include="Views\ResponderIconView.designer.cs">
       <DependentUpon>ResponderIconView.cs</DependentUpon>
