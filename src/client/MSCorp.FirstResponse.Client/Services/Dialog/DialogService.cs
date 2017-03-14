@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using System;
 using System.Threading.Tasks;
 
 namespace MSCorp.FirstResponse.Client.Services.Dialog
@@ -16,7 +17,7 @@ namespace MSCorp.FirstResponse.Client.Services.Dialog
 
         public void ShowLocalNotification(string message)
         {
-            UserDialogs.Instance.Toast(message);
+            UserDialogs.Instance.Toast(message, TimeSpan.FromSeconds(5));
         }
     }
 }

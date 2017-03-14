@@ -9,9 +9,6 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
 {
     public static class Seed
     {
-
-
-
         private static int routeRadius = 2000;
 
         public static User[] GetUsers()
@@ -48,7 +45,7 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
         public static AmbulancePosition GetAmbulancePosition(City city)
         {
             var original = new Coordinate(city.Latitude, city.Longitude);
-            var point = MapPointGenerator.GetPoint(original, 500);
+            var point = MapPointGenerator.GetPoint(original, 250);
             var ambulancePosition = new AmbulancePosition
             {
                 CityId = city.Id,
@@ -178,6 +175,17 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
                     Name = "Seoul", Latitude = 37.566535, Longitude = 126.97796919999996,
                     CityImage = "Seoul", EventDate = "April 27-28, 2017",
                     PhoneFormat = "(2) ####-####", PhoneLength = 8, PhoneMasked = "(2) XXXX-XXXX"
+                },
+                new City {
+                    Id = 35,
+                    Name = "Seattle",
+                    Latitude = 47.588400,
+                    Longitude = -122.035594,
+                    CityImage = "Seattle",
+                    PhoneMasked = "(555) XXX-XXXX",
+                    PhoneFormat = "(555) ###-####",
+                    PhoneLength = 7,
+                    EventDate = ""
                 }
             };
 
@@ -192,7 +200,6 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
 
         public static ResponderRoute GetResponderRoute(Coordinate startPoint)
         {
-
             var endPoint = MapPointGenerator.GetPoint(startPoint, routeRadius);
             var routePoints = RouteGenerator.GetRoute(startPoint, endPoint);
             var responderRoute = new ResponderRoute();

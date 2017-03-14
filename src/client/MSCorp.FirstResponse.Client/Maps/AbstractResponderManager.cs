@@ -3,6 +3,7 @@ using MSCorp.FirstResponse.Client.Extensions;
 using MSCorp.FirstResponse.Client.Helpers;
 using MSCorp.FirstResponse.Client.Maps.Routes;
 using MSCorp.FirstResponse.Client.Models;
+using MSCorp.FirstResponse.Client.Services.Dialog;
 using MSCorp.FirstResponse.Client.Services.Incidents;
 using MSCorp.FirstResponse.Client.ViewModels.Base;
 using Plugin.Toasts;
@@ -189,18 +190,25 @@ namespace MSCorp.FirstResponse.Client.Maps
                 {
                     userNotified = true;
 
-                    // send toast notification
-                    // send toast notification
-                    var notificator = DependencyService.Get<IToastNotificator>();
-
-                    var options = new NotificationOptions()
+                    if (Device.OS == TargetPlatform.iOS)
                     {
-                        Title = "Dispatch updated incident",
-                        IsClickable = true,
-                        ClearFromHistory = true
-                    };
+                        IDialogService notificator = ViewModelLocator.Instance.Resolve<IDialogService>();
+                        notificator.ShowLocalNotification("Dispatch updated incident");
+                    }
+                    else
+                    {
+                        // send toast notification
+                        var notificator = DependencyService.Get<IToastNotificator>();
 
-                    await notificator.Notify(options);
+                        var options = new NotificationOptions()
+                        {
+                            Title = "Dispatch updated incident",
+                            IsClickable = true,
+                            ClearFromHistory = true
+                        };
+                        await notificator.Notify(options);
+                    }
+
                     await RequestAmbulanceOnIncident();
                 }
             }
@@ -219,7 +227,8 @@ namespace MSCorp.FirstResponse.Client.Maps
                     ResponderDepartment = DepartmentType.Ambulance,
                     Status = ResponseStatus.EnRoute,
                     Longitude = Settings.AmbulanceLongitude,
-                    Latitude = Settings.AmbulanceLatitude
+                    Latitude = Settings.AmbulanceLatitude,
+                    IsPriority = true
                 };
 
                 // add responder to map
@@ -231,7 +240,8 @@ namespace MSCorp.FirstResponse.Client.Maps
                 {
                     Latitude = ambulance.Latitude,
                     Longitude = ambulance.Longitude
-                }, new Geoposition()
+                }
+                , new Geoposition()
                 {
                     Latitude = currentIncident.Latitude,
                     Longitude = currentIncident.Longitude
@@ -280,9 +290,16 @@ namespace MSCorp.FirstResponse.Client.Maps
 
                 var defaultRoute = _predefinedRoutes.ElementAt(nextPredefinedRouteIndex);
                 AssignRouteToResponder(responder, defaultRoute);
-            } else if (responder.Status == ResponseStatus.EnRoute)
+            }
+            else if (responder.Status == ResponseStatus.EnRoute)
             {
+                // state as busy
                 responder.Status = ResponseStatus.Busy;
+                if (responder.IsPriority)
+                {
+                    IncidentModel currentIncident = FormsMap.Incidents?.FirstOrDefault(i => i.Id == CurrentUserStatus.AttendingIncidentId);
+                    currentIncident.Description += ". Driver has collided with the curb. In shock and potentially sustained an injury.";
+                }
             }
         }
 

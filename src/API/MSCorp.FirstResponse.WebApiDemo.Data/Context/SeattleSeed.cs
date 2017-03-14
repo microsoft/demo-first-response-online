@@ -45,24 +45,5 @@ namespace MSCorp.FirstResponse.WebApiDemo.Data.Context
 
             return responders;
         }
-
-        public static City GetCity()
-        {
-            var city = 
-                new City
-                {
-                    Id = 35,
-                    Name = "Seattle",
-                    Latitude = 47.588400,
-                    Longitude = -122.035594,
-                    CityImage = "Seattle",
-                    PhoneMasked = "(555) XXX-XXXX",
-                    PhoneFormat = "(555) ###-####",
-                    PhoneLength = 7,
-                    EventDate = ""
-                };
-            city.AmbulancePosition = Seed.GetAmbulancePosition(city);
-            return city;
-        }
     }
 }

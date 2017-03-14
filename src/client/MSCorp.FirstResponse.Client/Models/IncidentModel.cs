@@ -12,6 +12,7 @@ namespace MSCorp.FirstResponse.Client.Models
         private IncidentType _incidentType;
         private bool _isHighPriority;
         private bool _readyToIdentify;
+        private string _description;
 
         public static readonly Point AnchorPoint = new Point(0.5, 1);
         public int Id { get; set; }
@@ -24,7 +25,17 @@ namespace MSCorp.FirstResponse.Client.Models
         public string Address { get; set; }
         public string ReportingParty { get; set; }
         public string UnmaskedReportingParty { get; set; }
-        public string Description { get; set; }
+        public string Description {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = value;
+                RaisePropertyChanged(()=> Description);
+            }
+        }
         public string UpdateDescription { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }

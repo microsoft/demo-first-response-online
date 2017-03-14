@@ -107,7 +107,7 @@ namespace MSCorp.FirstResponse.Client.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault<int>(SelectedCityKey, GlobalSetting.DefaultMockCityId);
+                return AppSettings.GetValueOrDefault<int>(SelectedCityKey, GlobalSetting.DefaultCityId);
             }
             set
             {

@@ -31,7 +31,7 @@ namespace MSCorp.FirstResponse.Client.ViewModels
             {
                 // load selected city from api
                 ICitiesService citiesService = ViewModelLocator.Instance.Resolve<ICitiesService>();
-                Settings.SelectedCity = Settings.SelectedCity == GlobalSetting.DefaultMockCityId? GlobalSetting.DefaultCityId : Settings.SelectedCity;
+                Settings.SelectedCity = Settings.SelectedCity == 0 ? GlobalSetting.DefaultCityId : Settings.SelectedCity;
                 var city = (await citiesService.GetEventsAsync()).FirstOrDefault(q => q.CityId == Settings.SelectedCity);
                 Settings.UserLatitude = city.Latitude;
                 Settings.UserLongitude = city.Longitude;
