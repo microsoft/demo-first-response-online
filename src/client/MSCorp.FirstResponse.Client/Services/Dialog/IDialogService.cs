@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace MSCorp.FirstResponse.Client.Services.Dialog
 {
@@ -8,6 +9,6 @@ namespace MSCorp.FirstResponse.Client.Services.Dialog
 
         Task<bool> ConfirmAsync(string message, string title);
 
-        void ShowLocalNotification(string message);
+        void ShowLocalNotification(string message, Action action);
     }
 }

@@ -9,6 +9,7 @@ using MSCorp.FirstResponse.Client.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.ComponentModel;
 
 namespace MSCorp.FirstResponse.Client.Droid.Maps
 {
@@ -62,13 +63,37 @@ namespace MSCorp.FirstResponse.Client.Droid.Maps
 
         protected override void AddResponderToMap(ResponderModel responder)
         {
+            responder.PropertyChanged += updateColor;
+
             var responderIcon = new ResponderIcon(responder);
+
 
             var markerOptions = responderIcon.MarkerOptions;
             markerOptions.SetPosition(new LatLng(responder.Latitude, responder.Longitude));
 
             Marker marker = _nativeMap.AddMarker(responderIcon.MarkerOptions);
             _responderPushpinMappings.Add(responder.Id, marker);
+        }
+
+        private void updateColor(object sender, PropertyChangedEventArgs e)
+        {
+            var responder = sender as ResponderModel;
+            if (_responderPushpinMappings.ContainsKey(responder.Id))
+            {
+                Marker marker = GetMarkerForResponder(responder);
+                _responderPushpinMappings.Remove(responder.Id);
+
+                if (marker != null)
+                {
+                    var actualPosition = marker.Position;
+                    marker.Remove();
+                    var responderIcon = new ResponderIcon(responder);
+                    var markerOptions = responderIcon.MarkerOptions;
+                    markerOptions.SetPosition(new LatLng(actualPosition.Latitude, actualPosition.Longitude));
+
+                    _nativeMap.AddMarker(responderIcon.MarkerOptions);
+                }
+            }
         }
 
         public override void AddUser()
@@ -190,6 +215,8 @@ namespace MSCorp.FirstResponse.Client.Droid.Maps
 
         public override void RemoveResponder(ResponderModel responder)
         {
+            responder.PropertyChanged -= updateColor;
+
             if (_responderPushpinMappings.ContainsKey(responder.Id))
             {
                 Marker marker = GetMarkerForResponder(responder);

@@ -193,7 +193,7 @@ namespace MSCorp.FirstResponse.Client.Maps
                     if (Device.OS == TargetPlatform.iOS)
                     {
                         IDialogService notificator = ViewModelLocator.Instance.Resolve<IDialogService>();
-                        notificator.ShowLocalNotification("Dispatch updated incident");
+                        notificator.ShowLocalNotification("Dispatch updated incident", () => {});
                     }
                     else
                     {
@@ -209,11 +209,28 @@ namespace MSCorp.FirstResponse.Client.Maps
                         await notificator.Notify(options);
                     }
 
+                    UpdateIncidentDescription();
                     await RequestAmbulanceOnIncident();
                 }
             }
         }
 
+        private void UpdateIncidentDescription()
+        {
+            IncidentModel currentIncident = FormsMap.Incidents?.FirstOrDefault(i => i.Id == CurrentUserStatus.AttendingIncidentId);
+            if (!currentIncident.Description.Contains("Driver has collided with the curb. In shock and potentially sustained an injury."))
+            {
+                currentIncident.Description += ". Driver has collided with the curb. In shock and potentially sustained an injury.";
+                this.PushpinManager.HideIncidentInformationPanel();
+                if (FormsMap.CurrentIncident?.Id != CurrentUserStatus.AttendingIncidentId)
+                {
+                    FormsMap.CurrentIncident = null;
+                }
+                FormsMap.CurrentIncident = currentIncident;
+                this.PushpinManager.ShowIncidentInformationPanel(currentIncident);
+            }
+        }
+        
         private async Task RequestAmbulanceOnIncident()
         {
             // locate attending incident (can differ from selected)
@@ -235,17 +252,26 @@ namespace MSCorp.FirstResponse.Client.Maps
                 this.PushpinManager.RemoveResponder(ambulance);
                 this.PushpinManager.AddResponders(new List<ResponderModel>() { ambulance });
 
-                // create route from ambulance to incident
-                var routeAmbulance = await this.RouteManager.CalculateRoute(new Geoposition()
+                var fromPosition = new Geoposition()
                 {
                     Latitude = ambulance.Latitude,
                     Longitude = ambulance.Longitude
-                }
-                , new Geoposition()
+                };
+
+                var toPosition = new Geoposition()
                 {
                     Latitude = currentIncident.Latitude,
                     Longitude = currentIncident.Longitude
-                });
+                };
+
+                // create route from ambulance to incident
+                var routeAmbulance = await this.RouteManager.CalculateRoute(fromPosition, toPosition);
+
+                if (!routeAmbulance.Any())
+                {
+                    // map route service fails
+                    routeAmbulance = new[] { fromPosition, toPosition };
+                }
 
                 // start route movement
                 var route = new Route<ResponderModel>(routeAmbulance.ToArray());
@@ -297,8 +323,7 @@ namespace MSCorp.FirstResponse.Client.Maps
                 responder.Status = ResponseStatus.Busy;
                 if (responder.IsPriority)
                 {
-                    IncidentModel currentIncident = FormsMap.Incidents?.FirstOrDefault(i => i.Id == CurrentUserStatus.AttendingIncidentId);
-                    currentIncident.Description += ". Driver has collided with the curb. In shock and potentially sustained an injury.";
+                    
                 }
             }
         }

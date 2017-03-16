@@ -19,6 +19,8 @@ namespace MSCorp.FirstResponse.Client
         public const int DefaultCityId = 35;
         public const double UserLatitude = 47.609093;
         public const double UserLongitude = -122.015057;
+        public const double AmbulanceLatitude = 47.575516;
+        public const double AmbulanceLongitude = -121.988506;
 
         public const string BingMapsAPIKey = "40mgB3YEUPMAewdi02Hm~HM0JyrqUSuQqAz9WoBg0Iw~Ar-hXz2S6oaN-ZJRM3VzCSS1lpPhUlNmParkTwh6zuaG7AcSb9j2N0Oe2wRpr5qz";
 

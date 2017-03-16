@@ -34,6 +34,8 @@ namespace MSCorp.FirstResponse.Client.iOS
         public void LoadIncidentData(IncidentModel incident)
         {
             DescriptionLabel.Text = incident.Description;
+            DescriptionLabel.LineBreakMode = UILineBreakMode.TailTruncation;
+            DescriptionLabel.Lines = 4;
             LocationLabel.Text = incident.Address;
             HeaderTitleLabel.Text = incident.Title;
 

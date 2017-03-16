@@ -1,4 +1,4 @@
-#FIRST RESPONSE ONLINE
+# FIRST RESPONSE ONLINE
 
 First Response Online is a communication and collaboration platform built to support first responders. It lets police officers, fire fighters, and paramedics share critical data with each other in near real-time. It supports Android, iPad, and PC and integrates with computer aided dispatch and GPS tracking. Units in the field can update their status, complete traffic stops, and even query state & federal databases all without using the radio.
 First Response Online is powered by Azure. In order to build a business that handles major life-threating incidents, they not only rely on Azure’s proven scalability and availability but also its breadth of features to get to market quickly. By using services like App Service, Azure SQL, DocumentDB & Azure Search, First Response Online can instead focus on empowering first responders instead of maintaining infrastructure.
@@ -7,13 +7,13 @@ Follow the [deployment instructions](Deploy/Deploy.md) to get you started.
 
 <img src="Images/fro.png" alt="FRO" Width="800" />
 
-###Supported platforms: iOS, Android and Windows
+### Supported platforms: iOS, Android and Windows
 
-###The app architecture consists of two parts:
+### The app architecture consists of two parts:
   1. A Xamarin.Forms mobile app for iOS, Android and Windows.
   2. ASP.NET MVC API.
 
-##Xamarin.Forms App
+## Xamarin.Forms App
 
 This project exercises the following platforms, frameworks or features:
 
@@ -35,7 +35,7 @@ This project exercises the following platforms, frameworks or features:
   * Entity Framework
   * Power BI Embedded
 
-##Three platforms
+## Three platforms
 The app targets **three** platforms:
 
 * iOS
@@ -46,7 +46,7 @@ The app targets **three** platforms:
 
 As of 13/01/2017, FRO features **79.9% code share** (19.9% iOS / 21.7% Android / 19.6% Windows).
 
-##Licenses
+## Licenses
 
 This project uses some third-party assets with a license that requires attribution:
 

@@ -1,4 +1,5 @@
 ﻿// Helpers/Settings.cs
+using System;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -107,6 +108,11 @@ namespace MSCorp.FirstResponse.Client.Helpers
         {
             get
             {
+                if (!UseMockService && AppSettings.GetValueOrDefault<int>(SelectedCityKey) == GlobalSetting.DefaultMockCityId)
+                {
+                    AppSettings.AddOrUpdateValue<int>(SelectedCityKey, GlobalSetting.DefaultCityId);
+                }
+
                 return AppSettings.GetValueOrDefault<int>(SelectedCityKey, GlobalSetting.DefaultCityId);
             }
             set

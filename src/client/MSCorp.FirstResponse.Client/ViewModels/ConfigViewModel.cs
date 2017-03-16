@@ -26,6 +26,8 @@ namespace MSCorp.FirstResponse.Client.ViewModels
                 Settings.SelectedCity = GlobalSetting.DefaultMockCityId;
                 Settings.UserLatitude = GlobalSetting.UserLatitude;
                 Settings.UserLongitude = GlobalSetting.UserLongitude;
+                Settings.AmbulanceLatitude = GlobalSetting.AmbulanceLatitude;
+                Settings.AmbulanceLongitude = GlobalSetting.AmbulanceLongitude;
             }
             else
             {
@@ -35,6 +37,8 @@ namespace MSCorp.FirstResponse.Client.ViewModels
                 var city = (await citiesService.GetEventsAsync()).FirstOrDefault(q => q.CityId == Settings.SelectedCity);
                 Settings.UserLatitude = city.Latitude;
                 Settings.UserLongitude = city.Longitude;
+                Settings.AmbulanceLatitude = city.AmbulancePosition.Latitude;
+                Settings.AmbulanceLongitude = city.AmbulancePosition.Longitude;
             }
 
             Settings.ServiceEndpoint = ServiceEndpoint;

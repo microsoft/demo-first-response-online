@@ -2,11 +2,12 @@
 
 ### Requirements
 
-* [Visual Studio __2015__](https://www.visualstudio.com/en-us/products/vs-2015-product-editions.aspx) (14.0 or higher) to compile C# 6 langage features
+* [Visual Studio __2015__](https://www.visualstudio.com/en-us/products/vs-2015-product-editions.aspx) (14.0 or higher) to compile C# 6 langage features  
+  Ensure to check "Universal Windows Platform Tools" on installation.
 * Xamarin add-ons for Visual Studio (available via the Visual Studio installer)
 * __Visual Studio Community Edition is fully supported!__
-* Android SDK Tools 25.2.3 or higher
-* JDK 8.0
+* Android SDK Tools 25.2.3 or higher (available via the Visual Studio installer)
+* [JDK 8.0](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [SQL Server 2016 Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) required to Connect to SQL Database By Using Azure Active Directory Authentication
 
 ### Deployment instructions.
@@ -58,7 +59,7 @@ As part of the demo you could find a PowerBI report for the city of Seattle that
 To clean up the Azure assets:
 
 1. Login to the Azure portal.
-2.	Delete the resource group created as part of the deployment – It will have the same name as the prefix used as part of the deployment step. Internally this will delete all the child resources created in Azure.
-3.	Uninstall the First Response Online application from the devices. 
+2.  Delete the resource group created as part of the deployment – It will have the same name as the prefix used as part of the deployment step. Internally this will delete all the child resources created in Azure.
+3.  Uninstall the First Response Online application from the devices. 
 
 

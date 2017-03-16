@@ -15,9 +15,13 @@ namespace MSCorp.FirstResponse.Client.Services.Dialog
             return UserDialogs.Instance.ConfirmAsync(message, title);
         }
 
-        public void ShowLocalNotification(string message)
+        public void ShowLocalNotification(string message, Action action)
         {
-            UserDialogs.Instance.Toast(message, TimeSpan.FromSeconds(5));
+
+            UserDialogs.Instance.Toast(new ToastConfig(message)
+                    .SetDuration(TimeSpan.FromSeconds(10))
+                    .SetAction(x => x
+                        .SetAction(action)));
         }
     }
 }
