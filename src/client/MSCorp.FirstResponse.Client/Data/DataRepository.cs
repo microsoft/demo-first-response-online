@@ -66,7 +66,7 @@ namespace MSCorp.FirstResponse.Client.Data
         {
             return new List<EventModel>
             {
-                new EventModel { CityId = 0, CityName = "Seattle", CityImage = "Seattle", EventDate = "", Latitude = 47.609093, Longitude = -122.015057, AmbulancePosition = new AmbulanceModel(){Latitude= 47.575516, Longitude= -121.988506}},
+                new EventModel { CityId = 0, CityName = "Seattle", CityImage = "Seattle", EventDate = "", Latitude = 47.609093, Longitude = -122.015057, AmbulancePosition = new AmbulanceModel(){Latitude= GlobalSetting.AmbulanceLatitude, Longitude= GlobalSetting.AmbulanceLongitude}},
                 new EventModel { CityId = 24, CityName = "Chicago", CityImage = "Chicago", EventDate = "January 19-20, 2017", Latitude = 41.880367, Longitude = -87.732912, AmbulancePosition = new AmbulanceModel(){Latitude = 41.880367, Longitude = -87.732912}},
                 new EventModel { CityId = 25, CityName = "Johannesburg", CityImage = "Johannesburg", EventDate = "February 6-7, 2017", Latitude = -26.2041028, Longitude = 28.047305100000017, AmbulancePosition = new AmbulanceModel(){Latitude = -26.2041028, Longitude = 28.047305100000017}},
                 new EventModel { CityId = 26, CityName = "Frankfurt", CityImage = "Frankfurt", EventDate = "February 9-10, 2017", Latitude = 50.1109221, Longitude = 8.682126700000026, AmbulancePosition = new AmbulanceModel(){Latitude = 50.1109221, Longitude = 8.682126700000026}},
