@@ -13,7 +13,7 @@ AS
 	WHERE 
 	(	
 		--If the user is in the supervisor role they can see all.
-		IS_MEMBER ( 'Supervisor' ) = 1 
+		IS_MEMBER ( 'Supervisor' ) = 1 OR IS_MEMBER ( 'db_owner' ) = 1 
 	) OR EXISTS 
 	(	
 		--If the user has a mapping to the UserCity then they can see based on the incident.
@@ -21,7 +21,7 @@ AS
 		FROM		dbo.[UserCity] UR
 		INNER JOIN	dbo.[User] U 
 		ON			UR.UserId = U.UserId
-		WHERE		U.UserName = USER_NAME() 
+		WHERE		U.UserName = USER_NAME()
 		AND			UR.CityId = @CityId 
 	)
 GO
