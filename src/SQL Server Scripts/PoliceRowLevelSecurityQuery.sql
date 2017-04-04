@@ -1,26 +1,26 @@
--- 1. See that John has two Region mappings
-SELECT		U.UserName, UR.RegionId
-FROM		dbo.[UserRegion] UR
+-- 1. See that John has two City mappings
+SELECT		U.UserName, UR.CityId
+FROM		dbo.[UserCity] UR
 INNER JOIN	dbo.[User] U 
 ON			UR.UserId = U.UserId
 WHERE		U.UserName = 'JohnC'
 
--- 2. Only incidents returned from (98074, 98075)
+-- 2. Only incidents returned from (24, 25)
 EXECUTE ('SELECT * FROM dbo.Incidents') AS USER = 'JohnC' 
 
--- 3. See that Ben has two Region mappings
-SELECT		U.UserName, UR.RegionId
-FROM		dbo.[UserRegion] UR
+-- 3. See that Ben has two City mappings
+SELECT		U.UserName, UR.CityId
+FROM		dbo.[UserCity] UR
 INNER JOIN	dbo.[User] U 
 ON			UR.UserId = U.UserId
 WHERE		U.UserName = 'BenM'
 
--- 4. Only incidents returned from (98053, 98052)
+-- 4. Only incidents returned from (26, 27)
 EXECUTE ('SELECT * FROM dbo.Incidents') AS USER = 'BenM' 
 
--- 5. See that EvanD does not have any regions mapped.
-SELECT		U.UserName, UR.RegionId
-FROM		dbo.[UserRegion] UR
+-- 5. See that EvanD does not have any cities mapped.
+SELECT		U.UserName, UR.CityId
+FROM		dbo.[UserCity] UR
 INNER JOIN	dbo.[User] U 
 ON			UR.UserId = U.UserId
 WHERE		U.UserName = 'EvanD'
