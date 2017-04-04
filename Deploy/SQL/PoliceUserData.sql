@@ -34,7 +34,11 @@ INSERT INTO [User] VALUES
 (1, 'edodds'),
 (2, 'jclarkson'),
 (3, 'bmartens'),
-(4, 'dbo')
+(4, 'dbo'),
+(5, 'EvanD'),
+(6, 'JohnC'),
+(7, 'BenM')
+
 GO
 
 INSERT INTO [UserCity] VALUES 
@@ -50,5 +54,11 @@ INSERT INTO [UserCity] VALUES
 (3, 31),
 (3, 32),
 (3, 33),
-(3, 34)
+(3, 34),
+(6, 25),
+(6, 24),
+(7, 26),
+(7, 27)
 GO 
+
+
