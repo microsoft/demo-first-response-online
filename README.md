@@ -1,7 +1,7 @@
 # FIRST RESPONSE ONLINE
 
 First Response Online is a communication and collaboration platform built to support first responders. It lets police officers, fire fighters, and paramedics share critical data with each other in near real-time. It supports Android, iPad, and PC and integrates with computer aided dispatch and GPS tracking. Units in the field can update their status, complete traffic stops, and even query state & federal databases all without using the radio.
-First Response Online is powered by Azure. In order to build a business that handles major life-threating incidents, they not only rely on Azure’s proven scalability and availability but also its breadth of features to get to market quickly. By using services like App Service, Azure SQL, DocumentDB & Azure Search, First Response Online can instead focus on empowering first responders instead of maintaining infrastructure.
+First Response Online is powered by Azure. In order to build a business that handles major life-threating incidents, they not only rely on Azure’s proven scalability and availability but also its breadth of features to get to market quickly. By using services like App Service, Azure SQL, CosmosDB & Azure Search, First Response Online can instead focus on empowering first responders instead of maintaining infrastructure.
 
 Follow the [deployment instructions](Deploy/Deploy.md) to get you started.
 

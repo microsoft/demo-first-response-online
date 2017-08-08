@@ -23,7 +23,7 @@
     "sql_reporting_database": "[concat(parameters('prefix_name'), '-reporting')]",
 	"azure_search_name": "[concat(parameters('prefix_name'), 's')]",
     "azure_search_index_name": "people",
-	"document_db_name": "[concat(parameters('prefix_name'), '-docdb')]",
+	"cosmos_db_name": "[concat(parameters('prefix_name'), '-docdb')]",
     "location": "[resourceGroup().location]"
   },
   "resources": [
@@ -173,11 +173,11 @@
 	{
       "comments": "### Create Document Db ###",
       "apiVersion": "2015-04-08",
-      "type": "Microsoft.DocumentDB/databaseAccounts",
-      "name": "[variables('document_db_name')]",
+      "type": "Microsoft.DocumentDb/databaseAccounts",
+      "name": "[variables('cosmos_db_name')]",
       "location": "[variables('location')]",
       "properties": {
-        "name": "[variables('document_db_name')]",
+        "name": "[variables('cosmos_db_name')]",
         "databaseAccountOfferType": "Standard"
       }
     }
@@ -223,13 +223,13 @@
       "type": "string",
       "value": "[variables('azure_search_name')]"
     },
-    "DocumentDbUri": {
+    "CosmosDBUri": {
       "type": "string",
-      "value": "[reference(variables('document_db_name')).documentEndpoint]"
+      "value": "[reference(variables('cosmos_db_name')).documentEndpoint]"
     },
-    "DocumentDbAuthKey": {
+    "CosmosDBAuthKey": {
       "type": "string",
-      "value": "[listkeys(variables('document_db_name'), '2015-04-08').primaryMasterKey]"
+      "value": "[listkeys(variables('cosmos_db_name'), '2015-04-08').primaryMasterKey]"
     },
     "SearchIndexName":{
         "type": "string",
