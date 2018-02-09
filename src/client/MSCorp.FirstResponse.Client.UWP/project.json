@@ -2,17 +2,18 @@
   "dependencies": {
     "Acr.UserDialogs": "6.3.2",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Newtonsoft.Json": "9.0.1",
     "Rg.Plugins.Popup": "1.0.4",
     "Toasts.Forms.Plugin": "3.1.4",
     "Unity": "4.0.1",
     "Xam.Plugin.Connectivity": "2.3.0",
     "Xam.Plugins.Forms.ImageCircle": "1.8.0.5",
     "Xam.Plugins.Settings": "2.5.1",
-    "Xamarin.Forms": "2.3.3.168",
-    "Xamarin.Forms.Maps": "2.3.3.168"
+    "Xamarin.Forms": "2.4.0.282",
+    "Xamarin.Forms.Maps": "2.4.0.282"
   },
   "frameworks": {
-    "uap10.0": {}
+    "uap10.0.14393": {}
   },
   "runtimes": {
     "win10-arm": {},

@@ -713,7 +713,18 @@
             <Style TargetType="PivotItem">
                 <Setter Property="Margin" Value="0" />
             </Style>
-            
+
+            <SolidColorBrush x:Key="SliderSelectionBackground" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderSelectionBorder" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderThumbBackground" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderThumbBackgroundDisabled" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderThumbBackgroundDragging" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderThumbBackgroundHover" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderThumbBorder" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderThumbBorderDisabled" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderThumbBorderDragging" Color="{StaticResource PrimaryLightGray}" />
+            <SolidColorBrush x:Key="SliderThumbBorderHover" Color="{StaticResource PrimaryLightGray}" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

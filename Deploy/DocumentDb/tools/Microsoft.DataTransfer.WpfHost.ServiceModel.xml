@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.WpfHost.ServiceModel</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.Configuration.IInfrastructureConfiguration">
+            <summary>
+            Configuration for data transfer process infrastructure.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.ITaskBarService">
+            <summary>
+            Allows basic manipulations with task bar icon.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.ServiceModel.ITaskBarService.Notify">
+            <summary>
+            Flash the task bar icon to inform the user that the window requires attention.
+            </summary>
+            <returns>true if window was not active and notification was given; otherwise, false.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.IActionStep">
+            <summary>
+            Represents navigation step that is capable of executing long-running action.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.INavigationStep">
+            <summary>
+            Represents basic navigation step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.INavigationStep.Title">
+            <summary>
+            Gets the step title.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.INavigationStep.IsValid">
+            <summary>
+            Gets the value indicating whether step content is valid or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.INavigationStep.IsAllowed">
+            <summary>
+            Gets the value indicating whether navigation can be performed to the step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.INavigationStep.Presenter">
+            <summary>
+            Gets the step presenter control.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.IActionStep.Execute">
+            <summary>
+            Performs the long-running step action.
+            </summary>
+            <returns>Task that represent asynchronous operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.IApplicationController">
+            <summary>
+            Provides root application resources.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.ServiceModel.IApplicationController.GetMainWindow">
+            <summary>
+            Provides application main window.
+            </summary>
+            <returns>Main window.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.ServiceModel.IApplicationController.ResetState">
+            <summary>
+            Resets application state.
+            </summary>
+            <returns><see cref="T:Microsoft.DataTransfer.WpfHost.ServiceModel.INavigationService"/> to be used with new application state.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.ICommandLineProvider">
+            <summary>
+            Provides command line for the console version of the import tool.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.ServiceModel.ICommandLineProvider.Get(Microsoft.DataTransfer.WpfHost.ServiceModel.Configuration.IInfrastructureConfiguration,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String},System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})">
+            <summary>
+            Generates a command line based on the provided configuration.
+            </summary>
+            <param name="infrastructureConfiguration">Configuration for the data transfer process infrastructure.</param>
+            <param name="sourceName">Name of the data source adapter.</param>
+            <param name="sourceArguments">Configuration arguments for the data source adapter.</param>
+            <param name="sinkName">Name of the data sink adapter.</param>
+            <param name="sinkArguments">Configuration arguments for the data sink adapter.</param>
+            <returns>Command line arguments string.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataAdapterConfigurationProvidersCollection">
+            <summary>
+            Collection of data adapter configuration providers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataAdapterConfigurationProvidersCollection.GetForSource(System.String)">
+            <summary>
+            Retrieves configuration provider for specified data source adapter.
+            </summary>
+            <param name="source">Name of the data source adapter.</param>
+            <returns>Configuration provider or null, if no providers found for the specified data source adapter.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataAdapterConfigurationProvidersCollection.GetForSink(System.String)">
+            <summary>
+            Retrieves configuration provider for specified data sink adapter.
+            </summary>
+            <param name="sink">Name of the data sink adapter.</param>
+            <returns>Configuration provider or null, if no providers found for the specified data sink adapter.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataTransferModel">
+            <summary>
+            Contains data that defines current import configuration and state. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataTransferModel.InfrastructureConfiguration">
+            <summary>
+            Gets or sets the configuration for data transfer process infrastructure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataTransferModel.SourceAdapterName">
+            <summary>
+            Gets or sets the name of the data source adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataTransferModel.SourceConfiguration">
+            <summary>
+            Gets or sets the current data source adapter configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataTransferModel.SinkAdapterName">
+            <summary>
+            Gets or sets the name of the data sink adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataTransferModel.SinkConfiguration">
+            <summary>
+            Gets or sets the current data sink adapter configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataTransferModel.HasImportStarted">
+            <summary>
+            Gets or sets the value indicating that import was already started once.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.IDataTransferModel.ImportCancellation">
+            <summary>
+            Gets or sets the cancellation source of <see cref="T:System.Threading.CancellationToken"/> used in current data transfer process.
+            </summary>
+            <remarks>
+            This property can be null, indicating that import is not running.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.IErrorHandler">
+            <summary>
+            Represents default error handling policy.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.ServiceModel.IErrorHandler.Handle(System.Exception)">
+            <summary>
+            Handles the exception.
+            </summary>
+            <param name="error">Exception to handle.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.IInformationalStep">
+            <summary>
+            Represents navigation step that only contains information and can be skipped when import is restarted.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.INavigationService">
+            <summary>
+            Provides step-based navigation functionality.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.INavigationService.Steps">
+            <summary>
+            Gets or sets the collection of all known steps.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.ServiceModel.INavigationService.CurrentStep">
+            <summary>
+            Gets or sets the current step.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.ISummaryStep">
+            <summary>
+            Represents navigation step that contains summary of all other steps.
+            This step typically inserted before the <see cref="T:Microsoft.DataTransfer.WpfHost.ServiceModel.Steps.IActionStep"/>.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

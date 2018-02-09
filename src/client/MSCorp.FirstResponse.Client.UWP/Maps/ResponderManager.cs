@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Devices.Geolocation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -30,7 +31,7 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
         {
             Task.Factory.StartNew(async () =>
             {
-                await _nativeMap.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     try
                     {
@@ -44,11 +45,15 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
             }, TaskCreationOptions.LongRunning);
         }
 
-        protected override void DrawSearchAreaPolygon(Models.Geoposition[] polygonData)
+        protected override async void DrawSearchAreaPolygon(Models.Geoposition[] polygonData)
         {
             if (_searchAreaPolygon != null)
             {
-                _nativeMap.MapElements.Remove(_searchAreaPolygon);
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    _nativeMap.MapElements.Remove(_searchAreaPolygon);
+                });
             }
 
             IEnumerable<BasicGeoposition> positions = polygonData.Select(pos => new BasicGeoposition
@@ -67,14 +72,22 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
                 StrokeThickness = 0
             };
 
-            _nativeMap.MapElements.Add(_searchAreaPolygon);
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                _nativeMap.MapElements.Add(_searchAreaPolygon);
+            });
         }
 
-        protected override void RemoveSearchAreaPolygon()
+        protected override async void RemoveSearchAreaPolygon()
         {
             if (_searchAreaPolygon != null)
             {
-                _nativeMap.MapElements.Remove(_searchAreaPolygon);
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    _nativeMap.MapElements.Remove(_searchAreaPolygon);
+                });
             }
         }
 

@@ -13,10 +13,9 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace MSCorp.FirstResponse.Client.Droid.Renderers
 {
-    public class CustomMapRenderer : MapRenderer, IOnMapReadyCallback
+    public class CustomMapRenderer : MapRenderer
     {
         private MapView _androidMapView;
-        private GoogleMap _nativeMap;
         private CustomMap _customMap;
         private MapManager _mapManager;
 
@@ -26,7 +25,6 @@ namespace MSCorp.FirstResponse.Client.Droid.Renderers
 
             if (e.OldElement != null)
             {
-                _nativeMap = null;
                 _mapManager = null;
                 _androidMapView = null;
             }
@@ -42,23 +40,16 @@ namespace MSCorp.FirstResponse.Client.Droid.Renderers
         {
             base.OnElementPropertyChanged(sender, e);
 
-            if (e.PropertyName.Equals("Renderer", StringComparison.CurrentCultureIgnoreCase))
-            {
-                _androidMapView.GetMapAsync(this);
-            }
-            else
-            {
-                _mapManager?.HandleCustomMapPropertyChange(e);
-            }
+            _mapManager?.HandleCustomMapPropertyChange(e);
         }
 
-        public void OnMapReady(GoogleMap googleMap)
+        protected override void OnMapReady(GoogleMap googleMap)
         {
-            _nativeMap = googleMap;
+            base.OnMapReady(googleMap);
 
             // Disable zoom buttons
-            _nativeMap.UiSettings.ZoomControlsEnabled = true;
-            _nativeMap.UiSettings.MapToolbarEnabled = false;
+            NativeMap.UiSettings.ZoomControlsEnabled = true;
+            NativeMap.UiSettings.MapToolbarEnabled = false;
 
             AddManagers();
 
@@ -67,10 +58,10 @@ namespace MSCorp.FirstResponse.Client.Droid.Renderers
 
         private void AddManagers()
         {
-            var annotationManager = new MarkerManager(_nativeMap, _customMap);
-            var routeManager = new RouteManager(_nativeMap, _customMap, annotationManager);
-            var responderManager = new ResponderManager(_nativeMap, _customMap, routeManager, annotationManager);
-            var heatMapManager = new HeatMapManager(_androidMapView, _nativeMap, _customMap);
+            var annotationManager = new MarkerManager(NativeMap, _customMap);
+            var routeManager = new RouteManager(NativeMap, _customMap, annotationManager);
+            var responderManager = new ResponderManager(NativeMap, _customMap, routeManager, annotationManager);
+            var heatMapManager = new HeatMapManager(_androidMapView, NativeMap, _customMap);
 
             _mapManager = new MapManager(_customMap, annotationManager, routeManager, responderManager, heatMapManager);
         }

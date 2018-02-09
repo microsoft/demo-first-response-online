@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.DynamoDb</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.DynamoDb.Client.DynamoDbProbeClient">
+            <summary>
+            Simple DynamoDB client to verify the connection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DynamoDb.Client.DynamoDbProbeClient.TestConnectionAsync(System.String)">
+            <summary>
+            Tests the DynamoDB connection.
+            </summary>
+            <param name="connectionString">DynamoDB connection string to use to connect.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DynamoDb.ConfigurationResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.ConfigurationResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.ConfigurationResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.ConfigurationResources.ConnectionString">
+            <summary>
+              Looks up a localized string similar to Amazon DynamoDB connection string (example: &quot;ServiceURL=xyz;AccessKey=xyz;SecretKey=xyz&quot;).
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.ConfigurationResources.Source_Request">
+            <summary>
+              Looks up a localized string similar to DynamoDB query or scan request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.ConfigurationResources.Source_RequestFile">
+            <summary>
+              Looks up a localized string similar to Path to the file containing DynamoDB query or scan request.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DynamoDb.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.AccessKeyMissing">
+            <summary>
+              Looks up a localized string similar to Amazon DynamoDB access key is required.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.AmbiguousRequest">
+            <summary>
+              Looks up a localized string similar to Both Request and RequestFile cannot be set at the same time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.ConnectionStringMissing">
+            <summary>
+              Looks up a localized string similar to Amazon DynamoDB connection string is required.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.DataItemIdFormat">
+            <summary>
+              Looks up a localized string similar to Item {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.FailedToListTablesFormat">
+            <summary>
+              Looks up a localized string similar to Failed to list tables. Server response: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.RequestMissing">
+            <summary>
+              Looks up a localized string similar to Non-empty DynamoDB request should be provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.SecretKeyMissing">
+            <summary>
+              Looks up a localized string similar to Amazon DynamoDB secret key is required.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.ServiceUrlMissing">
+            <summary>
+              Looks up a localized string similar to Amazon DynamoDB service URL should be provided as part of the connection string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.SourceDescription">
+            <summary>
+              Looks up a localized string similar to Reads data from Amazon DynamoDB tables.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.TypeConversionNotSupportedFormat">
+            <summary>
+              Looks up a localized string similar to Type &quot;{0}&quot; is not supported by the &quot;{1}&quot; converter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Resources.UnsupportedBinaryFormatFormat">
+            <summary>
+              Looks up a localized string similar to Token of type &quot;{0}&quot; cannot be used to represent binary data.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DynamoDb.Shared.IDynamoDbAdapterConfiguration">
+            <summary>
+            Contains basic configuration for Amazon DynamoDB data adapters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Shared.IDynamoDbAdapterConfiguration.ConnectionString">
+            <summary>
+            Gets the connection string for the Amazon DynamoDB service.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DynamoDb.Source.DynamoDbSourceAdapterFactory">
+            <summary>
+            Provides data source adapters capable of reading data from Amazon DynamoDB.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DynamoDb.Source.DynamoDbSourceAdapterFactory.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DynamoDb.Source.DynamoDbSourceAdapterFactory"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DynamoDb.Source.IDynamoDbSourceAdapterConfiguration">
+            <summary>
+            Contains configuration for Amazon DynamoDB data source adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Source.IDynamoDbSourceAdapterConfiguration.Request">
+            <summary>
+            Gets the request content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DynamoDb.Source.IDynamoDbSourceAdapterConfiguration.RequestFile">
+            <summary>
+            Gets the path to the file that contains request content.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

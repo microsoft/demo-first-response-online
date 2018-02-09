@@ -71,15 +71,15 @@ namespace MSCorp.FirstResponse.Client.ViewModels
 
         public override Task InitializeAsync(object navigationData)
         {
-            if (navigationData is IncidentModel)
+            if (navigationData is IncidentInvolvedNavigationParameter)
             {
-                IncidentModel incident = navigationData as IncidentModel;
-                Location = incident.Address;
-                _ticket.Latitude = incident.Latitude;
-                _ticket.Longitude = incident.Longitude;
+                IncidentInvolvedNavigationParameter parameters = navigationData as IncidentInvolvedNavigationParameter;
+                Location = parameters.Incident.Address;
+                _ticket.Latitude = parameters.Incident.Latitude;
+                _ticket.Longitude = parameters.Incident.Longitude;
                 _ticket.Driver = new DriverModel()
                 {
-                    Name = incident.Identities?.FirstOrDefault()?.Name
+                    Name = parameters.Person?.Name
                 };
                 _ticket.Vehicle = new VehicleModel();
                 RaisePropertyChanged(() => Ticket);

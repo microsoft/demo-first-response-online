@@ -36,7 +36,7 @@ Remove-Module MSCorp.FirstResponse.AzureSearch.Commands -ErrorAction Ignore
 Remove-Module MSCorp.DocumentDb.Commands -ErrorAction Ignore
 
 Import-Module $script_dir\ShardManagement.psm1
-Import-Module $script_dir\CosmosDB\MSCorp.DocumentDb.Commands.dll
+Import-Module $script_dir\DocumentDb\MSCorp.DocumentDb.Commands.dll
 Import-Module $script_dir\AzureSearch\Commands\MSCorp.FirstResponse.AzureSearch.Commands.dll
 Import-Module AzureRM.Profile
 Import-Module AzureRM.Resources
@@ -168,9 +168,9 @@ foreach ($name in $result.Outputs.Keys) {
 	$OUTPUTS[$name] = $result.Outputs[$name].Value
 }
 
-# Write-Host "CosmosDB Data";
-# Write-Host  $OUTPUTS['CosmosDBUri'];
-# Write-Host $OUTPUTS['CosmosDBAuthKey'];
+# Write-Host "DocumentDb Data";
+# Write-Host  $OUTPUTS['DocumentDbUri'];
+# Write-Host $OUTPUTS['DocumentDbAuthKey'];
 
 
 #----------------#
@@ -182,13 +182,23 @@ foreach ($name in $result.Outputs.Keys) {
 }
 
 #--------------------------#
-# Seed CosmosDB database #
+# Seed documentDb database #
 #--------------------------#
 Write-Host ...............................
 Write-Host 'Seeding document DB data'
 Write-Host ...............................
 Write-Host
-Add-DocumentDbSeedData -Url $OUTPUTS['CosmosDBUri'] -Key $OUTPUTS['CosmosDBAuthKey'] -DataPath $script_dir\CosmosDB\TicketData.json
+Add-DocumentDbSeedData -Url $OUTPUTS['DocumentDbUri'] -Key $OUTPUTS['DocumentDbAuthKey'] -DataPath $script_dir\DocumentDb\TicketData.json
+
+Write-Host ...............................
+Write-Host 'Seeding patient DB data'
+Write-Host ...............................
+Write-Host
+
+$DocumentDbUri = $OUTPUTS['DocumentDbUri']
+$DocumentDbAuthKey = $OUTPUTS['DocumentDbAuthKey']
+
+Invoke-Expression "$script_dir\DocumentDb\tools\dt.exe /s:JsonFile /s.Files:$script_dir\DocumentDb\PatientData.json /t:DocumentDBBulk /t.ConnectionString:'AccountEndpoint=$DocumentDbUri;AccountKey=$DocumentDbAuthKey;Database=FirstResponse;' /t.Collection:Patient /t.CollectionThroughput:2500"
 
 #-------------------------------#
 # Trasform database credentials #
@@ -336,8 +346,8 @@ if ($WebConfigPath -ne '') {
 		    $webconfigContent = $webconfigContent.replace('[searchIndexName]', $OUTPUTS['searchIndexName']);
 		    $webconfigContent = $webconfigContent.replace('[searchServiceName]', $OUTPUTS['SearchServiceName']);
 		    $webconfigContent = $webconfigContent.replace('[searchServiceApiKey]', $OUTPUTS['searchApiKey']);        
-            $webconfigContent = $webconfigContent.replace('[CosmosDBUri]', $OUTPUTS['CosmosDBUri']);
-            $webconfigContent = $webconfigContent.replace('[CosmosDBAuthKey]', $OUTPUTS['CosmosDBAuthKey']);
+            $webconfigContent = $webconfigContent.replace('[DocumentDbUri]', $OUTPUTS['DocumentDbUri']);
+            $webconfigContent = $webconfigContent.replace('[DocumentDbAuthKey]', $OUTPUTS['DocumentDbAuthKey']);
 		    Set-Content -Path $WebConfigPath -Value $webconfigContent;
         }
         catch {

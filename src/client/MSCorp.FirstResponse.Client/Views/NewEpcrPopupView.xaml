@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client"
+             xmlns:effects="clr-namespace:MSCorp.FirstResponse.Client.Effects;assembly=MSCorp.FirstResponse.Client"
+             xmlns:behaviors="clr-namespace:MSCorp.FirstResponse.Client.Behaviors;assembly=MSCorp.FirstResponse.Client"
+             xmlns:templates="clr-namespace:MSCorp.FirstResponse.Client.Views.Templates;assembly=MSCorp.FirstResponse.Client"
+             x:Class="MSCorp.FirstResponse.Client.Views.NewEpcrPopupView"
+             BackgroundColor="#80FFFFFF">
+    <pages:PopupPage.Content>
+        <Grid ColumnSpacing="0"
+              HeightRequest="650"
+              WidthRequest="500"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              BackgroundColor="{StaticResource DarkGrayColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource TerciaryDarkGray}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                   WidthRequest="15"
+                   Style="{StaticResource PopupLogoStyle}">
+                    <Image.Source>
+                        <OnPlatform
+                        x:TypeArguments="ImageSource"
+                        Android="suspect_ico_new_ticket"
+                        iOS="ticket/Suspect_ico_new_ticket"
+                        WinPhone="Assets/Ticket/Suspect_ico_new_ticket.png"/>
+                    </Image.Source>
+                </Image>
+                <Label Grid.Column="1"
+                   Text="New ePCR"
+                   Style="{StaticResource PopupHeaderStyle}" />
+                <Grid
+                    HorizontalOptions="End"
+                    WidthRequest="50"
+                    Grid.Column="2">
+                    <Image
+                        HorizontalOptions="Center"
+                        WidthRequest="15"
+                        Style="{StaticResource PopupCloseButtonStyle}">
+                        <Image.Source>
+                            <OnPlatform
+                            x:TypeArguments="ImageSource"
+                            Android="ico_close_white"
+                            iOS="ticket/Ico_close_white"
+                            WinPhone="Assets/Ticket/Ico_close_white.png"/>
+                        </Image.Source>
+                    </Image>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding ClosePopupCommand}"
+                            NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </Grid>
+
+            <controls:NoBarsScrollViewer Grid.Row="1">
+                <StackLayout Padding="25,30,25,20"
+                         Spacing="0">
+                    <!-- GENERAL DATA -->
+                    <Label 
+                        Text="Location"
+                        Style="{StaticResource PopupLabelStyle}"/>
+                    <Label 
+                        Text="{Binding Location}"
+                        Style="{StaticResource PopupLabelValueStyle}"/>
+                    <Label 
+                        Text="Time"
+                        Style="{StaticResource PopupLabelStyle}"/>
+                    <Label 
+                        Text="{Binding Epcr.ReportDate, StringFormat='{0:F}'}"
+                        Style="{StaticResource PopupLabelValueStyle}"/>
+                    <Entry 
+                        Text="{Binding PatientName}"
+                        Placeholder="Patient"
+                        Style="{StaticResource PopupEntryStyle}" />
+                    <Label 
+                        Text="Allergies to Medications"
+                        Style="{StaticResource PopupLabelStyle}"/>
+                    <Label 
+                        Text="{Binding Patient.MedicationAllergies, Converter={StaticResource EmptyStringConverter}, ConverterParameter=None}"
+                        Style="{StaticResource PopupLabelValueStyle}"/>
+                    <Label 
+                        Text="Current medications"
+                        Style="{StaticResource PopupLabelStyle}"/>
+                    <Label 
+                        Text="{Binding Patient.CurrentMedication, Converter={StaticResource EmptyStringConverter}, ConverterParameter=None}"
+                        Style="{StaticResource PopupLabelValueStyle}"/>
+                    <Label 
+                        Text="Known health issues"
+                        Style="{StaticResource PopupLabelStyle}"/>
+                    <Label 
+                        Text="{Binding Patient.HealthIssues, Converter={StaticResource EmptyStringConverter}, ConverterParameter=None}"
+                        Style="{StaticResource PopupLabelValueStyle}"/>
+                    <Label 
+                        Text="Blood Type"
+                        Style="{StaticResource PopupLabelStyle}"/>
+                    <Label 
+                        Text="{Binding Patient.BloodType}"
+                        Style="{StaticResource PopupLabelValueStyle}"/>
+                    <!-- DISEASE SUMMARY -->
+                    <BoxView Style="{StaticResource PopupSeparatorStyle}"/>
+                    <Label Text="Summary"
+                       Style="{StaticResource PopupLabelStyle}"/>
+                    <Entry Text="{Binding Epcr.InjuryDescription}"
+                       HeightRequest="80"
+                       Placeholder="Injury description"
+                       Style="{StaticResource PopupEntryStyle}" />
+                    <Entry Text="{Binding Epcr.PainLocation}"
+                       HeightRequest="80"
+                       Placeholder="Pain location"
+                       Style="{StaticResource PopupEntryStyle}" />
+                    <Label Text="Pain intensity"
+                       Style="{StaticResource PopupLabelStyle}"/>
+                    <Slider Maximum="10"
+                            Minimum="0" />
+                    <Entry Text="{Binding Epcr.InitialAssesment}"
+                       HeightRequest="80"
+                       Placeholder="Initial assesment"
+                       Style="{StaticResource PopupEntryStyle}" />
+                    <!-- HEALTH PARAMETERS -->
+                    <BoxView Style="{StaticResource PopupSeparatorStyle}"/>
+                    <Label Text="Health parameters"
+                       Style="{StaticResource PopupLabelStyle}"/>
+                    <Entry Text="{Binding Epcr.HeartRate, Converter={StaticResource IntConverter}}"
+                        Placeholder="Heart rate (bpm)"
+                        Style="{StaticResource PopupEntryStyle}" />
+                    <Entry Text="{Binding Epcr.Temperature, Converter={StaticResource FloatConverter}}"
+                        Placeholder="Temperature (°F)"
+                        Style="{StaticResource PopupEntryStyle}" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Entry 
+                            Grid.Column="0"
+                            Text="{Binding Epcr.SystolicPressure, Converter={StaticResource IntConverter}}"
+                            Placeholder="Systolic blood pressure (mmHg)"
+                            Style="{StaticResource PopupEntryStyle}" />
+                        <Label
+                            Grid.Column="1" 
+                            Text="/"
+                            Style="{StaticResource PopupLabelStyle}"/>
+                        <Entry
+                            Grid.Column="2" 
+                            Text="{Binding Epcr.DiastolicPressure, Converter={StaticResource IntConverter}}"
+                            Placeholder="Diastolic blood pressure (mmHg)"
+                            Style="{StaticResource PopupEntryStyle}" />
+                    </Grid>
+                    <!-- ELECTROCARDIOGRAM PARAMETERS -->
+                    <BoxView Style="{StaticResource PopupSeparatorStyle}"/>
+                    <Label Text="Electrocardiogram parameters"
+                       Style="{StaticResource PopupLabelStyle}"/>
+                    <Entry Text="{Binding Epcr.EcgPrInterval, Converter={StaticResource IntConverter}}"
+                        Placeholder="PR interval (ms)"
+                        Style="{StaticResource PopupEntryStyle}" />
+                    <Entry Text="{Binding Epcr.EcgQtInterval, Converter={StaticResource IntConverter}}"
+                        Placeholder="QT interval (ms)"
+                        Style="{StaticResource PopupEntryStyle}" />
+                    <!-- EXTRAS -->
+                    <BoxView Style="{StaticResource PopupSeparatorStyle}"/>
+                    <Label Text="Extra data"
+                       Style="{StaticResource PopupLabelStyle}"/>
+                    <controls:DynamicTableControl 
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Start" />
+                    <!-- SUBMIT -->
+                    <Grid>
+                        <ActivityIndicator Grid.ColumnSpan="2"
+                                       Grid.Row="0"
+                                       IsRunning="{Binding IsBusy}"
+                                       IsVisible="{Binding IsBusy}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       Color="{StaticResource BlueColor}">
+                            <ActivityIndicator.WidthRequest>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    iOS="100"
+                                    Android="100"
+                                    WinPhone="400" />
+                            </ActivityIndicator.WidthRequest>
+                        </ActivityIndicator>
+                        <controls:ImageButton Grid.Column="0"
+                                          Grid.Row="1"
+                                          ImageButtonText="Submit"
+                                          ImageButtonCommand="{Binding SubmitEpcrCommand}"
+                                          VerticalOptions="Center"
+                                          HeightRequest="50"
+                                          WidthRequest="120"
+                                          HorizontalOptions="Center"/>
+                        <controls:ImageButton Grid.Column="1"
+                                          Grid.Row="1"
+                                          ImageButtonText="Cancel"
+                                          ImageButtonCommand="{Binding ClosePopupCommand}"
+                                          VerticalOptions="Center"
+                                          HeightRequest="50"
+                                          WidthRequest="120"
+                                          HorizontalOptions="Center"/>
+                    </Grid>
+                </StackLayout>
+            </controls:NoBarsScrollViewer>
+        </Grid>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

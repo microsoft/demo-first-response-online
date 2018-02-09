@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.CsvFile</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.CsvFile.ConfigurationResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.ConfigurationResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.ConfigurationResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.ConfigurationResources.Source_Decompress">
+            <summary>
+              Looks up a localized string similar to Optional. If source files should be decompressed with GZip.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.ConfigurationResources.Source_Files">
+            <summary>
+              Looks up a localized string similar to One or more file search patterns to read CSV from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.ConfigurationResources.Source_NestingSeparator">
+            <summary>
+              Looks up a localized string similar to Optional. Special character in the column name to indicate that nested document is needed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.ConfigurationResources.Source_NoUnquotedNulls">
+            <summary>
+              Looks up a localized string similar to Optional. If unquoted NULL string should be treated as string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.ConfigurationResources.Source_TrimQuoted">
+            <summary>
+              Looks up a localized string similar to Optional. If empty space at the start and end of the quoted value should be removed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.ConfigurationResources.Source_UseRegionalSettings">
+            <summary>
+              Looks up a localized string similar to Optional. If system regional settings should be used to parse the files. This includes such settings as list separator, number, date and time format.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.CsvFile.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Resources.DataItemIdFormat">
+            <summary>
+              Looks up a localized string similar to {0} ({1}).
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Resources.InvalidNumberOfColumnsFormat">
+            <summary>
+              Looks up a localized string similar to Invalid number of columns: {0}, expected {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Resources.SourceDescription">
+            <summary>
+              Looks up a localized string similar to Reads data from CSV files, either one or multiple.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Resources.UnexpectedCharacterFormat">
+            <summary>
+              Looks up a localized string similar to Unexpected character at row {0}, position {1}: &quot;{2}&quot;.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.CsvFile.Source.CsvFileSourceAdapterFactory">
+            <summary>
+            Provides data source adapters capable of reading data from one or more CSV files.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.CsvFile.Source.CsvFileSourceAdapterFactory.CreateAsync(Microsoft.DataTransfer.CsvFile.Source.ICsvFileSourceAdapterConfiguration,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data source adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Source.CsvFileSourceAdapterFactory.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.CsvFile.Source.ICsvFileSourceAdapterConfiguration">
+            <summary>
+            Contains configuration for CSV files data source.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Source.ICsvFileSourceAdapterConfiguration.Files">
+            <summary>
+            Gets the list of file names to read CSV data from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Source.ICsvFileSourceAdapterConfiguration.NestingSeparator">
+            <summary>
+            Gets the separator sequence to identify nested documents from column names.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Source.ICsvFileSourceAdapterConfiguration.TrimQuoted">
+            <summary>
+            Gets the value that indicates whether empty space in the quoted values should be trimmed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Source.ICsvFileSourceAdapterConfiguration.NoUnquotedNulls">
+            <summary>
+            Gets the value that indicates whether unquoted NULL string should be treated as string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Source.ICsvFileSourceAdapterConfiguration.UseRegionalSettings">
+            <summary>
+            Gets the value that indicates whether regional format settings should be used to parse the input files.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.CsvFile.Source.ICsvFileSourceAdapterConfiguration.Decompress">
+            <summary>
+            Gets the value that indicates whether input files should be decompressed.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

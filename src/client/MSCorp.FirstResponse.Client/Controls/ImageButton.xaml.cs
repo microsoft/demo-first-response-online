@@ -16,6 +16,17 @@ namespace MSCorp.FirstResponse.Client.Controls
             set { SetValue(ImageButtonCommandProperty, value); }
         }
 
+
+        public static readonly BindableProperty ImageButtonCommandParameterProperty =
+            BindableProperty.Create("ImageButtonCommandParameter", typeof(object), typeof(ImageButton), default(object));
+
+
+        public object ImageButtonCommandParameter
+        {
+            get { return GetValue(ImageButtonCommandParameterProperty); }
+            set { SetValue(ImageButtonCommandParameterProperty, value); }
+        }
+
         public static readonly BindableProperty ImageButtonTextProperty =
             BindableProperty.Create("ImageButtonText", typeof(string), typeof(ImageButton), default(string));
 

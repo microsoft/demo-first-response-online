@@ -43,11 +43,11 @@ namespace MSCorp.FirstResponse.Client.Converters
 
             var iconPath = iconName;
 
-            if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
+            if (Device.RuntimePlatform == Device.WinPhone || Device.RuntimePlatform == Device.UWP)
             {
                 iconPath = string.Format("Assets/Icons/{0}.png", iconName);
             }
-            else if(Device.OS == TargetPlatform.iOS)
+            else if(Device.RuntimePlatform == Device.iOS)
             {
                 iconPath = string.Format("icons/{0}", iconName);
             }

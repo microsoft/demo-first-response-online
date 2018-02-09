@@ -11,10 +11,10 @@ namespace MSCorp.FirstResponse.Client.Converters
             string cityName = (string)value;
             cityName = cityName.Replace(" ", string.Empty);
 
-            if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
+            if (Device.RuntimePlatform == Device.WinPhone || Device.RuntimePlatform == Device.UWP)
                 return string.Format("Assets/Cities/city_{0}.jpg", cityName);
 
-            if (Device.OS == TargetPlatform.iOS)
+            if (Device.RuntimePlatform == Device.iOS)
                 return string.Format("cities/city_{0}.jpg", cityName);
 
             return string.Format("city_{0}.jpg", cityName);

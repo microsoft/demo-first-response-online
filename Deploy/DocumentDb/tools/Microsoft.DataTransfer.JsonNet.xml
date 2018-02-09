@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.JsonNet</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.JsonNet.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonNet.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonNet.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonNet.Resources.GeometryTypeNotSupportedFormat">
+            <summary>
+              Looks up a localized string similar to Geometry type &quot;{0}&quot; is not supported by GeoJSON serializer.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.JsonNet.Serialization.DataItemJsonConverter">
+            <summary>
+            Converts <see cref="T:Microsoft.DataTransfer.Extensibility.IDataItem"/> to JSON.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.JsonNet.Serialization.DataItemJsonConverter.Instance">
+            <summary>
+            Singleton instance of the converter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonNet.Serialization.DataItemJsonConverter.CanConvert(System.Type)">
+            <summary>
+            Determines whether this instance can convert the specified object type.
+            </summary>
+            <param name="objectType">Type of the object.</param>
+            <returns>true if this instance can convert the specified object type; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonNet.Serialization.DataItemJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Reads the JSON representation of the object.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+            <param name="objectType">Type of the object.</param>
+            <param name="existingValue">The existing value of object being read.</param>
+            <param name="serializer">The calling serializer.</param>
+            <returns>The object value.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonNet.Serialization.DataItemJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Writes the JSON representation of the object.
+            </summary>
+            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
+            <param name="value">The value.</param>
+            <param name="serializer">The calling serializer.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.JsonNet.Serialization.GeoJsonConverter">
+            <summary>
+            Converts <see cref="T:System.Spatial.Geography"/> to GeoJSON.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.JsonNet.Serialization.GeoJsonConverter.Instance">
+            <summary>
+            Singleton instance of the converter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonNet.Serialization.GeoJsonConverter.CanConvert(System.Type)">
+            <summary>
+            Determines whether this instance can convert the specified object type.
+            </summary>
+            <param name="objectType">Type of the object.</param>
+            <returns>true if this instance can convert the specified object type; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonNet.Serialization.GeoJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Reads the JSON representation of the object.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+            <param name="objectType">Type of the object.</param>
+            <param name="existingValue">The existing value of object being read.</param>
+            <param name="serializer">The calling serializer.</param>
+            <returns>The object value.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonNet.Serialization.GeoJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Writes the JSON representation of the object.
+            </summary>
+            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
+            <param name="value">The value.</param>
+            <param name="serializer">The calling serializer.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.JsonNet.StrongReference">
+            <summary>
+            Attributes are not treated as a reference, thus all dependants that are using JsonConverter in the attribute
+            should call to this explicitly for the dll to be bin-placed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonNet.StrongReference.Add">
+            <summary>
+            Adds a strong reference.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

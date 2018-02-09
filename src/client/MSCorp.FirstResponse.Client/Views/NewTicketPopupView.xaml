@@ -11,71 +11,9 @@
              BackgroundColor="#80FFFFFF">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
-          
-            <Style x:Key="IdentifyLogoStyle" TargetType="Image">
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
-            </Style>
-          
-            <Style x:Key="IdentifyCloseButtonStyle" TargetType="Image">
-                <Setter Property="VerticalOptions" Value="Start"/>
-                <Setter Property="Margin" Value="0,10,0,0"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
-            </Style>
-          
-            <Style x:Key="IdentifyHeaderStyle" TargetType="Label">
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="FontFamily" Value="{StaticResource TitilliumLight}" />
-            </Style>
-          
-            <Style x:Key="SeparatorStyle" TargetType="BoxView">
-                <Setter Property="HeightRequest" Value="1" />
-                <Setter Property="Margin" Value="0,10,0,0"/>
-                <Setter Property="Color" Value="{StaticResource GrayColor}" />
-            </Style>
-          
-            <Style x:Key="EntryStyle" TargetType="{x:Type Entry}" >
-                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkGrayColor}" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="HeightRequest" Value="54" />
-                <Setter Property="Margin" Value="0, 10, 0, 0"/>
-                <Setter Property="effects:ApplyFormEntryNativeStyleEffect.ApplyFormEntryNativeStyle" Value="True" />
-            </Style>
-          
-            <Style x:Key="PickerStyle" TargetType="{x:Type Picker}" >
-                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkGrayColor}" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="HeightRequest" Value="45" />
-                <Setter Property="effects:ApplyFormEntryNativeStyleEffect.ApplyFormEntryNativeStyle" Value="True" />
-            </Style>
-          
-            <Style x:Key="TrafficPickerStyle" TargetType="{x:Type Picker}" BasedOn="{StaticResource PickerStyle}">
+            <Style x:Key="TrafficPickerStyle" TargetType="{x:Type Picker}" BasedOn="{StaticResource PopupPickerStyle}">
                 <Setter Property="effects:ApplyFormEntryNativeStyleEffect.PlaceHolderText" Value="Select Traffic Violation" />
             </Style>
-          
-            <Style x:Key="TicketLabelStyle" TargetType="{x:Type Label}" >
-                <Setter Property="FontSize" Value="10"/>
-                <Setter Property="Margin" Value="0, 10, 0, 0"/>
-                <Setter Property="TextColor" Value="{StaticResource GrayColor}"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
-                <Setter Property="FontFamily" Value="{StaticResource TitilliumRegular}" />
-            </Style>
-          
-            <Style x:Key="TicketLabelValueStyle" TargetType="{x:Type Label}" >
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="Margin" Value="0, 1, 0, 0"/>
-                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
-                <Setter Property="FontFamily" Value="{StaticResource TitilliumRegular}" />
-            </Style>
-
         </ResourceDictionary>
     </pages:PopupPage.Resources>
     <pages:PopupPage.Animation>
@@ -110,7 +48,7 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0"
                    WidthRequest="15"
-                   Style="{StaticResource IdentifyLogoStyle}">
+                   Style="{StaticResource PopupLogoStyle}">
                 <Image.Source>
                     <OnPlatform
                         x:TypeArguments="ImageSource"
@@ -121,7 +59,7 @@
             </Image>
             <Label Grid.Column="1"
                    Text="New Ticket"
-                   Style="{StaticResource IdentifyHeaderStyle}" />
+                   Style="{StaticResource PopupHeaderStyle}" />
             <Grid
                 HorizontalOptions="End"
                 WidthRequest="50"
@@ -129,7 +67,7 @@
                 <Image
                     HorizontalOptions="Center"
                     WidthRequest="15"
-                    Style="{StaticResource IdentifyCloseButtonStyle}">
+                    Style="{StaticResource PopupCloseButtonStyle}">
                     <Image.Source>
                         <OnPlatform
                             x:TypeArguments="ImageSource"
@@ -150,50 +88,50 @@
                          Spacing="0">
                 <controls:BindablePicker ItemsSource="{Binding TicketTypes}"
                                          SelectedItem="{Binding Ticket.Type}"
-                                         Style="{StaticResource PickerStyle}" />
+                                         Style="{StaticResource PopupPickerStyle}" />
                 <Label Text="Issuing Officer"
-                       Style="{StaticResource TicketLabelStyle}"/>
+                       Style="{StaticResource PopupLabelStyle}"/>
                 <Label Text="{Binding Ticket.Officer}"
-                       Style="{StaticResource TicketLabelValueStyle}"/>
+                       Style="{StaticResource PopupLabelValueStyle}"/>
                 <Label Text="Location"
-                       Style="{StaticResource TicketLabelStyle}"/>
+                       Style="{StaticResource PopupLabelStyle}"/>
                 <Label Text="{Binding Location}"
-                       Style="{StaticResource TicketLabelValueStyle}"/>
+                       Style="{StaticResource PopupLabelValueStyle}"/>
                 <Label Text="Time"
-                       Style="{StaticResource TicketLabelStyle}"/>
+                       Style="{StaticResource PopupLabelStyle}"/>
                 <Label Text="{Binding Ticket.DateCreated, StringFormat='{0:F}'}"
-                       Style="{StaticResource TicketLabelValueStyle}"/>
+                       Style="{StaticResource PopupLabelValueStyle}"/>
                 <Entry Text="{Binding Ticket.Driver.Name, Mode=TwoWay}"
                        Placeholder="Driver"
-                       Style="{StaticResource EntryStyle}" />
+                       Style="{StaticResource PopupEntryStyle}" />
                 <Entry Text="{Binding Ticket.Driver.LicenceNo}"
                        Placeholder="License No"
-                       Style="{StaticResource EntryStyle}" />
+                       Style="{StaticResource PopupEntryStyle}" />
                 <!-- VEHICLE -->
-                <BoxView Style="{StaticResource SeparatorStyle}"/>
+                <BoxView Style="{StaticResource PopupSeparatorStyle}"/>
                 <Label Text="Vehicle"
-                       Style="{StaticResource TicketLabelStyle}"/>
+                       Style="{StaticResource PopupLabelStyle}"/>
                 <Grid>
                     <Entry Grid.Row="0"
                            Grid.Column="0"
                            Text="{Binding Ticket.Vehicle.Make}"
                            Placeholder="Make"
-                           Style="{StaticResource EntryStyle}" />
+                           Style="{StaticResource PopupEntryStyle}" />
                     <Entry Grid.Row="0"
                            Grid.Column="1"
                            Text="{Binding Ticket.Vehicle.Model}"
                            Placeholder="Model"
-                           Style="{StaticResource EntryStyle}" />
+                           Style="{StaticResource PopupEntryStyle}" />
                     <Entry Grid.Row="1"
                            Grid.ColumnSpan="2"
                            Text="{Binding Ticket.Vehicle.PlateNo}"
                            Placeholder="Plate No"
-                           Style="{StaticResource EntryStyle}" />
+                           Style="{StaticResource PopupEntryStyle}" />
                 </Grid>
                 <!-- VIOLATION -->
-                <BoxView Style="{StaticResource SeparatorStyle}"/>
+                <BoxView Style="{StaticResource PopupSeparatorStyle}"/>
                 <Label Text="Details"
-                       Style="{StaticResource TicketLabelStyle}"/>
+                       Style="{StaticResource PopupLabelStyle}"/>
                 <controls:BindablePicker SelectedItem="{Binding Ticket.Violation, Mode=TwoWay}"
                                          Style="{StaticResource TrafficPickerStyle}"
                                          ItemsSource="{Binding TrafficViolationTypes}" />
@@ -203,18 +141,18 @@
                            Grid.Column="0"
                            Text="{Binding Ticket.Speed}"
                            Placeholder="Speed"
-                           Style="{StaticResource EntryStyle}" />
+                           Style="{StaticResource PopupEntryStyle}" />
                     <Entry Grid.Row="0"
                            Grid.Column="1"
                            Text="{Binding Ticket.MaxSpeed}"
                            Placeholder="Max Speed"
-                           Style="{StaticResource EntryStyle}" />
+                           Style="{StaticResource PopupEntryStyle}" />
                 </Grid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                <BoxView Style="{StaticResource PopupSeparatorStyle}" />
                 <Entry Text="{Binding Ticket.Notes}"
                        HeightRequest="80"
                        Placeholder="Note/Violation(s)"
-                       Style="{StaticResource EntryStyle}" />
+                       Style="{StaticResource PopupEntryStyle}" />
                 <Grid>
                     <ActivityIndicator Grid.ColumnSpan="2"
                                        Grid.Row="0"

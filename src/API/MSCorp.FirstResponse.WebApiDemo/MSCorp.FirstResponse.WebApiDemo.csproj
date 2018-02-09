@@ -27,6 +27,7 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -199,6 +200,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\frocosmos - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -220,6 +222,7 @@
     <Compile Include="Controllers\IncidentsController.cs" />
     <Compile Include="Controllers\CityIncidentsController.cs" />
     <Compile Include="Controllers\HeatMapController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PowerBIController.cs" />
     <Compile Include="Controllers\RespondersConroller.cs" />
@@ -234,14 +237,17 @@
     <Compile Include="Helpers\ShardManagementUtils.cs" />
     <Compile Include="Helpers\SqlDatabaseUtils.cs" />
     <Compile Include="JsonContentNegotiator.cs" />
+    <Compile Include="Models\ePCRModel.cs" />
     <Compile Include="Models\IncidentModel.cs" />
     <Compile Include="Models\IncidentType.cs" />
+    <Compile Include="Models\PatientModel.cs" />
     <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Models\PolygonPoint.cs" />
     <Compile Include="Models\ReportViewModel.cs" />
     <Compile Include="Models\SearchArea.cs" />
     <Compile Include="Models\TicketModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GenericDocumentDbRepository.cs" />
     <Compile Include="Services\IncidentService.cs" />
     <Compile Include="Services\TicketService.cs" />
   </ItemGroup>
@@ -271,7 +277,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSCorp.FirstResponse.WebApiDemo.Data\MSCorp.FirstResponse.WebApiDemo.Data.csproj">

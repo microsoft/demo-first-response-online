@@ -1,0 +1,2005 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Azure.Documents.Client.TransientFaultHandling</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.DocumentClientExtensions">
+            <summary>
+            Extensions to enable reliability features for Azure DocumentDB client.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.DocumentClientExtensions.AsReliable(Microsoft.Azure.Documents.Client.DocumentClient,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy)">
+            <summary>
+            Wraps provided client instance with retry logic to improve resilience for transient failures.
+            </summary>
+            <param name="client">Raw DocumentDB client.</param>
+            <param name="retryStrategy">
+            Retry strategy to apply on request failures. Provided retry strategy will be wrapped
+            into <see cref="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbRetryStrategy"/> to speed up retries whenever server sends 
+            retry-after-ms header back to the client.
+            </param>
+            <returns>Reliable DocumentDB client.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.DocumentClientExtensions.AsReliable(Microsoft.Azure.Documents.Client.DocumentClient,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Wraps provided client instance with retry logic to improve resilience for transient failures.
+            When this overload is used, retry-after-ms header will not be honored, unless 
+            <see cref="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbRetryStrategy"/> is used.
+            </summary>
+            <param name="client">Raw DocumentDB client.</param>
+            <param name="readRetryPolicy">Retry policy to execute retries on read (idempotent) request failures.</param>
+            <param name="writeRetryPolicy">Retry policy to execute retries on write request failures.</param>
+            <returns>Reliable DocumentDB client.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient">
+            <summary>
+            Provides reliable read access to DocumentDB service.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ExecuteReadAsync``1(System.Func{Microsoft.Azure.Documents.Client.DocumentClient,System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Executes any idempotent read operation with retry on transient failures.
+            </summary>
+            <typeparam name="T">Return type of the read operation.</typeparam>
+            <param name="idempotentAction">Read operation to execute.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> that represents asynchronous read operation.</returns>
+            <remarks>
+            This method is useful when underlying <see cref="T:Microsoft.Azure.Documents.Client.DocumentClient"/> has a read method
+            that is not represented by any member of this interface.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.OpenAsync">
+            <summary>
+            Opens the connection to validate that the client initialization is successful.
+            </summary>
+            <returns>
+            <see cref="T:System.Threading.Tasks.Task"/> that represents an asynchronous operation that opens the connection.
+            </returns>
+            <remarks>
+            This method is recommended to be called, after the constructor, but before calling any other methods on the client instance.
+            If there are any initialization exceptions, this method will throw them (set on the task). 
+            Alternately, calling any API will throw initialization exception at the first call.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.GetDatabaseAccountAsync">
+            <summary>
+            Read the <see cref="T:Microsoft.Azure.Documents.DatabaseAccount"/> as an asynchronous operation.
+            </summary>
+            <returns>
+            A <see cref="T:Microsoft.Azure.Documents.DatabaseAccount"/> wrapped in a <see cref="T:System.Threading.Tasks.Task"/> object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadAttachmentAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads an <see cref="T:Microsoft.Azure.Documents.Attachment"/> as an asynchronous operation.
+            </summary>
+            <param name="attachmentLink">The link to the attachment to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Attachment"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadAttachmentAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads an <see cref="T:Microsoft.Azure.Documents.Attachment"/> as an asynchronous operation.
+            </summary>
+            <param name="attachmentUri">A URI to the Attachment resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps an <see cref="T:Microsoft.Azure.Documents.Attachment"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDatabaseAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Database"/> as an asynchronous operation.
+            </summary>
+            <param name="databaseLink">The link of the Database resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Database"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDatabaseAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Database"/> as an asynchronous operation.
+            </summary>
+            <param name="databaseUri">A URI to the Database resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Database"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDocumentCollectionAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionLink">The link for the DocumentCollection to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDocumentCollectionAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">A URI to the DocumentCollection resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDocumentAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Document"/> as an asynchronous operation.
+            </summary>
+            <param name="documentLink">The link for the document to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Document"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDocumentAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Document"/> as an asynchronous operation.
+            </summary>
+            <param name="documentUri">A URI to the Document resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Document"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadStoredProcedureAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> as an asynchronous operation.
+            </summary>
+            <param name="storedProcedureLink">The link of the stored procedure to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadStoredProcedureAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> as an asynchronous operation.
+            </summary>
+            <param name="storedProcedureUri">A URI to the StoredProcedure resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadTriggerAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Trigger"/> as an asynchronous operation.
+            </summary>
+            <param name="triggerLink">The link to the Trigger to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Trigger"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadTriggerAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Trigger"/> as an asynchronous operation.
+            </summary>
+            <param name="triggerUri">A URI to the Trigger resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Trigger"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadUserDefinedFunctionAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> as an asynchronous operation.
+            </summary>
+            <param name="functionLink">The link to the User Defined Function to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadUserDefinedFunctionAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> as an asynchronous operation.
+            </summary>
+            <param name="functionUri">A URI to the User Defined Function resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadPermissionAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Permission"/> as an asynchronous operation.
+            </summary>
+            <param name="permissionLink">The link for the Permission resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Permission"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadPermissionAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Permission"/> resource as an asynchronous operation.
+            </summary>
+            <param name="permissionUri">A URI to the Permission resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Permission"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadUserAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.User"/> as an asynchronous operation.
+            </summary>
+            <param name="userLink">The link to the User resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.User"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadUserAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.User"/> as an asynchronous operation.
+            </summary>
+            <param name="userUri">A URI to the User resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.User"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadConflictAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Conflict"/> as an asynchronous operation.
+            </summary>
+            <param name="conflictLink">The link to the Conflict to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Conflict"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadConflictAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Reads a <see cref="T:Microsoft.Azure.Documents.Conflict"/> as an asynchronous operation.
+            </summary>
+            <param name="conflictUri">A URI to the Conflict resource to be read.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Conflict"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadOfferAsync(System.String)">
+            <summary>
+            Reads an <see cref="T:Microsoft.Azure.Documents.Offer"/> as an asynchronous operation.
+            </summary>
+            <param name="offerLink">The link to the Offer to be read.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Offer"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadMediaMetadataAsync(System.String)">
+            <summary>
+            Retrieves the metadata associated with the specified attachment content (aka media) as an asynchronous operation.
+            </summary>
+            <param name="mediaLink">The link for the media to read metadata for. E.g. /medias/media_rid </param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="mediaLink"/> is not set.</exception>
+            <exception cref="T:System.ArgumentException">If <paramref name="mediaLink"/> is not in the form of /medias/{mediaId}.</exception>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadMediaAsync(System.String)">
+            <summary>
+            Retrieves the specified attachment content (aka media).
+            </summary>
+            <param name="mediaLink">The link for the media to read. E.g. /medias/media_rid</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="mediaLink"/> is not set.</exception>
+            <exception cref="T:System.ArgumentException">If <paramref name="mediaLink"/> is not in the form of /medias/{mediaId}.</exception>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadAttachmentFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.Attachment"/> for a document as an asynchronous operation.
+            </summary>
+            <param name="documentLink">The link of the parent document resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Attachment"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadAttachmentFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of attachments for a document as an asynchronous operation.
+            </summary>
+            <param name="documentUri">The URI of the parent document.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDatabaseFeedAsync(Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.Database"/> for a database account as an asynchronous operation.
+            </summary>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Database"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDocumentCollectionFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> for a database as an asynchronous operation.
+            </summary>
+            <param name="databaseLink">The link of the parent database resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDocumentCollectionFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of collections for a database as an asynchronous operation.
+            </summary>
+            <param name="databaseUri">The URI of the parent Database.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDocumentFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of documents for a specified collection. This takes returns a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain an enumerable list of dynamic objects.
+            </summary>
+            <param name="collectionLink">The link of the parent document collection resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> containing dynamic objects representing the items in the feed.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadDocumentFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of documents for a collection as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadStoredProcedureFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> for a collection as an asynchronous operation.
+            </summary>
+            <param name="collectionLink">The link of the parent document collection resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadStoredProcedureFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of stored procedures for a collection as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadTriggerFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.Trigger"/> for a collection as an asynchronous operation.
+            </summary>
+            <param name="collectionLink">The link of the parent document collection resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Trigger"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadTriggerFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of triggers for a collection as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadUserDefinedFunctionFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> for a collection as an asynchronous operation.
+            </summary>
+            <param name="collectionLink">The link of the parent document collection resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadUserDefinedFunctionFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of user defined functions for a collection as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadPermissionFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.Permission"/> for a user as an asynchronous operation.
+            </summary>
+            <param name="userLink">The link of the parent user resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Permission"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadPermissionFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of permissions for a user as an asynchronous operation.
+            </summary>
+            <param name="userUri">The URI of the parent user.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadUserFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.User"/> for a database as an asynchronous operation.
+            </summary>
+            <param name="databaseLink">The link of the parent database resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.User"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadUserFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of users for a database as an asynchronous operation.
+            </summary>
+            <param name="databaseUri">The URI of the parent database.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadConflictFeedAsync(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.Conflict"/> for a collection as an asynchronous operation.
+            </summary>
+            <param name="collectionLink">The link of the parent document collection resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Conflict"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadConflictFeedAsync(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of conflicts for a collection as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.ReadOffersFeedAsync(Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Reads the feed (sequence) of <see cref="T:Microsoft.Azure.Documents.Offer"/> for a database account as an asynchronous operation.
+            </summary>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Offer"/> containing the read resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery``1(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for attachments.
+            </summary>
+            <typeparam name="T">The type of object to query.</typeparam>
+            <param name="documentLink">The link of the parent document.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery``1(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for attachments.
+            </summary>
+            <typeparam name="T">The type of object to query.</typeparam>
+            <param name="documentUri">The URI of the parent document.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery``1(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for attachments by using a SQL statement. 
+            </summary>
+            <param name="documentLink">The link of the parent document.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery``1(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for attachments.
+            </summary>
+            <param name="documentUri">The URI of the parent document.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery``1(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+             Overloaded. This method creates a query for attachments by using a SQL statement with parameterized values.
+             For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="documentLink">The link of the parent document.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery``1(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for attachments.
+            </summary>
+            <param name="documentUri">The URI of the parent document.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for attachments. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="documentLink">The link to the parent document</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for attachments.
+            </summary>
+            <param name="documentUri">The URI of the parent document.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for attachments by using a SQL statement. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="documentLink">The link to the parent document.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for attachments.
+            </summary>
+            <param name="documentUri">The URI of the parent document.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+             Overloaded. This method creates a query for attachments by using a SQL statement with parameterized values. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+             For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="documentLink">The link to the parent document resource.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateAttachmentQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for attachments.
+            </summary>
+            <param name="documentUri">The URI of the parent document.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDatabaseQuery(Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for database resources under an account. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDatabaseQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for database resources under an account by using a SQL statement. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDatabaseQuery(Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for database resources under an account by using a SQL statement with parameterized values. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+             For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentCollectionQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for collections under a database. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="databaseLink">The link to the parent database resource.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentCollectionQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for document collections.
+            </summary>
+            <param name="databaseUri">The URI of the parent database.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentCollectionQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for collections under a database using a SQL statement. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="databaseLink">The link to the parent database resource.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentCollectionQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for document collections.
+            </summary>
+            <param name="databaseUri">The URI to the database.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentCollectionQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for collections under a database using a SQL statement with parameterized values. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+             For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="databaseLink">The link to the parent database resource.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentCollectionQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for document collections.
+            </summary>
+            <param name="databaseUri">The URI to the database.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateStoredProcedureQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for stored procedures under a collection. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateStoredProcedureQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create query for stored procedures.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateStoredProcedureQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for stored procedures under a collection using a SQL statement. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateStoredProcedureQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create query for stored procedures.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateStoredProcedureQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for stored procedures under a collection using a SQL statement using a SQL statement with parameterized values. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+             For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateStoredProcedureQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create query for stored procedures.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateTriggerQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for triggers under a collection. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateTriggerQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create query for triggers.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateTriggerQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for triggers under a collection. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateTriggerQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create query for triggers.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateTriggerQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for triggers under a collection using a SQL statement with parameterized values. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+             For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateTriggerQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create query for triggers.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserDefinedFunctionQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for udfs under a collection. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserDefinedFunctionQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for user-defined functions.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserDefinedFunctionQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for udfs under a collection using a SQL statement. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserDefinedFunctionQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for user-defined functions.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserDefinedFunctionQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for udfs under a collection with parameterized values. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserDefinedFunctionQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for user-defined functions.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateConflictQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for conflicts under a collection. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateConflictQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for conflicts.
+            </summary>
+            <param name="conflictsUri">The URI to the conflicts.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateConflictQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for conflicts under a collection. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query with the the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateConflictQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for conflicts.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateConflictQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates create a query for conflicts under a collection with parameterized values.  It returns an IQueryable{dynamic}.
+             For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An IQueryable{dynamic} that can evaluate the query with the provided SQL statement.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateConflictQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for conflicts.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery``1(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for documents under a collection.
+            </summary>
+            <typeparam name="T">The type of object to query.</typeparam>
+            <param name="collectionLink">The link to the parent collection resource.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery``1(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for documents.
+            </summary>
+            <typeparam name="T">The type of object to query.</typeparam>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery``1(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for documents under a collection using a SQL statement. It returns an IQueryable{T}.
+            </summary>
+            <typeparam name="T">The type of object to query.</typeparam>
+            <param name="collectionLink">The link to the parent collection.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An IQueryable{T} that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery``1(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for documents.
+            </summary>
+            <typeparam name="T">The type of object to query.</typeparam>
+            <param name="documentCollectionUri">The URI of the document collection.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery``1(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for documents under a collection using a SQL statement with parameterized values.  It returns an IQueryable{T}.
+             For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <typeparam name="T">The type of object to query.</typeparam>
+            <param name="collectionLink">The link to the parent document collection.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An IQueryable{T} that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery``1(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for documents.
+            </summary>
+            <typeparam name="T">The type of object to query.</typeparam>
+            <param name="documentCollectionUri">The URI of the document collection.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for documents under a collection. It returns <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent document collection.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for documents.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for documents under a collection using a SQL statement. It returns an IQueryable{dynamic}.
+            </summary>
+            <param name="collectionLink">The link to the parent document collection.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>an IQueryable{dynamic> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for documents.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for documents under a collection using a SQL statement with parameterized values.  It returns an IQueryable{dynamic}.
+            For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="collectionLink">The link to the parent document collection.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>an IQueryable{dynamic&gt; that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateDocumentQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for documents.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for users.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for users under a database. It returns <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="usersLink">The path link for the users under a database, e.g. dbs/db_rid/users/.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for users under a database. It returns <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="usersLink">The path link for the users under a database, e.g. dbs/db_rid/users/.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for users.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for users under a database using a SQL statement with parameterized values. It returns an <see cref="T:System.Linq.IQueryable`1"/>.
+            For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="usersLink">The path link for the users under a database, e.g. dbs/db_rid/users/.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateUserQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for users.
+            </summary>
+            <param name="documentCollectionUri">The URI of the parent document collection.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreatePermissionQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for permissions under a user. It returns <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="permissionsLink">The path link for the persmissions under a user, e.g. dbs/db_rid/users/user_rid/permissions/.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreatePermissionQuery(System.Uri,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for permissions.
+            </summary>
+            <param name="userUri">The URI of the parent user.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreatePermissionQuery(System.String,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for permissions under a user using a SQL statement.  It returns IQueryable{dynamic}.
+            </summary>
+            <param name="permissionsLink">The path link for the persmissions under a user, e.g. dbs/db_rid/users/user_rid/permissions/.</param>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>an IQueryable{dynamic} that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreatePermissionQuery(System.Uri,System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for permissions.
+            </summary>
+            <param name="userUri">The URI of the parent user.</param>
+            <param name="sqlExpression">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreatePermissionQuery(System.String,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for permissions under a user using a SQL statement with parameterized values.  It returns an IQueryable{dynamic}.
+            For more information on preparing SQL statements with parameterized values, please see <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/>.
+            </summary>
+            <param name="permissionsLink">The path link for the persmissions under a user, e.g. dbs/db_rid/users/user_rid/permissions/.</param>
+            <param name="querySpec">The SqlQuerySpec instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>an IQueryable{dynamic} that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreatePermissionQuery(System.Uri,Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Method to create a query for permissions.
+            </summary>
+            <param name="userUri">The URI of the parent user.</param>
+            <param name="querySpec">The sql query.</param>
+            <param name="feedOptions">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/> for processing the query results feed.</param>
+            <returns>The query result set.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateOfferQuery(Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for offers under an account. It returns <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateOfferQuery(Microsoft.Azure.Documents.SqlQuerySpec,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for offers under an account using a SQL statement. It returns <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="querySpec">The <see cref="T:Microsoft.Azure.Documents.SqlQuerySpec"/> instance containing the SQL expression.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.CreateOfferQuery(System.String,Microsoft.Azure.Documents.Client.FeedOptions)">
+            <summary>
+            Overloaded. This method creates a query for offers under an account using a SQL statement. It returns <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="sqlExpression">The SQL statement.</param>
+            <param name="feedOptions">The options for processing the query result feed. For details, see <see cref="T:Microsoft.Azure.Documents.Client.FeedOptions"/></param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that can evaluate the query.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadDocumentClient.UnderlyingClient">
+            <summary>
+            Gets an underlying <see cref="T:Microsoft.Azure.Documents.Client.DocumentClient"/> instance.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient">
+            <summary>
+            Provides reliable read/write access to DocumentDB service.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ExecuteWriteAsync``1(System.Func{Microsoft.Azure.Documents.Client.DocumentClient,System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Executes any write operation with retry on transient failures.
+            </summary>
+            <typeparam name="T">Return type of the write operation.</typeparam>
+            <param name="action">Write operation to execute.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> that represents asynchronous write operation.</returns>
+            <remarks>
+            This method is useful when underlying <see cref="T:Microsoft.Azure.Documents.Client.DocumentClient"/> has a write method
+            that is not represented by any member of this interface.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateAttachmentAsync(System.String,System.Object,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates an attachment as an asychronous operation.
+            </summary>
+            <param name="documentLink">The link of the parent document for this new attachment. E.g. dbs/db_rid/colls/col_rid/docs/doc_rid/ </param>
+            <param name="attachment">The attachment object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/> object representing the service response for the asynchronous operation.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateAttachmentAsync(System.Uri,System.Object,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates an attachment as an asychronous operation.
+            </summary>
+            <param name="documentUri">The URI of the document to create an attachment for.</param>
+            <param name="attachment">The attachment object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateAttachmentAsync(System.String,System.IO.Stream,Microsoft.Azure.Documents.Client.MediaOptions,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates an <see cref="T:Microsoft.Azure.Documents.Attachment"/> with the contents of the provided <paramref name="mediaStream"/> as an asynchronous operation.
+            </summary>
+            <param name="documentLink">The link to the parent document.</param>
+            <param name="mediaStream">the <see cref="T:System.IO.Stream"/> of the attachment media.</param>
+            <param name="options">the <see cref="T:Microsoft.Azure.Documents.Client.MediaOptions"/> for the request.</param>
+            <param name="requestOptions">Request options.</param>
+            <exception cref="T:System.ArgumentNullException">If either <paramref name="documentLink"/> or <paramref name="mediaStream"/> is not set.</exception>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateAttachmentAsync(System.Uri,System.IO.Stream,Microsoft.Azure.Documents.Client.MediaOptions,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates an attachment as an asynchronous operation.
+            </summary>
+            <param name="documentUri">The URI of the document to create an attachment for.</param>
+            <param name="mediaStream">The stream of the attachment media.</param>
+            <param name="options">The media options for the request.</param>
+            <param name="requestOptions">Request options.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateDatabaseAsync(Microsoft.Azure.Documents.Database,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a database resource as an asychronous operation.
+            </summary>
+            <param name="database">The specification for the <see cref="T:Microsoft.Azure.Documents.Database"/> to create.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The <see cref="T:Microsoft.Azure.Documents.Database"/> that was created within a task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateDocumentCollectionAsync(System.String,Microsoft.Azure.Documents.DocumentCollection,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a collection as an asychronous operation.
+            </summary>
+            <param name="databaseLink">The link of the database to create the collection in. E.g. dbs/db_rid/</param>
+            <param name="documentCollection">The <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> you wish to provide when creating a Collection. E.g. RequestOptions.OfferType="S1". </param>
+            <returns>The <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> that was created contained within a <see cref="T:System.Threading.Tasks.Task"/> object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateDocumentCollectionAsync(System.Uri,Microsoft.Azure.Documents.DocumentCollection,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a collection as an asychronous operation.
+            </summary>
+            <param name="databaseUri">The URI of the database to create the collection in.</param>
+            <param name="documentCollection">The <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateDocumentAsync(System.String,System.Object,Microsoft.Azure.Documents.Client.RequestOptions,System.Boolean)">
+            <summary>
+            Creates a Document as an asychronous operation.
+            </summary>
+            <param name="collectionLink">The link of the <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> to create the document in. E.g. dbs/db_rid/colls/coll_rid/ </param>
+            <param name="document">The document object to create.</param>
+            <param name="options">(Optional) The request options you wish to set. E.g. Specifying a Trigger to execute when creating the document. <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/></param>
+            <param name="disableAutomaticIdGeneration">(Optional) Disables the automatic id generation, If this is True the system will throw an exception if the id property is missing from the Document.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateDocumentAsync(System.Uri,System.Object,Microsoft.Azure.Documents.Client.RequestOptions,System.Boolean)">
+            <summary>
+            Creates a document as an asychronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to create the document in.</param>
+            <param name="document">The document object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <param name="disableAutomaticIdGeneration">A flag to disable automatic id generation.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateStoredProcedureAsync(System.String,Microsoft.Azure.Documents.StoredProcedure,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a stored procedure as an asychronous operation.
+            </summary>
+            <param name="collectionLink">The link of the collection to create the stored procedure in. E.g. dbs/db_rid/colls/col_rid/</param>
+            <param name="storedProcedure">The <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> object to create.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>The <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> that was created contained within a <see cref="T:System.Threading.Tasks.Task"/> object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateStoredProcedureAsync(System.Uri,Microsoft.Azure.Documents.StoredProcedure,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a stored procedure as an asychronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to create the stored procedure in.</param>
+            <param name="storedProcedure">The <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateTriggerAsync(System.String,Microsoft.Azure.Documents.Trigger,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a trigger as an asychronous operation.
+            </summary>
+            <param name="collectionLink">The link of the <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> to create the trigger in. E.g. dbs/db_rid/colls/col_rid/ </param>
+            <param name="trigger">The <see cref="T:Microsoft.Azure.Documents.Trigger"/> object to create.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateTriggerAsync(System.Uri,Microsoft.Azure.Documents.Trigger,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a trigger as an asychronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to create the trigger in.</param>
+            <param name="trigger">The <see cref="T:Microsoft.Azure.Documents.Trigger"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateUserDefinedFunctionAsync(System.String,Microsoft.Azure.Documents.UserDefinedFunction,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a user defined function as an asychronous operation.
+            </summary>
+            <param name="collectionLink">The link of the <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> to create the user defined function in. E.g. dbs/db_rid/colls/col_rid/ </param>
+            <param name="function">The <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> object to create.</param>
+            <param name="options">(Optional) Any <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateUserDefinedFunctionAsync(System.Uri,Microsoft.Azure.Documents.UserDefinedFunction,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a user defined function as an asychronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to create the user defined function in.</param>
+            <param name="function">The <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateUserAsync(System.String,Microsoft.Azure.Documents.User,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a user object as an asychronous operation.
+            </summary>
+            <param name="databaseLink">The link of the database to create the user in. E.g. dbs/db_rid/ </param>
+            <param name="user">The <see cref="T:Microsoft.Azure.Documents.User"/> object to create.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A task object representing the service response for the asynchronous operation which contains the created <see cref="T:Microsoft.Azure.Documents.User"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreateUserAsync(System.Uri,Microsoft.Azure.Documents.User,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a user as an asychronous operation.
+            </summary>
+            <param name="databaseUri">The URI of the database to create the user in.</param>
+            <param name="user">The <see cref="T:Microsoft.Azure.Documents.User"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreatePermissionAsync(System.String,Microsoft.Azure.Documents.Permission,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a permission on a user object as an asychronous operation.
+            </summary>
+            <param name="userLink">The link of the user to create the permission for. E.g. dbs/db_rid/users/user_rid/ </param>
+            <param name="permission">The <see cref="T:Microsoft.Azure.Documents.Permission"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A task object representing the service response for the asynchronous operation which contains the created <see cref="T:Microsoft.Azure.Documents.Permission"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.CreatePermissionAsync(System.Uri,Microsoft.Azure.Documents.Permission,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Creates a permission as an asychronous operation.
+            </summary>
+            <param name="userUri">The URI of the user to create the permission for.</param>
+            <param name="permission">The <see cref="T:Microsoft.Azure.Documents.Permission"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceAttachmentAsync(Microsoft.Azure.Documents.Attachment,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.Attachment"/> as an asynchronous operation.
+            </summary>
+            <param name="attachment">The updated <see cref="T:Microsoft.Azure.Documents.Attachment"/> to replace the existing resource with.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Attachment"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceAttachmentAsync(System.Uri,Microsoft.Azure.Documents.Attachment,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces an attachment as an asynchronous operation.
+            </summary>
+            <param name="attachmentUri">The URI of the attachment to be updated.</param>
+            <param name="attachment">The attachment resource.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceDocumentCollectionAsync(Microsoft.Azure.Documents.DocumentCollection,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a document collection as an asynchronous operation.
+            </summary>
+            <param name="documentCollection">The updated document collection.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceDocumentCollectionAsync(System.Uri,Microsoft.Azure.Documents.DocumentCollection,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a document collection as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to be updated.</param>
+            <param name="documentCollection">The updated document collection.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceDocumentAsync(System.String,System.Object,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.Document"/> as an asynchronous operation.
+            </summary>
+            <param name="documentLink">The link of the document to be updated. E.g. dbs/db_rid/colls/col_rid/docs/doc_rid/ </param>
+            <param name="document">The updated <see cref="T:Microsoft.Azure.Documents.Document"/> to replace the existing resource with.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Document"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceDocumentAsync(System.Uri,System.Object,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a document as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection in which the document to be updated resides.</param>
+            <param name="document">The updated document.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceDocumentAsync(Microsoft.Azure.Documents.Document,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.Document"/> as an asynchronous operation.
+            </summary>
+            <param name="document">The updated <see cref="T:Microsoft.Azure.Documents.Document"/> to replace the existing resource with.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Document"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceStoredProcedureAsync(Microsoft.Azure.Documents.StoredProcedure,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> as an asynchronous operation.
+            </summary>
+            <param name="storedProcedure">The updated <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> to replace the existing resource with.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceStoredProcedureAsync(System.Uri,Microsoft.Azure.Documents.StoredProcedure,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replace the specified stored procedure.
+            </summary>
+            <param name="storedProcedureUri">The URI for the stored procedure to be updated.</param>
+            <param name="storedProcedure">The updated stored procedure.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceTriggerAsync(Microsoft.Azure.Documents.Trigger,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.Trigger"/> as an asynchronous operation.
+            </summary>
+            <param name="trigger">The updated <see cref="T:Microsoft.Azure.Documents.Trigger"/> to replace the existing resource with.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Trigger"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceTriggerAsync(System.Uri,Microsoft.Azure.Documents.Trigger,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a trigger as an asynchronous operation.
+            </summary>
+            <param name="triggerUri">The URI for the trigger to be updated.</param>
+            <param name="trigger">The updated trigger.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceUserDefinedFunctionAsync(Microsoft.Azure.Documents.UserDefinedFunction,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> as an asynchronous operation.
+            </summary>
+            <param name="function">The updated <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> to replace the existing resource with.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceUserDefinedFunctionAsync(System.Uri,Microsoft.Azure.Documents.UserDefinedFunction,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a user defined function as an asynchronous operation.
+            </summary>
+            <param name="userDefinedFunctionUri">The URI for the user defined function to be updated.</param>
+            <param name="function">The updated user defined function.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplacePermissionAsync(Microsoft.Azure.Documents.Permission,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.Permission"/> as an asynchronous operation.
+            </summary>
+            <param name="permission">The updated <see cref="T:Microsoft.Azure.Documents.Permission"/> to replace the existing resource with.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Permission"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplacePermissionAsync(System.Uri,Microsoft.Azure.Documents.Permission,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a permission as an asynchronous operation.
+            </summary>
+            <param name="permissionUri">The URI for the permission to be updated.</param>
+            <param name="permission">The updated permission.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceUserAsync(Microsoft.Azure.Documents.User,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.User"/> as an asynchronous operation.
+            </summary>
+            <param name="user">The updated <see cref="T:Microsoft.Azure.Documents.User"/> to replace the existing resource with.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.User"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceUserAsync(System.Uri,Microsoft.Azure.Documents.User,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Replaces a user as an asynchronous operation.
+            </summary>
+            <param name="userUri">The URI for the user to be updated.</param>
+            <param name="user">The updated user.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ReplaceOfferAsync(Microsoft.Azure.Documents.Offer)">
+            <summary>
+            Replaces a <see cref="T:Microsoft.Azure.Documents.Offer"/> as an asynchronous operation.
+            </summary>
+            <param name="offer">The updated <see cref="T:Microsoft.Azure.Documents.Offer"/> to replace the existing resource with.</param>
+            <returns>
+            A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which wraps a <see cref="T:Microsoft.Azure.Documents.Offer"/> containing the updated resource record.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpdateMediaAsync(System.String,System.IO.Stream,Microsoft.Azure.Documents.Client.MediaOptions)">
+            <summary>
+            Replaces the specified media's content as an asynchronous operation.
+            </summary>
+            <param name="mediaLink">The link for the media to be updated. /medias/media_rid </param>
+            <param name="mediaStream">The <see cref="T:System.IO.Stream"/> of the attachment media.</param>
+            <param name="options">The <see cref="T:Microsoft.Azure.Documents.Client.MediaOptions"/> for the request.</param>
+            <exception cref="T:System.ArgumentNullException">If either <paramref name="mediaLink"/> or <paramref name="mediaStream"/> is not set.</exception>
+            <exception cref="T:System.ArgumentException">If <paramref name="mediaLink"/> is not in the form of /medias/{mediaId}.</exception>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertAttachmentAsync(System.String,System.Object,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts an attachment as an asychronous operation.
+            </summary>
+            <param name="documentLink">The link of the parent document for this new attachment. E.g. dbs/db_rid/colls/col_rid/docs/doc_rid/</param>
+            <param name="attachment">The attachment object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/> object representing the service response for the asynchronous operation.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertAttachmentAsync(System.Uri,System.Object,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts an attachment as an asychronous operation.
+            </summary>
+            <param name="documentUri">The URI of the document to upsert an attachment for.</param>
+            <param name="attachment">The <see cref="T:Microsoft.Azure.Documents.Attachment"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertAttachmentAsync(System.String,System.IO.Stream,Microsoft.Azure.Documents.Client.MediaOptions,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts an attachment as an asynchronous operation.
+            </summary>
+            <param name="documentLink">The link of the parent document for this new attachment. E.g. dbs/db_rid/colls/col_rid/docs/doc_rid/</param>
+            <param name="mediaStream">The stream of the attachment media.</param>
+            <param name="options">The <see cref="T:Microsoft.Azure.Documents.Client.MediaOptions"/> for the request.</param>
+            <param name="requestOptions">The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertAttachmentAsync(System.Uri,System.IO.Stream,Microsoft.Azure.Documents.Client.MediaOptions,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts an attachment as an asynchronous operation.
+            </summary>
+            <param name="documentUri">The URI of the document to upsert an attachment for.</param>
+            <param name="mediaStream">The stream of the attachment media.</param>
+            <param name="options">The <see cref="T:Microsoft.Azure.Documents.Client.MediaOptions"/> for the request.</param>
+            <param name="requestOptions">The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertDocumentAsync(System.String,System.Object,Microsoft.Azure.Documents.Client.RequestOptions,System.Boolean)">
+            <summary>
+            Upserts a Document as an asychronous operation.
+            </summary>
+            <param name="collectionLink">The link of the <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> to upsert the document in. E.g. dbs/db_rid/colls/coll_rid/ </param>
+            <param name="document">The document object to upsert.</param>
+            <param name="options">(Optional) Any request options you wish to set. E.g. Specifying a Trigger to execute when creating the document. <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/></param>
+            <param name="disableAutomaticIdGeneration">(Optional) Disables the automatic id generation, If this is True the system will throw an exception if the id property is missing from the Document.</param>
+            <returns>The <see cref="T:Microsoft.Azure.Documents.Document"/> that was upserted contained within a <see cref="T:System.Threading.Tasks.Task"/> object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertDocumentAsync(System.Uri,System.Object,Microsoft.Azure.Documents.Client.RequestOptions,System.Boolean)">
+            <summary>
+            Upserts a document as an asychronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to upsert the document in.</param>
+            <param name="document">The document object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <param name="disableAutomaticIdGeneration">A flag to disable the automatic id generation.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertStoredProcedureAsync(System.String,Microsoft.Azure.Documents.StoredProcedure,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a stored procedure as an asychronous operation.
+            </summary>
+            <param name="collectionLink">The link of the collection to upsert the stored procedure in. E.g. dbs/db_rid/colls/col_rid/</param>
+            <param name="storedProcedure">The <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> object to upsert.</param>
+            <param name="options">(Optional) Any <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>The <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> that was upserted contained within a <see cref="T:System.Threading.Tasks.Task"/> object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertStoredProcedureAsync(System.Uri,Microsoft.Azure.Documents.StoredProcedure,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a stored procedure as an asychronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to upsert the stored procedure in.</param>
+            <param name="storedProcedure">The <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertTriggerAsync(System.String,Microsoft.Azure.Documents.Trigger,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a trigger as an asychronous operation.
+            </summary>
+            <param name="collectionLink">The link of the <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> to upsert the trigger in. E.g. dbs/db_rid/colls/col_rid/ </param>
+            <param name="trigger">The <see cref="T:Microsoft.Azure.Documents.Trigger"/> object to upsert.</param>
+            <param name="options">(Optional) Any <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertTriggerAsync(System.Uri,Microsoft.Azure.Documents.Trigger,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a trigger as an asychronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to upsert the trigger in.</param>
+            <param name="trigger">The <see cref="T:Microsoft.Azure.Documents.Trigger"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertUserDefinedFunctionAsync(System.String,Microsoft.Azure.Documents.UserDefinedFunction,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a user defined function as an asychronous operation.
+            </summary>
+            <param name="collectionLink">The link of the <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> to upsert the user defined function in. E.g. dbs/db_rid/colls/col_rid/ </param>
+            <param name="function">The <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> object to upsert.</param>
+            <param name="options">(Optional) Any <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertUserDefinedFunctionAsync(System.Uri,Microsoft.Azure.Documents.UserDefinedFunction,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a user defined function as an asychronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to upsert the user defined function in.</param>
+            <param name="function">The <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertPermissionAsync(System.String,Microsoft.Azure.Documents.Permission,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a permission on a user object as an asychronous operation.
+            </summary>
+            <param name="userLink">The link of the user to Upsert the permission for. E.g. dbs/db_rid/users/user_rid/ </param>
+            <param name="permission">The <see cref="T:Microsoft.Azure.Documents.Permission"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A task object representing the service response for the asynchronous operation which contains the upserted <see cref="T:Microsoft.Azure.Documents.Permission"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertPermissionAsync(System.Uri,Microsoft.Azure.Documents.Permission,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a permission as an asychronous operation.
+            </summary>
+            <param name="userUri">The URI of the user to upsert the permission for.</param>
+            <param name="permission">The <see cref="T:Microsoft.Azure.Documents.Permission"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertUserAsync(System.String,Microsoft.Azure.Documents.User,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a permission on a user object as an asychronous operation.
+            </summary>
+            <param name="databaseLink">The link of the database to upsert the user in. E.g. dbs/db_rid/ </param>
+            <param name="user">The <see cref="T:Microsoft.Azure.Documents.User"/> object to upsert.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A task object representing the service response for the asynchronous operation which contains the upserted <see cref="T:Microsoft.Azure.Documents.User"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.UpsertUserAsync(System.Uri,Microsoft.Azure.Documents.User,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Upserts a user as an asychronous operation.
+            </summary>
+            <param name="databaseUri">The URI of the database to upsert the user in.</param>
+            <param name="user">The <see cref="T:Microsoft.Azure.Documents.User"/> object.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteAttachmentAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete an <see cref="T:Microsoft.Azure.Documents.Attachment"/> from the database as an asynchronous operation.
+            </summary>
+            <param name="attachmentLink">The link of the <see cref="T:Microsoft.Azure.Documents.Attachment"/> to delete. E.g. dbs/db_rid/colls/col_rid/docs/doc_rid/attachments/attachment_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteAttachmentAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete an attachment as an asynchronous operation.
+            </summary>
+            <param name="attachmentUri">The URI of the attachment to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteDatabaseAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.Database"/> as an asynchronous operation.
+            </summary>
+            <param name="databaseLink">The link of the <see cref="T:Microsoft.Azure.Documents.Database"/> to delete. E.g. dbs/db_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteDatabaseAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a database as an asynchronous operation.
+            </summary>
+            <param name="databaseUri">The URI of the database to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteDocumentCollectionAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.DocumentCollection"/> as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionLink">The link of the <see cref="T:Microsoft.Azure.Documents.Document"/> to delete. E.g. dbs/db_rid/colls/col_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteDocumentCollectionAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a collection as an asynchronous operation.
+            </summary>
+            <param name="documentCollectionUri">The URI of the document collection to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteDocumentAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.Document"/> as an asynchronous operation.
+            </summary>
+            <param name="documentLink">The link of the <see cref="T:Microsoft.Azure.Documents.Document"/> to delete. E.g. dbs/db_rid/colls/col_rid/docs/doc_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteDocumentAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a document as an asynchronous operation.
+            </summary>
+            <param name="documentUri">The URI of the document to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteStoredProcedureAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> as an asynchronous operation.
+            </summary>
+            <param name="storedProcedureLink">The link of the <see cref="T:Microsoft.Azure.Documents.StoredProcedure"/> to delete. E.g. dbs/db_rid/colls/col_rid/sprocs/sproc_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteStoredProcedureAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a stored procedure as an asynchronous operation.
+            </summary>
+            <param name="storedProcedureUri">The URI of the stored procedure to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteTriggerAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.Trigger"/> as an asynchronous operation.
+            </summary>
+            <param name="triggerLink">The link of the <see cref="T:Microsoft.Azure.Documents.Trigger"/> to delete. E.g. dbs/db_rid/colls/col_rid/triggers/trigger_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteTriggerAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a trigger as an asynchronous operation.
+            </summary>
+            <param name="triggerUri">The URI of the trigger to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteUserDefinedFunctionAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> as an asynchronous operation.
+            </summary>
+            <param name="functionLink">The link of the <see cref="T:Microsoft.Azure.Documents.UserDefinedFunction"/> to delete. E.g. dbs/db_rid/colls/col_rid/udfs/udf_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteUserDefinedFunctionAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a user defined function as an asynchronous operation.
+            </summary>
+            <param name="functionUri">The URI of the user defined function to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteUserAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.User"/> as an asynchronous operation.
+            </summary>
+            <param name="userLink">The link of the <see cref="T:Microsoft.Azure.Documents.User"/> to delete. E.g. dbs/db_rid/users/user_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteUserAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a user as an asynchronous operation.
+            </summary>
+            <param name="userUri">The URI of the user to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeletePermissionAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.Permission"/> as an asynchronous operation.
+            </summary>
+            <param name="permissionLink">The link of the <see cref="T:Microsoft.Azure.Documents.Permission"/> to delete. E.g. dbs/db_rid/users/user_rid/permissions/permission_rid/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeletePermissionAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a permission as an asynchronous operation.
+            </summary>
+            <param name="permissionUri">The URI of the permission to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteConflictAsync(System.String,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a <see cref="T:Microsoft.Azure.Documents.Conflict"/> as an asynchronous operation.
+            </summary>
+            <param name="conflictLink">The link of the <see cref="T:Microsoft.Azure.Documents.Conflict"/> to delete. E.g. dbs/db_rid/colls/coll_rid/conflicts/ </param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <returns>A <see cref="N:System.Threading.Tasks"/> containing a <see cref="T:Microsoft.Azure.Documents.Client.ResourceResponse`1"/> which will contain information about the request issued.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.DeleteConflictAsync(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions)">
+            <summary>
+            Delete a conflict as an asynchronous operation.
+            </summary>
+            <param name="conflictUri">The URI of the conflict to delete.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ExecuteStoredProcedureAsync``1(System.String,System.Object[])">
+            <summary>
+            Executes a stored procedure against a collection as an asynchronous operation.
+            </summary>
+            <typeparam name="TValue">The type of the stored procedure's return value.</typeparam>
+            <param name="storedProcedureLink">The link to the stored procedure to execute.</param>
+            <param name="procedureParams">(Optional) An array of dynamic objects representing the parameters for the stored procedure.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="storedProcedureLink"/> is not set.</exception>
+            <returns>The task object representing the service response for the asynchronous operation which would contain any response set in the stored procedure.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ExecuteStoredProcedureAsync``1(System.Uri,System.Object[])">
+            <summary>
+            Executes a stored procedure against a collection as an asynchronous operation.
+            </summary>
+            <typeparam name="TValue">The type of the stored procedure's return value.</typeparam>
+            <param name="storedProcedureUri">The URI of the stored procedure to be executed.</param>
+            <param name="procedureParams">The parameters for the stored procedure execution.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ExecuteStoredProcedureAsync``1(System.String,Microsoft.Azure.Documents.Client.RequestOptions,System.Object[])">
+            <summary>
+            Executes a stored procedure against a partitioned collection as an asynchronous operation, specifiying a target partition.
+            </summary>
+            <typeparam name="TValue">The type of the stored procedure's return value.</typeparam>
+            <param name="storedProcedureLink">The link to the stored procedure to execute.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/>for this request.</param>
+            <param name="procedureParams">(Optional) An array of dynamic objects representing the parameters for the stored procedure.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="storedProcedureLink"/> is not set.</exception>
+            <returns>The task object representing the service response for the asynchronous operation which would contain any response set in the stored procedure.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.IReliableReadWriteDocumentClient.ExecuteStoredProcedureAsync``1(System.Uri,Microsoft.Azure.Documents.Client.RequestOptions,System.Object[])">
+            <summary>
+            Executes a stored procedure against a collection as an asynchronous operation.
+            </summary>
+            <typeparam name="TValue">The type of the stored procedure's return value.</typeparam>
+            <param name="storedProcedureUri">The URI of the stored procedure to be executed.</param>
+            <param name="options">(Optional) The <see cref="T:Microsoft.Azure.Documents.Client.RequestOptions"/> for the request.</param>
+            <param name="procedureParams">The parameters for the stored procedure execution.</param>
+            <returns>The task object representing the service response for the asynchronous operation.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Documents.Client.TransientFaultHandling.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Documents.Client.TransientFaultHandling.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Documents.Client.TransientFaultHandling.Resources.DisposeExceptionFormat">
+            <summary>
+              Looks up a localized string similar to Exception on dispose: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Documents.Client.TransientFaultHandling.Resources.QueryableIsNotDocumentQuery">
+            <summary>
+              Looks up a localized string similar to Provided IQueryable instance is not attached to any DocumentClient.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Documents.Client.TransientFaultHandling.Resources.TransientErrorDetectionStrategyExceptionFormat">
+            <summary>
+              Looks up a localized string similar to Exception in transient error detection strategy: {0}.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.WebErrorsKnowledge">
+            <summary>
+            Represents a knowledge about common transient web errors.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.IWebErrorsKnowledge">
+            <summary>
+            Represents a knowledge about transient web errors.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.IWebErrorsKnowledge.IsTransientWebError(System.Net.WebExceptionStatus)">
+            <summary>
+            Determines if web error status code represents transient failure or not.
+            </summary>
+            <param name="statusCode">Web error status code.</param>
+            <returns>True if status code represents transient failure, False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.IWebErrorsKnowledge.IsTransientHttpError(System.Net.HttpStatusCode)">
+            <summary>
+            Determines if HTTP status code represents transient failure or not.
+            </summary>
+            <param name="statusCode">HTTP status code.</param>
+            <returns>True if status code represents transient failure, False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.WebErrorsKnowledge.IsTransientWebError(System.Net.WebExceptionStatus)">
+            <summary>
+            Determines if web error status code represents transient failure or not.
+            </summary>
+            <param name="statusCode">Web error status code.</param>
+            <returns>True if status code represents transient failure, False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.WebErrorsKnowledge.IsTransientHttpError(System.Net.HttpStatusCode)">
+            <summary>
+            Determines if HTTP status code represents transient failure or not.
+            </summary>
+            <param name="statusCode">HTTP status code.</param>
+            <returns>True if status code represents transient failure, False otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbRetryStrategy">
+            <summary>
+            Retry strategy to handle DocumentDB request failures. This strategy will override
+            retry interval with the retry-after-ms header, returned by the server whenever possible.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbRetryStrategy.#ctor(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy)">
+            <summary>
+            Creates new instance of <see cref="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbRetryStrategy"/>.
+            </summary>
+            <param name="baseRetryStrategy">Base retry strategy to be used.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbRetryStrategy.GetShouldRetry">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbTransientErrorDetectionStrategy">
+            <summary>
+            Transient error detection strategy for DocumentDB request failures.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.HttpTransientErrorDetectionStrategy">
+            <summary>
+            Transient error detection strategy for Http request failures.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.HttpTransientErrorDetectionStrategy.#ctor(Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.IWebErrorsKnowledge)">
+            <summary>
+            Creates new instance of <see cref="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.HttpTransientErrorDetectionStrategy"/>.
+            </summary>
+            <param name="webErrorsKnowledge">Web errors knowledge to use for transient error detection.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.HttpTransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Determines whether the specified exception represents a transient failure
+            that can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>True if the specified exception is considered as transient, False otherwise.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.HttpTransientErrorDetectionStrategy.ErrorsKnowledge">
+            <summary>
+            Gets current web errors knowledge.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbTransientErrorDetectionStrategy.#ctor(Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.IWebErrorsKnowledge)">
+            <summary>
+            Creates new instance of <see cref="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbTransientErrorDetectionStrategy"/>.
+            </summary>
+            <param name="webErrorsKnowledge">Knowledge about web errors.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.DocumentDbTransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Determines whether the specified exception represents a transient failure
+            that can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>True if the specified status code is considered as transient fault, False otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.WebErrorsKnowledgeForIdempotentOperations">
+            <summary>
+            Represents a knowledge about transient web errors for idempotent operations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.WebErrorsKnowledgeForIdempotentOperations.IsTransientWebError(System.Net.WebExceptionStatus)">
+            <summary>
+            Determines if web error status code represents transient failure or not.
+            </summary>
+            <param name="statusCode">Web error status code.</param>
+            <returns>True if status code represents transient failure, False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Documents.Client.TransientFaultHandling.Strategies.WebErrorsKnowledgeForIdempotentOperations.IsTransientHttpError(System.Net.HttpStatusCode)">
+            <summary>
+            Determines if web error status code represents transient failure or not.
+            </summary>
+            <param name="statusCode">Web error status code.</param>
+            <returns>True if status code represents transient failure, False otherwise.</returns>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

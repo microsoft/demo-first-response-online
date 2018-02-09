@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MSCorp.FirstResponse.Client.Behaviors
@@ -20,21 +21,20 @@ namespace MSCorp.FirstResponse.Client.Behaviors
             var listView = bindable as ListView;
             if (listView != null)
             {
-                listView.ItemTapped -= ListViewOnItemTapped;
-                listView.ItemTapped += ListViewOnItemTapped;
+                listView.ItemSelected -= ListViewOnItemSelected;
+                listView.ItemSelected += ListViewOnItemSelected;
             }
         }
 
-        private static void ListViewOnItemTapped(object sender, ItemTappedEventArgs e)
+        private static void ListViewOnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var list = sender as ListView;
             if (list != null && list.IsEnabled && !list.IsRefreshing)
             {
-                list.SelectedItem = null;
                 var command = GetItemTappedCommand(list);
-                if (command != null && command.CanExecute(e.Item))
+                if (command != null && command.CanExecute(list.SelectedItem))
                 {
-                    command.Execute(e.Item);
+                    command.Execute(list.SelectedItem);
                 }
             }
         }

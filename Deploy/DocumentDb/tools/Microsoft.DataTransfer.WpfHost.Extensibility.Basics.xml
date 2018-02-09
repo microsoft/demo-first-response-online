@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.WpfHost.Extensibility.Basics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1">
+            <summary>
+            Provides basic functionality of <see cref="T:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider"/>.
+            </summary>
+            <typeparam name="TConfiguration">Type of the configuration that this instance can provide.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.CanProvide(System.Type)">
+            <summary>
+            Determines if current instance can provide configuration of <paramref name="configurationType" /> type.
+            </summary>
+            <param name="configurationType">Type of the desired configuration.</param>
+            <returns>true if current instance can provide desired configuration; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.CreatePresenter(`0)">
+            <summary>
+            Creates a new instance of read-write configuration presenter control.
+            </summary>
+            <param name="configuration">Current configuration.</param>
+            <returns>Read-write configuration presenter control</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.CreateSummaryPresenter(`0)">
+            <summary>
+            Creates a new instance of read-only configuration presenter control.
+            </summary>
+            <param name="configuration">Current configuration.</param>
+            <returns>Read-only configuration presenter control</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.CreateConfiguration">
+            <summary>
+            Creates a new instance of the configuration.
+            </summary>
+            <returns>New instance of the configuration.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.PopulateCommandLineArguments(`0,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Populates provided collection with command line arguments that represent provided configuration.
+            </summary>
+            <param name="configuration">Source configuration.</param>
+            <param name="arguments">Command line arguments collection to populate.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.AsCollectionArgument(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Converts the <paramref name="collection"/> of <see cref="T:System.String"/> to a single command line argument.
+            </summary>
+            <param name="collection">Source collection to convert.</param>
+            <returns><see cref="T:System.String"/> that represents command line argument value.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.Presenter">
+            <summary>
+            Gets the read-write configuration presenter control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.SummaryPresenter">
+            <summary>
+            Gets the read-only configuration presenter control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.Configuration">
+            <summary>
+            Gets the current configuration instance.
+            </summary>
+            <remarks>
+            Returns null if configuration is not valid.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderBase`1.CommandLineArguments">
+            <summary>
+            Gets the collection of command line arguments, representing current configuration.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper">
+            <summary>
+            Encapsulates instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider"/> to hide implementation details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper.#ctor(Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper"/>.
+            </summary>
+            <param name="provider"></param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper.CanProvide(System.Type)">
+            <summary>
+            Determines if current instance can provide configuration of <paramref name="configurationType" /> type.
+            </summary>
+            <param name="configurationType">Type of the desired configuration.</param>
+            <returns>true if current instance can provide desired configuration; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper.Provider">
+            <summary>
+            Gets the encapsulated <see cref="T:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider"/> instance.
+            </summary>
+        </member>
+        <member name="E:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper.Presenter">
+            <summary>
+            Gets the read-write configuration presenter control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper.SummaryPresenter">
+            <summary>
+            Gets the read-only configuration presenter control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper.Configuration">
+            <summary>
+            Gets the current configuration instance.
+            </summary>
+            <remarks>
+            Returns null if configuration is not valid.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterConfigurationProviderWrapper.CommandLineArguments">
+            <summary>
+            Gets the collection of command line arguments, representing current configuration.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterValidatableConfigurationProviderBase`1">
+            <summary>
+            Provides basic functionality of <see cref="T:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider"/> and
+            handles <see cref="P:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider.Configuration"/> property value based on configuration validity.
+            </summary>
+            <typeparam name="TConfiguration">Type of the configuration that this instance can provide.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterValidatableConfigurationProviderBase`1.CreateConfiguration">
+            <summary>
+            Creates new instance of the configuration.
+            </summary>
+            <returns>New instance of the configuration.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.DataAdapterValidatableConfigurationProviderBase`1.CreateValidatableConfiguration">
+            <summary>
+            Creates new instance of the validatable configuration.
+            </summary>
+            <returns>New instance of the validatable configuration.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.ShareableDataAdapterConfigurationBase`1">
+            <summary>
+            Base class for data adapter configuration that can share one or more properties with another configurations.
+            </summary>
+            <typeparam name="TShared">Type of the configuration that holds shared properties.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.ShareableDataAdapterConfigurationBase`1.#ctor(`0)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.ShareableDataAdapterConfigurationBase`1"/>.
+            </summary>
+            <param name="sharedConfiguration">Instance of the shared configuration.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.ShareableDataAdapterConfigurationBase`1.GetSharedPropertiesMapping">
+            <summary>
+            Returns the mapping between properties of the shared configuration and local properties.
+            </summary>
+            <returns>Properties mapping.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.ShareableDataAdapterConfigurationBase`1.GetErrors(System.String)">
+            <summary>
+            Gets the validation errors for a specified property or for the entire entity.
+            </summary>
+            <param name="propertyName">
+            The name of the property to retrieve validation errors for; or <see cref="F:System.String.Empty"/>,
+            to retrieve entity-level errors.
+            </param>
+            <returns>The validation errors for the property or entity.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.ShareableDataAdapterConfigurationBase`1.SharedPropertiesMapping">
+            <summary>
+            Gets the mapping between properties of the shared configuration and local properties.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.ShareableDataAdapterConfigurationBase`1.SharedConfiguration">
+            <summary>
+            Gets the shared configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.Basics.ShareableDataAdapterConfigurationBase`1.HasErrors">
+            <summary>
+            Gets a value that indicates whether the entity has validation errors.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>
