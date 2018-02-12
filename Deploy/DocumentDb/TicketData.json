@@ -1,0 +1,380 @@
+﻿[
+    {
+        "Id": 1,
+        "Type": "Traffic Violation",
+        "Violation": "Speeding",
+        "Officer": "Colin Carrelson",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [
+            -122.018115,
+            47.583087
+          ]
+        },
+        "Speed": 75,
+        "MaxSpeed": 55,
+        "Notes": "Motorist was driving at excessive speed.",
+        "Driver": {
+            "Name": "John Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+        },
+        "Vehicle": {
+            "Make": "Carsoft",
+            "Model": "Logger",
+            "PlateNo": "NGJ4823"
+        }
+    },
+    {
+        "Id": 2,
+        "Type": "Traffic Violation",
+        "Violation": "Speeding",
+        "Officer": "Jeffery Johnson",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+            "coordinates": [
+                -122.035708,
+                47.585156
+            ]
+        },
+        "Speed": 82,
+        "MaxSpeed": 55,
+        "Notes": "Motorist was driving at excessive speed.",
+        "Driver": {
+            "Name": "Jacob Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-476-3367"
+        },
+        "Vehicle": {
+            "Make": "Brilliance",
+            "Model": "KML-22",
+            "PlateNo": "TEJ3621"
+        }
+    },
+    {
+        "Id": 3,
+        "Type": "Traffic",
+        "Violation": "Impeding Traffic",
+        "Officer": "Colin Jackman",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [
+            -122.014188,
+            47.583709
+          ]
+        },
+        "Notes": "Motorist was driving at excessive lowspeed holding up traffic.",
+        "Driver": {
+            "Name": "Jerry Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+        },
+        "Vehicle": {
+            "Make": "Northvale",
+            "Model": "M22",
+            "PlateNo": "TYE3112"
+        }
+    },
+    {
+        "Id": 4,
+        "Type": "Traffic Violation",
+        "Violation": "Illegal Maneuver",
+        "Officer": "Jim Jackson",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [
+            -122.018222,
+            47.580786
+          ]
+        },
+        "Notes": "Motorist ran red light at intersection.",
+        "Driver": {
+            "Name": "Liam Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+        },
+        "Vehicle": {
+            "Make": "Grandouse",
+            "Model": "G2",
+            "PlateNo": "TYH9998"
+        }
+    },
+    {
+        "Id": 5,
+        "Type": "Traffic Violation",
+        "Violation": "Illegal Maneuver",
+        "Officer": "John Greatman",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [
+            -122.010777,
+            47.582595
+          ]
+        },
+        "Notes": "Motorist did not stop at stop sign.",
+        "Driver": {
+            "Name": "Jason Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+        },
+        "Vehicle": {
+            "Make": "Javelin",
+            "Model": "Typhoon",
+            "PlateNo": "TYH9998"
+        }
+    },
+    {
+        "Id": 6,
+        "Type": "Traffic Violation",
+        "Violation": "Illegal Maneuver",
+        "Officer": "Garry Ginger",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+            "coordinates": [
+                -122.016911,
+                47.588225
+            ]
+        },
+        "Notes": "Motorist ran red light at intersection.",
+        "Driver": {
+            "Name": "Barry Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+        },
+        "Vehicle": {
+            "Make": "Barron",
+            "Model": "Spin Class 1",
+            "PlateNo": "RUE9108"
+        }
+    },
+    {
+        "Id": 7,
+        "Type": "Traffic Violation",
+        "Violation": "Illegal Maneuver",
+        "Officer": "Jim Jackson",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [
+            -122.004919,
+            47.582436
+          ]
+        },
+        "Notes": "Failure to give way",
+        "Driver": {
+            "Name": "Liam Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+        },
+        "Vehicle": {
+            "Make": "Javelin",
+            "Model": "Hurricane",
+            "PlateNo": "RYH9498"
+        }
+    },
+    {
+        "Id": 8,
+        "Type": "Traffic Violation",
+        "Violation": "Hit and Run",
+        "Officer": "Jim Jackson",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [ 
+            -122.019210,
+            47.577037
+          ]
+        },
+        "Notes": "Clipped the wing mirror of a parked car and drove away.",
+        "Driver": {
+            "Name": "Henry Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+        },
+        "Vehicle": {
+            "Make": "Kellyson",
+            "Model": "Micro",
+            "PlateNo": "DAJ3298"
+        }
+    },
+    {
+        "Id": 9,
+        "Type": "Traffic Violation",
+        "Violation": "Reckless Driving",
+        "Officer": "Gavin Mathis",
+        "DateCreated": "2016-02-03T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+            "coordinates": [
+                -122.014207,
+                47.586488
+            ]
+        },
+        "Notes": "Dangerous Driving, crossing lanes and speeding in populated area.",
+        "Driver": {
+            "Name": "Henry Smith",
+            "LicenceNo": "243-4560-BLM",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-486-3367"
+        },
+        "Vehicle": {
+            "Make": "Wayside",
+            "Model": "Countryman",
+            "PlateNo": "HEY3820"
+        }
+    },
+    {
+        "Id": 10,
+        "Type": "Pedestrian Violation",
+        "Violation": "Signal Device Disobey",
+        "Officer": "Jeffery Johnson",
+        "DateCreated": "2016-02-04T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+            "coordinates": [
+                -122.031073,
+                47.585996
+            ]
+        },
+        "Notes": "Pedestrian Crossed traffic crossing before crossing light",
+        "Pedestrian": {
+            "Name": "Larry Smith",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-476-3367"
+        }
+    },
+    {
+        "Id": 11,
+        "Type": "Pedestrian Violation",
+        "Violation": "Jay Walking",
+        "Officer": "Garry Ginger",
+        "DateCreated": "2016-02-05T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [
+            -122.005562,
+            47.580626
+          ]
+        },
+        "Notes": "Pedestrian Crossed traffic crossing before crossing light",
+        "Pedestrian": {
+            "Name": "Matthew Smith",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-476-3367"
+        }
+    },
+    {
+        "Id": 12,
+        "Type": "Pedestrian Violation",
+        "Violation": "Jay Walking",
+        "Officer": "Garry Gibbs",
+        "DateCreated": "2016-02-05T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+            "coordinates": [
+                -122.035813,
+                47.613974
+            ]
+        },
+        "Notes": "Jay walking",
+        "Pedestrian": {
+            "Name": "Louis Smith",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-476-3367"
+        }
+    },
+    {
+        "Id": 12,
+        "Type": "Pedestrian Violation",
+        "Violation": "Jay Walking",
+        "Officer": "Garry Gibbs",
+        "DateCreated": "2016-02-07T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+            "coordinates": [ 
+                -122.032680,
+                47.616606
+            ]
+        },
+        "Notes": "Jay Walking",
+        "Pedestrian": {
+            "Name": "Louis Smith",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-476-3367"
+        }
+    },
+    {
+        "Id": 13,
+        "Type": "Pedestrian Violation",
+        "Violation": "Impeding Traffic",
+        "Officer": "Garry Gibbs",
+        "DateCreated": "2016-02-07T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [
+            -122.020218,
+            47.580930
+          ]
+        },
+        "Notes": "Failure to use footpath and walking in the middle of the road disturbing traffic.",
+        "Pedestrian": {
+            "Name": "Louis Smith",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-476-3367"
+        }
+    },
+    {
+        "Id": 13,
+        "Type": "Pedestrian Violation",
+        "Violation": "Impeding Traffic",
+        "Officer": "Garry Gibbs",
+        "DateCreated": "2016-02-07T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+            "coordinates": [
+                -122.013926,
+                47.614929
+            ]
+        },
+        "Notes": "Throwing stones at passing traffic.",
+        "Pedestrian": {
+            "Name": "Louis Smith",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-476-3367"
+        }
+    },
+    {
+        "Id": 13,
+        "Type": "Pedestrian Violation",
+        "Violation": "Impeding Traffic",
+        "Officer": "Garry Gibbs",
+        "DateCreated": "2016-02-07T17:35:34.8316737+13:00",
+        "Location": {
+            "type": "Point",
+          "coordinates": [
+            -122.016291,
+            47.578354
+          ]
+        },
+        "Notes": "Standing in front of traffic",
+        "Pedestrian": {
+            "Name": "Louis Smith",
+            "HomeAddress": "Renton Village Pl, Renton, WA 98057",
+            "Phone": "452-476-3367"
+        }
+    }
+]

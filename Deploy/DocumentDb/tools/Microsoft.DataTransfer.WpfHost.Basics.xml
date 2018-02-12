@@ -1,0 +1,1279 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.WpfHost.Basics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.BindableBase">
+            <summary>
+            Provides basic functionality of <see cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.BindableBase.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+            Updates property value.
+            </summary>
+            <typeparam name="T">Type of the property.</typeparam>
+            <param name="storage">Storage of the property value.</param>
+            <param name="value">New value for the property.</param>
+            <param name="propertyName">Name of the property.</param>
+            <returns>true if storage value was changed; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.BindableBase.OnPropertyChanged(System.String)">
+            <summary>
+            Notifies all subscribers that property value has been changed.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="E:Microsoft.DataTransfer.WpfHost.Basics.BindableBase.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Commands.CommandBase">
+            <summary>
+            Base class for view model commands.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.CommandBase.CanExecute(System.Object)">
+            <summary>
+            Determines whether the command can execute in its current state.
+            </summary>
+            <param name="parameter">Data used by the command. If the command does not require data to be passed, this object can be set to null.</param>
+            <returns>true if this command can be executed; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.CommandBase.Execute(System.Object)">
+            <summary>
+            Executes the action defined by the command.
+            </summary>
+            <param name="parameter">Data used by the command. If the command does not require data to be passed, this object can be set to null.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.CommandBase.RaiseCanExecuteChanged">
+            <summary>
+            Raises an event to notify listeners that command state has changed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.DataTransfer.WpfHost.Basics.Commands.CommandBase.CanExecuteChanged">
+            <summary>
+            Occurs when changes occur that affect whether or not the command can execute.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Commands.CopyToClipboardCommand">
+            <summary>
+            View model command to copy data to clipboard. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.CopyToClipboardCommand.CanExecute(System.Object)">
+            <summary>
+            Determines whether or not the data can be copied to the clipboard.
+            </summary>
+            <param name="parameter">The data to be copied.</param>
+            <returns>true if the data can be copied to the clipboard; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.CopyToClipboardCommand.Execute(System.Object)">
+            <summary>
+            Copies the data to the clipboard.
+            </summary>
+            <param name="parameter">The data to be copied.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Commands.NavigateUriCommand">
+            <summary>
+            View model command to navigate to the URI. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.NavigateUriCommand.CanExecute(System.Object)">
+            <summary>
+            Determines whether or not the command can navigate to the URI.
+            </summary>
+            <param name="parameter">The URI to navigate to.</param>
+            <returns>true if the command can navigate to the URI; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.NavigateUriCommand.Execute(System.Object)">
+            <summary>
+            Navigates to the URI using default browser.
+            </summary>
+            <param name="parameter">The URI to navigate to.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Commands.PasteToFocusedTextBoxCommand">
+            <summary>
+            View model command to paste data into the focused text box. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.PasteToFocusedTextBoxCommand.CanExecute(System.Object)">
+            <summary>
+            Determines whether or not the data can be pasted to the focused text box.
+            </summary>
+            <param name="parameter">The data to paste.</param>
+            <returns>true if the data can be pasted to the text box; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.PasteToFocusedTextBoxCommand.Execute(System.Object)">
+            <summary>
+            Pastes the data into the focused text box.
+            </summary>
+            <param name="parameter">The data to paste.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Commands.ReplaceSelectionInFocusedTextBoxCommandBase">
+            <summary>
+            Base class for view model commands to replace data in the focused text box. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.ReplaceSelectionInFocusedTextBoxCommandBase.CanExecute(System.Object)">
+            <summary>
+            Determines whether or not the data can be repalced in the focused text box.
+            </summary>
+            <param name="parameter">The data to paste.</param>
+            <returns>true if the data can be replaced in the text box; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.ReplaceSelectionInFocusedTextBoxCommandBase.Execute(System.Object)">
+            <summary>
+            Replaces the data in the focused text box.
+            </summary>
+            <param name="parameter">Arbitrary command parameter.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.ReplaceSelectionInFocusedTextBoxCommandBase.GetText(System.Windows.Controls.TextBox,System.Object)">
+            <summary>
+            Returns the text to use as a replacement.
+            </summary>
+            <param name="textBox">Target text box.</param>
+            <param name="parameter">Arbitrary command parameter.</param>
+            <returns>Text to use as a replacement.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Commands.ReplaceIndentedTextInFocusedTextBoxCommand">
+            <summary>
+            View model command to replace selected indented text in the focused text box. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.ReplaceIndentedTextInFocusedTextBoxCommand.GetText(System.Windows.Controls.TextBox,System.Object)">
+            <summary>
+            Returns the text to use as a replacement.
+            </summary>
+            <param name="textBox">Target text box.</param>
+            <param name="parameter">Text data to insert.</param>
+            <returns>Indented text to use as a replacement.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Commands.SynchronizedAsyncCommand">
+            <summary>
+            Base synchronized view model command. This command can only be executed once at a time.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.SynchronizedAsyncCommand.CanExecute(System.Object)">
+            <summary>
+            Determines whether the command is already running.
+            </summary>
+            <param name="parameter">Parameter is not used.</param>
+            <returns>true if this command is not running yet; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.SynchronizedAsyncCommand.Execute(System.Object)">
+            <summary>
+            Executes the action defined by the command.
+            </summary>
+            <param name="parameter">Parameter is not used.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.SynchronizedAsyncCommand.ExecuteAsync(System.Object)">
+            <summary>
+            Defines the method to be called when the command is invoked.
+            </summary>
+            <param name="parameter">Data used by the command. If the command does not require data to be passed, this object can be set to null.</param>
+            <returns>Task that represents asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Commands.SynchronizedAsyncCommand.HandleError(System.Exception)">
+            <summary>
+            Defines the method to be called when command invocation results in an error.
+            </summary>
+            <param name="error">Invocation error.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.EditableStringsListControl">
+            <summary>
+            Provides a way to specify one or more string items.
+            </summary>
+            <summary>
+            EditableStringsListControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.EditableStringsListControl.ItemsProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.EditableStringsListControl.Items"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.EditableStringsListControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.EditableStringsListControl"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.EditableStringsListControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.EditableStringsListControl.Items">
+            <summary>
+            Gets or sets the collection of items.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.ExtendedListBox">
+            <summary>
+            Contains a list of selectable items. This extended version allows to get indices of all selected items.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.ExtendedListBox.SelectedIndicesProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.ExtendedListBox.SelectedIndices"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.ExtendedListBox.OnSelectionChanged(System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Updates list of selected indices.
+            </summary>
+            <param name="e">Provides data for <see cref="T:System.Windows.Controls.SelectionChangedEventArgs"/>.</param>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.ExtendedListBox.SelectedIndices">
+            <summary>
+            Gets the indices of all currently selected items.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl">
+            <summary>
+            Provides a way to select one or more files.
+            </summary>
+            <summary>
+            FilesPickerControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.FilesProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.Files"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.FilterProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.Filter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.DefaultExtensionProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.DefaultExtension"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.Files">
+            <summary>
+            Gets or sets the collection of selected files.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.Filter">
+            <summary>
+            Gets or sets the extensions filter string for the files picker dialog.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPickerControl.DefaultExtension">
+            <summary>
+            Gets or sets the default file extension for the files picker dialog.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase">
+            <summary>
+            Provides basic functionality of <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> and <see cref="T:System.ComponentModel.INotifyDataErrorInfo"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.Validate">
+            <summary>
+            Forces validation on the current instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.GetErrors(System.String)">
+            <summary>
+            Gets the validation errors for a specified property or for the entire entity.
+            </summary>
+            <param name="propertyName">
+            The name of the property to retrieve validation errors for; or <see cref="F:System.String.Empty"/>,
+            to retrieve entity-level errors.
+            </param>
+            <returns>The validation errors for the property or entity.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.SetProperty``1(``0@,``0,System.Func{``0,System.Collections.Generic.IReadOnlyCollection{System.String}},System.String)">
+            <summary>
+            Updates property value.
+            </summary>
+            <typeparam name="T">Type of the property.</typeparam>
+            <param name="storage">Storage of the property value.</param>
+            <param name="value">New value for the property.</param>
+            <param name="validator">Validation function to apply when updating the value.</param>
+            <param name="propertyName">Name of the property.</param>
+            <returns>true if storage value was changed; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.SetErrors(System.String,System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <summary>
+            Updates errors collection for the specified property.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="activeErrors">List of errors to set for the property.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.OnErrorsChanged(System.String)">
+            <summary>
+            Notifies all subscribers that property errors has been changed.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.ValidateNonEmptyString(System.String)">
+            <summary>
+            Verifies that provided <paramref name="value" /> is not an empty string.
+            </summary>
+            <param name="value">String to validate.</param>
+            <returns>Collection of validation errors if <paramref name="value" /> is an empty string; otherwise, null.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.ValidateNonEmptyCollection``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Verifies that provided <paramref name="value" /> is not an empty collection.
+            </summary>
+            <typeparam name="T">Type of the collection element.</typeparam>
+            <param name="value">Collection to validate.</param>
+            <returns>Collection of validation errors if <paramref name="value" /> is an empty collection; otherwise, null.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.ValidatePositiveInteger(System.Nullable{System.Int32})">
+            <summary>
+            Verifies that provided <paramref name="value" /> is greater than zero.
+            </summary>
+            <param name="value">Number to validate.</param>
+            <returns>Collection of validation errors if <paramref name="value" /> is less or equal to zero; otherwise, null.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.ValidateNonNegativeInteger(System.Nullable{System.Int32})">
+            <summary>
+            Verifies that provided <paramref name="value" /> is greater or equal to zero.
+            </summary>
+            <param name="value">Number to validate.</param>
+            <returns>Collection of validation errors if <paramref name="value" /> is less than zero; otherwise, null.</returns>
+        </member>
+        <member name="E:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.ErrorsChanged">
+            <summary>
+            Occurs when the validation errors have changed for a property or for the entire entity.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.ValidatableBindableBase.HasErrors">
+            <summary>
+            Gets a value that indicates whether the entity has validation errors.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPicker.Urls.Http.AddHttpUrlsDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl">
+            <summary>
+            Provides a simple way to create a control bound to a view model.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.#ctor(System.ComponentModel.INotifyPropertyChanged)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl"/>.
+            </summary>
+            <param name="viewModel">View model instance to which this control should be bound.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.GetViewModel``1">
+            <summary>
+            Gets the current view model instance used by the control.
+            </summary>
+            <returns>Instance of the current view model.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.SetValueSuppressHandler(System.Windows.DependencyProperty,System.Object)">
+            <summary>
+            Sets the local value of a dependency property, specified by its dependency
+            property identifier.
+            </summary>
+            <param name="property">The identifier of the dependency property to set.</param>
+            <param name="value">The new local value.</param>
+            <remarks>
+            This method only prevents <see cref="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.OnDependencyPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)"/> method from firing.
+            Any events registered as property metadata are still going to fire. To check whether metadata
+            event handler should be suppressed or not, use <see cref="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.ShouldHandleDependencyPropertyChange(System.Windows.DependencyProperty)"/>.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Invoked whenever the effective value of any dependency property on this <see cref="T:System.Windows.FrameworkElement"/>
+            has been updated. The specific dependency property that changed is reported
+            in the arguments parameter.
+            </summary>
+            <param name="e">
+            The event data that describes the property that changed, as well as old and new values.
+            </param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.ShouldHandleDependencyPropertyChange(System.Windows.DependencyProperty)">
+            <summary>
+            Checks whether dependency property change handler should be executed.
+            </summary>
+            <param name="property">The identifier of the dependency property.</param>
+            <returns>true if dependency property change handler should be executed; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.OnViewModelPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles property changes of the view model.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DataBoundUserControl.OnDependencyPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handles dependency property changes.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl">
+            <summary>
+            Provides a way to select single file.
+            </summary>
+            <summary>
+            OpenFileControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.FileNameProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.FileName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.FilterProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.Filter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.DefaultExtensionProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.DefaultExtension"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.FileName">
+            <summary>
+            Gets or sets the selected file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.Filter">
+            <summary>
+            Gets or sets the extensions filter string for the file picker dialog.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.OpenFileControl.DefaultExtension">
+            <summary>
+            Gets or sets the default file extension for the file picker dialog.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.FilesPicker.Urls.Blob.AddBlobUrlDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.CollapseExpanderContentContainer">
+            <summary>
+            Hides <see cref="T:System.Windows.Controls.Expander"/> content container.
+            </summary>
+            <remarks>
+            To prevent <see cref="T:System.Windows.Controls.Expander"/> height changes when you want to use header alone as
+            a toggle button - place this control in the <see cref="T:System.Windows.Controls.Expander"/>.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.CollapseExpanderContentContainer.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.CollapseExpanderContentContainer"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.CollapseExpanderContentContainer.OnVisualParentChanged(System.Windows.DependencyObject)">
+            <summary>
+            Changes <see cref="P:System.Windows.UIElement.Visibility"/> of parent ExpandSiteBorder <see cref="T:System.Windows.Controls.Border"/> to <see cref="F:System.Windows.Visibility.Collapsed"/>.
+            </summary>
+            <param name="oldParent">
+            The old parent element. May be null to indicate that the element did not
+            have a visual parent previously.
+            </param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl">
+            <summary>
+            Provides a way to create a new blob or overwrite an existing one.
+            </summary>
+            <summary>
+            SaveBlobFileControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl.BlobUrlProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl.BlobUrl"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl.OnViewModelPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles property changes of the view model.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl.OnDependencyPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handles dependency property changes.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveBlobFileControl.BlobUrl">
+            <summary>
+            Gets the selected BLOB URL.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl">
+            <summary>
+            Provides a way to create a new file or overwrite existing one.
+            </summary>
+            <summary>
+            SaveFileControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.FileNameProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.FileName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.LocalFileFilterProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.LocalFileFilter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.LocalFileDefaultExtensionProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.LocalFileDefaultExtension"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.OverwriteProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.Overwrite"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.OnViewModelPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles property changes of the view model.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.OnDependencyPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handles changes of the dependency properties.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.FileName">
+            <summary>
+            Gets the selected file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.LocalFileFilter">
+            <summary>
+            Gets or sets the extensions filter string for the file picker dialog.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.LocalFileDefaultExtension">
+            <summary>
+            Gets or sets the default file extension for the file picker dialog.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveFileControl.Overwrite">
+            <summary>
+            Gets or sets a value that indicates whether the target file should be overwritten.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl">
+            <summary>
+            Provides a way to create a new file or overwrite an existing one.
+            </summary>
+            <summary>
+            SaveLocalFileControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.FileNameProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.FileName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.FilterProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.Filter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.DefaultExtensionProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.DefaultExtension"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.FileName">
+            <summary>
+            Gets or sets the selected file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.Filter">
+            <summary>
+            Gets or sets the extensions filter string for the file picker dialog.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.SaveLocalFileControl.DefaultExtension">
+            <summary>
+            Gets or sets the default file extension for the file picker dialog.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl">
+            <summary>
+            Provides a way to define a raw string value or select a file instead.
+            </summary>
+            <summary>
+            StringOrFileConfigurationControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.UseFileProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.UseFile"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringValueLabelProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringValueLabel"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringValueProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringValue"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringEditorContextMenuProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringEditorContextMenu"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileNameLabelProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileNameLabel"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileNameProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileFilterProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileFilter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileDefaultExtensionProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileDefaultExtension"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.UseFile">
+            <summary>
+            Gets or sets the value indicating whether file option is selected.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringValueLabel">
+            <summary>
+            Gets or sets the label text for raw string value selector.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringValue">
+            <summary>
+            Gets or sets the string value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.StringEditorContextMenu">
+            <summary>
+            Gets or sets the string editor context menu.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileNameLabel">
+            <summary>
+            Gets or sets the label text for file name selector.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileName">
+            <summary>
+            Gets or sets the selected file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileFilter">
+            <summary>
+            Gets or sets the extensions filter string for the file picker dialog.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.StringOrFileConfigurationControl.FileDefaultExtension">
+            <summary>
+            Gets or sets the default file extension for the file picker dialog.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl">
+            <summary>
+            Displays the title text with bottom border.
+            </summary>
+            <summary>
+            TitleControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl.TextProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl.Text"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl.TextFormatProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl.TextFormat"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl.Text">
+            <summary>
+            Gets or sets the title text.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.TitleControl.TextFormat">
+            <summary>
+            Gets or sets the format string for the title text.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.DropDownButton">
+            <summary>
+            Button that allows users to select different actions.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.DropDownButton.DropDownProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.DropDownButton.DropDown"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DropDownButton.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.DropDownButton"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.DropDownButton.OnClick">
+            <summary>
+            Called when a control is clicked by the mouse or the keyboard.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.DropDownButton.DropDown">
+            <summary>
+            Gets or sets context menu with all possible actions.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.ToolTipDecorator">
+            <summary>
+            Adds tooltip button to the target content.
+            </summary>
+            <summary>
+            ToolTipDecorator
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.WpfHost.Basics.Controls.ToolTipDecorator.DecoratedContentProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.ToolTipDecorator.DecoratedContent"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.ToolTipDecorator.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.Controls.ToolTipDecorator"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Controls.ToolTipDecorator.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Controls.ToolTipDecorator.DecoratedContent">
+            <summary>
+            Gets or sets the content that should be decorated with tooltip button.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Dialogs.ExceptionDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Dialogs.ExceptionMessageBox">
+            <summary>
+            Displays an exception message box.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Dialogs.ExceptionMessageBox.Show(System.Windows.Window,System.String,System.Exception)">
+            <summary>
+            Displays a message box that has specified title bar caption and error information.
+            </summary>
+            <param name="owner">A <see cref="T:System.Windows.Window"/> that represents the owner window of the message box.</param>
+            <param name="caption">A <see cref="T:System.String"/> that specifies the title bar caption to display.</param>
+            <param name="error">An <see cref="T:System.Exception"/> that specifies the error to display.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Extensions.NotifyPropertyChangedExtensions">
+            <summary>
+            Provides a set of static methods to simplify work with <see cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.Extensions.NotifyPropertyChangedExtensions.Subscribe``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Action{``1})">
+            <summary>
+            Subscribes with provided <paramref name="action" /> to the change notifications of the specified property.
+            </summary>
+            <typeparam name="TOwner">Type of the property's owner.</typeparam>
+            <typeparam name="TProperty">Type of the property.</typeparam>
+            <param name="target">Property's owner.</param>
+            <param name="propertySelector">Expression that evaluates to the desired property.</param>
+            <param name="action">Action to subscribe with.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.BlobUrlSample">
+            <summary>
+              Looks up a localized string similar to blobs://&lt;account-key&gt;@&lt;account-name&gt;.blob.core.windows.net/&lt;container&gt;/&lt;blob-regex&gt;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.DefaultFalseValue">
+            <summary>
+              Looks up a localized string similar to No.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.DefaultTrueValue">
+            <summary>
+              Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.FolderBrowserDescription">
+            <summary>
+              Looks up a localized string similar to Select folder:.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.InvalidSourceConvertionType">
+            <summary>
+              Looks up a localized string similar to Cannot convert value from type &quot;{0}&quot;, expected type is &quot;{1}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.InvalidStorageContainerUrl">
+            <summary>
+              Looks up a localized string similar to Valid storage container URL should be provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.InvalidTargetConvertionType">
+            <summary>
+              Looks up a localized string similar to Cannot convert value to type &quot;{0}&quot;, expected type is &quot;{1}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.NonEmptyCollectionRequired">
+            <summary>
+              Looks up a localized string similar to One or more items should be added.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.NonEmptyStringRequired">
+            <summary>
+              Looks up a localized string similar to Non-empty value should be provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.NonNegativeNumberRequired">
+            <summary>
+              Looks up a localized string similar to Non-negative value should be provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.PositiveNumberRequired">
+            <summary>
+              Looks up a localized string similar to Value should be greater than zero.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.ReplaceContentConfirmation">
+             <summary>
+               Looks up a localized string similar to Current content of the field will be replaced.
+            
+            Do you want to continue?.
+             </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.Resources.ReplaceContentConfirmationTitle">
+            <summary>
+              Looks up a localized string similar to Replace Content.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.AggregateValueConverter">
+            <summary>
+            Provides a way to apply chain of value converters during the binding.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.AggregateValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.AggregateValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToDoubleValueConverter">
+            <summary>
+            Converts boolean value to double.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanValueConverter`1">
+            <summary>
+            Provides basic functionality to convert boolean values.
+            </summary>
+            <typeparam name="TTarget"></typeparam>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.ValueConverterBase`2">
+            <summary>
+            Provides basic functionality to convert values.
+            </summary>
+            <typeparam name="TSource">Type of the source value.</typeparam>
+            <typeparam name="TTarget">Type of the target value.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.ValueConverterBase`2.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.ValueConverterBase`2.Convert(`0,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.ValueConverterBase`2.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.ValueConverterBase`2.ConvertBack(`1,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanValueConverter`1.#ctor(`0,`0)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanValueConverter`1"/>.
+            </summary>
+            <param name="trueValue">Result value, returned when source value is true.</param>
+            <param name="falseValue">Result value, returned when source value is false.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanValueConverter`1.Convert(System.Boolean,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanValueConverter`1.ConvertBack(`0,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>true if provided <paramref name="value"/> equals to <see cref="P:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanValueConverter`1.True"/> property value; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanValueConverter`1.True">
+            <summary>
+            Gets or sets result value, returned when source value is true.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanValueConverter`1.False">
+            <summary>
+            Gets or sets result value, returned when source value is false.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToDoubleValueConverter.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToDoubleValueConverter"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToStringValueConverter">
+            <summary>
+            Converts boolean value to string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToStringValueConverter.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToStringValueConverter"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToVisibilityValueConverter">
+            <summary>
+            Converts boolean value to visibility.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToVisibilityValueConverter.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.BooleanToVisibilityValueConverter"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.DisplayNameValueConverter`1">
+            <summary>
+            Converts values to user-friendly display names based on the provided mapping.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.DisplayNameValueConverter`1.Convert(`0,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>User-friendly display name that represents current value.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.DisplayNameValueConverter`1.ConvertBack(System.String,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The display name produced by the binding target.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>Converted value that corresponds to current display name.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.DisplayNameValueConverter`1.GetDisplayNames">
+            <summary>
+            Provides mapping between known values and their user-friendly representations.
+            </summary>
+            <returns>Display names mapping for all known values.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.DisplayNameValueConverter`1.ConvertFromUnknownValue(`0)">
+            <summary>
+            Retrieves user-friendly representation for an unknown value.
+            </summary>
+            <param name="value">Unknown value.</param>
+            <returns>Display name.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.DisplayNameValueConverter`1.ConvertFromUnknownDisplayName(System.String)">
+            <summary>
+            Resolves the value based on an unknown display name.
+            </summary>
+            <param name="displayName">Display name.</param>
+            <returns>Resolved value.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverter">
+            <summary>
+            Encapsulates base type convertion class to provide display names for enum values.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1">
+            <summary>
+            Represents type-limiting wrapper for base type convertion class to provide display names for enum values.
+            </summary>
+            <remarks>
+            Since C# syntax does not allow explicit Enum constraint on the generic argument, inherit from this type-limiting wrapper
+            to apply Enum constraint to the <typeparamref name="TEnum"/>.
+            Do not use this class directly, use <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverter"/> instead.
+            </remarks>
+            <typeparam name="TEnum">Enum type limit.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1.Base`1">
+            <summary>
+            Converts enum values to user-friendly display names based on the provided mapping.
+            </summary>
+            <typeparam name="T">Enum type to convert.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1.Base`1.#ctor(System.Collections.Generic.IDictionary{`1,System.String})">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1.Base`1"/>.
+            </summary>
+            <param name="knownValues">Collection of user-friendly display names for known enum values.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1.Base`1.GetDisplayNames">
+            <summary>
+            Provides mapping between enum values and their user-friendly representations.
+            </summary>
+            <returns>Display names mapping for all enum values.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1.Base`1.ConvertFromUnknownValue(`1)">
+            <summary>
+            Retrieves the name of enum value that does not have a known mapping.
+            </summary>
+            <param name="value">Enum value without the mapping.</param>
+            <returns>Name of the enum value.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.EnumDisplayNameValueConverterTypeLimiter`1.Base`1.ConvertFromUnknownDisplayName(System.String)">
+            <summary>
+            Parses the name of enum value.
+            </summary>
+            <param name="displayName">Name of enum value to parse.</param>
+            <returns>Enum value.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.InvertBooleanValueConverter">
+            <summary>
+            Inverts boolean value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.InvertBooleanValueConverter.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.InvertBooleanValueConverter"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.StringNotEmptyToVisibilityValueConverter">
+            <summary>
+            Provides element visibility value depending on string content.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.StringNotEmptyToVisibilityValueConverter.Convert(System.String,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns><see cref="F:System.Windows.Visibility.Visible"/> if <paramref name="value"/> is not empty; otherwise, <see cref="F:System.Windows.Visibility.Collapsed"/>.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.StringNotEmptyToVisibilityValueConverter.ConvertBack(System.Windows.Visibility,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>Visible string if <paramref name="value"/> is <see cref="F:System.Windows.Visibility.Visible"/>; otherwise, empty string.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.ToStringValueConverter">
+            <summary>
+            Converts provided value to string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.ToStringValueConverter.Convert(System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Basics.ValueConverters.ToStringValueConverter.ConvertBack(System.String,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>Provided <paramref name="value" />.</returns>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

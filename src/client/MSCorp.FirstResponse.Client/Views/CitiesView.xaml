@@ -135,6 +135,25 @@
                         <Entry
                         Text="{Binding UserSpeed, Mode=TwoWay}"
                         Style="{StaticResource EntryStyle}" />
+                        <!-- OFFSETS -->
+                        <Label
+                        Text="Incident center latitude offset"
+                        Style="{StaticResource InfoLabelStyle}" />
+                        <Entry
+                        Text="{Binding IncidentLatitudeOffset, Mode=TwoWay}"
+                        Style="{StaticResource EntryStyle}" />
+                        <Label
+                        Text="Incident center longitude offset"
+                        Style="{StaticResource InfoLabelStyle}" />
+                        <Entry
+                        Text="{Binding IncidentLongitudeOffset, Mode=TwoWay}"
+                        Style="{StaticResource EntryStyle}" />
+                        <Label
+                        Text="Incident panel showing up delay"
+                        Style="{StaticResource InfoLabelStyle}" />
+                        <Entry
+                        Text="{Binding IncidentPanelShowDelay, Mode=TwoWay}"
+                        Style="{StaticResource EntryStyle}" />
                         <Button
                         Text="Apply"
                         Style="{StaticResource LoginButtonStyle}"

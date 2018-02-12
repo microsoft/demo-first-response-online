@@ -153,8 +153,8 @@
       <Link>Assets\Fonts\TitilliumWeb-Regular.ttf</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Windows_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <None Include="Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -283,6 +283,8 @@
     <Content Include="Assets\Suspect\ProfilePic7.jpg" />
     <Content Include="Assets\Suspect\ProfilePic8.jpg" />
     <Content Include="Assets\Suspect\ProfilePic9.jpg" />
+    <Content Include="Assets\table_add.png" />
+    <Content Include="Assets\table_remove.png" />
     <Content Include="Assets\Ticket\Suspect_ico_new_ticket.png" />
     <Content Include="Assets\Ticket\Ico_close_white.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -322,11 +324,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSCorp.FirstResponse.Client\MSCorp.FirstResponse.Client.csproj">
-      <Project>{22488b19-48a3-43ea-b50d-5a839cf85353}</Project>
+      <Project>{b4c662fc-e50b-4040-90db-f801e1548213}</Project>
       <Name>MSCorp.FirstResponse.Client</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -7,7 +7,9 @@ using MSCorp.FirstResponse.Client.Services.Dialog;
 using MSCorp.FirstResponse.Client.Services.Heatmap;
 using MSCorp.FirstResponse.Client.Services.Incidents;
 using MSCorp.FirstResponse.Client.Services.Mock.Authentication;
+using MSCorp.FirstResponse.Client.Services.Mock.Patients;
 using MSCorp.FirstResponse.Client.Services.Navigation;
+using MSCorp.FirstResponse.Client.Services.Patients;
 using MSCorp.FirstResponse.Client.Services.Responder;
 using MSCorp.FirstResponse.Client.Services.Ticket;
 using MSCorp.FirstResponse.Client.Services.Ticket.Mock;
@@ -68,6 +70,7 @@ namespace MSCorp.FirstResponse.Client.ViewModels.Base
                 _unityContainer.RegisterType<IIncidentsService, MockIncidentsService>();
                 _unityContainer.RegisterType<IResponderService, MockResponderService>();
                 _unityContainer.RegisterType<ISuspectService, MockSuspectService>();
+                _unityContainer.RegisterType<IPatientsService, MockPatientsService>();
             }
             else
             {
@@ -78,6 +81,7 @@ namespace MSCorp.FirstResponse.Client.ViewModels.Base
                 _unityContainer.RegisterType<ICitiesService, CitiesService>();
                 _unityContainer.RegisterType<IResponderService, ResponderService>();
                 _unityContainer.RegisterType<ISuspectService, SuspectService>();
+                _unityContainer.RegisterType<IPatientsService, PatientsService>();
             }
 
             _unityContainer.RegisterType<IDialogService, DialogService>();

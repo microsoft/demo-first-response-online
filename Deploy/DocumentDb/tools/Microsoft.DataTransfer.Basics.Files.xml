@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.Basics.Files</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.Basics.Files.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Files.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Files.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Files.Resources.BlobAlreadyExistsFormat">
+            <summary>
+              Looks up a localized string similar to BLOB &quot;{0}&quot; already exists.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Files.Resources.InvalidBlobUrl">
+            <summary>
+              Looks up a localized string similar to Invalid URL for a BLOB resource was provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Files.Resources.UnknownSinkStreamFormat">
+            <summary>
+              Looks up a localized string similar to Cannot identify file sink type from path: &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Files.Resources.UnknownSourceStreamFormat">
+            <summary>
+              Looks up a localized string similar to Cannot identify file source type from path: &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Files.Sink.ISinkStreamProvider">
+            <summary>
+            Provides <see cref="T:System.IO.Stream"/> instance to write the data to the target.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Files.Sink.ISinkStreamProvider.CreateStream(System.Threading.CancellationToken)">
+            <summary>
+            Creates a new <see cref="T:System.IO.Stream"/> to write the data.
+            </summary>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Files.Sink.SinkStreamProvidersFactory">
+            <summary>
+            Creates instances of <see cref="T:Microsoft.DataTransfer.Basics.Files.Sink.ISinkStreamProvider"/> based on the sink stream identifier.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Files.Sink.SinkStreamProvidersFactory.Create(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Basics.Files.Sink.ISinkStreamProvider"/> for the specified <paramref name="streamId"/>.
+            </summary>
+            <param name="streamId">Identifier of the target stream.</param>
+            <param name="compress">Whether the data in the target stream should be compressed.</param>
+            <param name="overwrite">Whether underlying storage stream can be replaced.</param>
+            <returns>A <see cref="T:Microsoft.DataTransfer.Basics.Files.Sink.ISinkStreamProvider"/> to write data to the specified target stream.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Files.Source.ISourceStreamProvider">
+            <summary>
+            Provides <see cref="T:System.IO.Stream"/> instance to read the data from the source.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Files.Source.ISourceStreamProvider.CreateStream(System.Threading.CancellationToken)">
+            <summary>
+            Creates a new <see cref="T:System.IO.Stream"/> to read the data.
+            </summary>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Files.Source.ISourceStreamProvider.Id">
+            <summary>
+            Gets the identifier of the stream.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Files.Source.SourceStreamProvidersFactory">
+            <summary>
+            Creates instances of <see cref="T:Microsoft.DataTransfer.Basics.Files.Source.ISourceStreamProvider"/> based on the source stream identifier.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Files.Source.SourceStreamProvidersFactory.Create(System.String,System.Boolean)">
+            <summary>
+            Creates a new instances of <see cref="T:Microsoft.DataTransfer.Basics.Files.Source.ISourceStreamProvider"/> for the specified <paramref name="streamId"/>.
+            </summary>
+            <param name="streamId">Identifier of the source stream.</param>
+            <param name="decompress">Whether raw data from the streams should be decompressed.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.DataTransfer.Basics.Files.Source.ISourceStreamProvider"/> to read data from the specified source stream.</returns>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

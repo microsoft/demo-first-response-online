@@ -9,12 +9,12 @@ namespace MSCorp.FirstResponse.Client.Effects
             BindableProperty.CreateAttached("ApplyFormEntryNativeStyle", typeof(bool), typeof(ApplyFormEntryNativeStyleEffect), false,
                 propertyChanged: ApplyFormEntryNativeStyle);
 
-        public static bool GetApplyNativeStyle(BindableObject view)
+        public static bool GetApplyFormEntryNativeStyle(BindableObject view)
         {
             return (bool)view.GetValue(ApplyFormEntryNativeStyleProperty);
         }
 
-        public static void SetApplyNativeStyle(BindableObject view, bool value)
+        public static void SetApplyFormEntryNativeStyle(BindableObject view, bool value)
         {
             view.SetValue(ApplyFormEntryNativeStyleProperty, value);
         }

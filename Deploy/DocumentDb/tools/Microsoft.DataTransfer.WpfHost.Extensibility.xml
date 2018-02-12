@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.WpfHost.Extensibility</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider">
+            <summary>
+            Provides configuration for data adapter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider.CanProvide(System.Type)">
+            <summary>
+            Determines if current instance can provide configuration of <paramref name="configurationType" /> type.
+            </summary>
+            <param name="configurationType">Type of the desired configuration.</param>
+            <returns>true if current instance can provide desired configuration; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider.Presenter">
+            <summary>
+            Gets the read-write configuration presenter control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider.SummaryPresenter">
+            <summary>
+            Gets the read-only configuration presenter control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider.Configuration">
+            <summary>
+            Gets the current configuration instance.
+            </summary>
+            <remarks>
+            Returns null if configuration is not valid.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.DataTransfer.WpfHost.Extensibility.IDataAdapterConfigurationProvider.CommandLineArguments">
+            <summary>
+            Gets the collection of command line arguments, representing current configuration.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.WpfHost.Extensibility.IImportSharedStorage">
+            <summary>
+            Allows to pass data between different import sources and sinks. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.WpfHost.Extensibility.IImportSharedStorage.GetOrAdd``1(System.Object,System.Func{System.Object,``0})">
+            <summary>
+            Adds a value to the storage if the key does not already exist.
+            </summary>
+            <typeparam name="T">Type of the value to store.</typeparam>
+            <param name="key">Key to identify the value.</param>
+            <param name="valueFactory">The function used to generate a value for the key.</param>
+            <returns>
+            The value for the key. This will be either the existing value for the key
+            if the key is already in the storage, or the new value for the key as
+            returned by <paramref name="valueFactory" /> if the key was not in the storage.
+            </returns>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.JsonFile</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.JsonFile.ConfigurationResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.ConfigurationResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.ConfigurationResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.ConfigurationResources.Sink_Compress">
+            <summary>
+              Looks up a localized string similar to Optional. If target file should be compressed with GZip.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.ConfigurationResources.Sink_File">
+            <summary>
+              Looks up a localized string similar to Path to the file to write data to.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.ConfigurationResources.Sink_Overwrite">
+            <summary>
+              Looks up a localized string similar to Optional. Overwrite target file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.ConfigurationResources.Sink_Prettify">
+            <summary>
+              Looks up a localized string similar to Optional. If JSON in the target file should be indented.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.ConfigurationResources.Source_Decompress">
+            <summary>
+              Looks up a localized string similar to Optional. If source files should be decompressed with GZip.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.ConfigurationResources.Source_Files">
+            <summary>
+              Looks up a localized string similar to One or more file search patterns to read JSON from.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.JsonFile.Sink.JsonFileSinkAdapterFactory">
+            <summary>
+            Provides data sink adapters capable of writing data to JSON file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonFile.Sink.JsonFileSinkAdapterFactory.CreateAsync(Microsoft.DataTransfer.JsonFile.Sink.IJsonFileSinkAdapterConfiguration,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSinkAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data sink adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Sink.JsonFileSinkAdapterFactory.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.JsonFile.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Resources.DataItemIdFormat">
+            <summary>
+              Looks up a localized string similar to {0} ({1}, {2}).
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Resources.SinkDescription">
+            <summary>
+              Looks up a localized string similar to Stores data in a single JSON file with root array element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Resources.SourceDescription">
+            <summary>
+              Looks up a localized string similar to Reads data from JSON files, either one or multiple.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.JsonFile.Sink.IJsonFileSinkAdapterConfiguration">
+            <summary>
+            Contains configuration for JSON files data sink adapter. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Sink.IJsonFileSinkAdapterConfiguration.File">
+            <summary>
+            Gets the path to the file to store JSON data to.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Sink.IJsonFileSinkAdapterConfiguration.Prettify">
+            <summary>
+            Gets the value that indicates whether JSON in the target file should be decorated with new lines and indentation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Sink.IJsonFileSinkAdapterConfiguration.Overwrite">
+            <summary>
+            Gets the value that indicates whether target file can be overwritten.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Sink.IJsonFileSinkAdapterConfiguration.Compress">
+            <summary>
+            Gets the value that indicates whether target file should be compressed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.JsonFile.Source.IJsonFileSourceAdapterConfiguration">
+            <summary>
+            Contains configuration for JSON files data source adapter. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Source.IJsonFileSourceAdapterConfiguration.Files">
+            <summary>
+            Gets the list of file names to read JSON data from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Source.IJsonFileSourceAdapterConfiguration.Decompress">
+            <summary>
+            Gets the value that indicates whether input files should be decompressed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.JsonFile.Source.JsonFileSourceAdapterFactory">
+            <summary>
+            Provides data source adapters capable of reading data from one or more JSON files.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonFile.Source.JsonFileSourceAdapterFactory.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.JsonFile.Source.JsonFileSourceAdapterFactory"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.JsonFile.Source.JsonFileSourceAdapterFactory.CreateAsync(Microsoft.DataTransfer.JsonFile.Source.IJsonFileSourceAdapterConfiguration,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data source adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.JsonFile.Source.JsonFileSourceAdapterFactory.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

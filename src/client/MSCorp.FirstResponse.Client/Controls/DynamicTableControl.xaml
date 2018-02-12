@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MSCorp.FirstResponse.Client.Controls.DynamicTableControl"
+             x:Name="Self">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="AddRowStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="20" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Source">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="ImageSource"
+                              Android="table_add"
+                              iOS="table_add"
+                              WinPhone="Assets/table_add.png"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="RemoveRowStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="20" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Source">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="ImageSource"
+                              Android="table_remove"
+                              iOS="table_remove"
+                              WinPhone="Assets/table_remove.png"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style  x:Key="TableLabelStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource PopupLabelStyle}">
+            </Style>
+            <Style  x:Key="TableEntryStyle" TargetType="{x:Type Entry}" BasedOn="{StaticResource PopupEntryStyle}">
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" 
+                   Grid.Column="0" 
+                   Text="Concept"
+                   Style="{StaticResource TableLabelStyle}" />
+            <Label Grid.Row="0" 
+                   Grid.Column="1" 
+                   Text="Value"
+                   Style="{StaticResource TableLabelStyle}" />
+            <Image x:Name="AddRowImage" 
+                   Grid.Row="0" 
+                   Grid.Column="2"
+                   Style="{StaticResource AddRowStyle}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer 
+                            Command="{Binding InnerAddRowCommand, Source={x:Reference Self}}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <StackLayout x:Name="RowsContainer"
+                         Grid.Row="1"
+                         Grid.ColumnSpan="3"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

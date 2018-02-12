@@ -1,0 +1,58 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  },
+  "variables": {
+    "location": "west central us",
+    "azureDbName": "firstresponsedb",
+    "databaseName": "Seattle911"
+  },
+  "resources": [
+    {
+      "comments": "Azure SQL Server",
+      "type": "Microsoft.Sql/servers",
+      "kind": "v12.0",
+      "name": "[variables('azureDbName')]",
+      "apiVersion": "2014-04-01-preview",
+      "location": "[variables('location')]",
+      "properties": {
+        "administratorLogin": "drwho",
+        "administratorLoginPassword": "Password!",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "comments": "Cannot add Tags section. It returns an error",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[variables('azureDbName')]"
+          ],
+          "location": "[variables('location')]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "endIpAddress": "255.255.255.255",
+            "startIpAddress": "0.0.0.0"
+          },
+          "type": "firewallrules"
+        },
+        {
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('azureDbName'))]"
+          ],
+          "kind": "v12.0,user",
+          "location": "[variables('location')]",
+          "name": "[concat(variables('azureDbName'), '/', variables('databaseName'))]",
+          "properties": {
+            "edition": "Premium",
+            "collation": "SQL_Latin1_General_CP1_CI_AS"
+          },
+          "resources": [],
+          "type": "Microsoft.Sql/servers/databases"
+        }
+      ],
+      "dependsOn": []
+    }
+  ]
+}

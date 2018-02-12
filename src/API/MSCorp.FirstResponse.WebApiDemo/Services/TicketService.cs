@@ -14,8 +14,8 @@ namespace MSCorp.FirstResponse.WebApiDemo.Services
 {
     public class TicketService
     {
-        private readonly string EndpointUri = ConfigurationManager.AppSettings["CosmosDBUri"];
-        private readonly string PrimaryKey = ConfigurationManager.AppSettings["CosmosDBAuthKey"];
+        private readonly string EndpointUri = ConfigurationManager.AppSettings["DocumentDbUri"];
+        private readonly string PrimaryKey = ConfigurationManager.AppSettings["DocumentDbAuthKey"];
 
         private DocumentClient _client;
 

@@ -2,6 +2,7 @@
 using MSCorp.FirstResponse.Client.Maps.Routes;
 using MSCorp.FirstResponse.Client.Models;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace MSCorp.FirstResponse.Client.Maps
@@ -9,6 +10,7 @@ namespace MSCorp.FirstResponse.Client.Maps
     public abstract class AbstractRouteManager
     {
         private readonly RoutesUpdater _routeUpdater;
+        private readonly RouteCache _routeCache;
         protected readonly CustomMap FormsMap;
         protected readonly AbstractPushpinManager PushpinManager;
 
@@ -17,6 +19,7 @@ namespace MSCorp.FirstResponse.Client.Maps
             FormsMap = formsMap;
             PushpinManager = pushpinManager;
             _routeUpdater = new RoutesUpdater();
+            _routeCache = new RouteCache();
         }
 
         public RoutesUpdater RouteUpdater
@@ -45,8 +48,27 @@ namespace MSCorp.FirstResponse.Client.Maps
                 Longitude = incident.Longitude
             };
 
-            IEnumerable<Geoposition> routePositions = await CalculateRoute(from, to);
+            IEnumerable<Geoposition> routePositions = await GetRoute(from, to);
             DrawRouteInMap(routePositions);
+        }
+
+        public async Task<IEnumerable<Geoposition>> GetRoute(Geoposition from, Geoposition to)
+        {
+            bool isCached = _routeCache.HasRoute(from, to);
+
+            if (isCached)
+            {
+                Debug.WriteLine($"Route from {from} to {to} is already cached.");
+                return _routeCache.GetRoute(from, to);
+            }
+            else
+            {
+                Debug.WriteLine($"Route from {from} to {to} is not cached.");
+                var routePositions = await CalculateRoute(from, to);
+                _routeCache.SetRoute(from, to, routePositions);
+
+                return routePositions;
+            }
         }
 
         public abstract IEnumerable<Geoposition> GetCurrentUserRoute();

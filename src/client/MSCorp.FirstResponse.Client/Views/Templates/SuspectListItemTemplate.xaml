@@ -35,32 +35,52 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid 
-            HeightRequest="60">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="45" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <controls:CheckBox 
-                Grid.Column="0" 
-                IsVisible="{Binding Selectable, Source={x:Reference Template}}}"
-                Marked="{Binding SuspectSelected, Mode=TwoWay}"
-                HeightRequest="20"
-                WidthRequest="20"
-                Size="20"/>
-            <imageCircle:CircleImage
-                Grid.Column="1"
-                Source="{Binding SuspectSearchImage, Converter={StaticResource SuspectImageConverter}}"
-                Style="{StaticResource ImageListStyle}" />
-            <StackLayout Grid.Column="2">
-                <Label
-                    Text="{Binding Name}"
-                    Style="{StaticResource TitleListStyle}"/>
-                <Label
-                    Text="{Binding ., Converter={StaticResource SuspectDescriptionConverter}}}"
-                    Style="{StaticResource SubTitleListStyle}"/>
+        <StackLayout>
+            <Grid
+                Grid.Row="0"
+                HeightRequest="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="45" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:CheckBox 
+                    Grid.Column="0" 
+                    IsVisible="{Binding Selectable, Source={x:Reference Template}}}"
+                    Marked="{Binding SuspectSelected, Mode=TwoWay}"
+                    HeightRequest="20"
+                    WidthRequest="20"
+                    Size="20"/>
+                <imageCircle:CircleImage
+                    Grid.Column="1"
+                    Source="{Binding SuspectSearchImage, Converter={StaticResource SuspectImageConverter}}"
+                    Style="{StaticResource ImageListStyle}" />
+                <StackLayout Grid.Column="2">
+                    <Label
+                        Text="{Binding Name}"
+                        Style="{StaticResource TitleListStyle}"/>
+                    <Label
+                        Text="{Binding ., Converter={StaticResource SuspectDescriptionConverter}}}"
+                        Style="{StaticResource SubTitleListStyle}"/>
+                </StackLayout>
+            </Grid>
+            <StackLayout
+                Grid.Row="1" 
+                Orientation="Horizontal" 
+                IsVisible="{Binding Selectable, Source={x:Reference Template}, Converter={StaticResource InverseBoolConverter}}">
+                <controls:ImageButton ImageButtonText="New Ticket"
+                              ImageButtonCommand="{Binding NewTicketCommand, Source={x:Reference Template}}"
+                              ImageButtonCommandParameter="{Binding .}"
+                              VerticalOptions="Center"
+                              HeightRequest="50"
+                              WidthRequest="120" />
+                <controls:ImageButton ImageButtonText="New ePCR"
+                              ImageButtonCommand="{Binding NewEpcrCommand, Source={x:Reference Template}}"
+                              ImageButtonCommandParameter="{Binding .}"
+                              VerticalOptions="Center"
+                              HeightRequest="50"
+                              WidthRequest="120" />
             </StackLayout>
-        </Grid>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -34,8 +34,8 @@
     <add key="Password" value="[sqlPassword]" />
     <add key="ShardMapDatabase" value="[sqlMasterDatabase]" />
     <add key="ShardMapName" value="[shardMapName]" /> 
-    <add key="CosmosDBUri" value="[CosmosDBUri]" />
-    <add key="CosmosDBAuthKey" value="[CosmosDBAuthKey]" /> 
+    <add key="DocumentDbUri" value="[DocumentDbUri]" />
+    <add key="DocumentDbAuthKey" value="[DocumentDbAuthKey]" /> 
     <add key="powerbi:ApiUrl" value="https://api.powerbi.com" />
     <add key="powerbi:AccessKey" value="[AccessKey]" />
     <add key="powerbi:WorkspaceCollection" value="[WorkspaceCollection]" />

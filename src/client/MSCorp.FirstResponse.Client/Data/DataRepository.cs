@@ -15,6 +15,7 @@ namespace MSCorp.FirstResponse.Client.Data
         private static IList<ResponderModel> _responderList;
         private static IList<UserRole> _userRoles;
         private static IList<SuspectModel> _suspectList;
+        private static IList<PatientModel> _patientList;
         private static IList<Geoposition> _heatPointsList;
 
         public static IList<IncidentModel> LoadIncidentData()
@@ -60,6 +61,11 @@ namespace MSCorp.FirstResponse.Client.Data
         public static IList<SuspectModel> LoadSuspectData()
         {
             return _suspectList ?? (_suspectList = LoadData<List<SuspectModel>>(GlobalSetting.SuspectJsonDataFile));
+        }
+
+        public static IList<PatientModel> LoadPatientsData()
+        {
+            return _patientList ?? (_patientList = LoadData<List<PatientModel>>(GlobalSetting.PatientsJsonDataFile));
         }
 
         public static IList<EventModel> LoadEventsData()

@@ -4,8 +4,14 @@
              x:Class="MSCorp.FirstResponse.Client.Views.LoginView"
              xmlns:controls="clr-namespace:MSCorp.FirstResponse.Client.Controls;assembly=MSCorp.FirstResponse.Client"
              xmlns:animations="clr-namespace:MSCorp.FirstResponse.Client.Animations;assembly=MSCorp.FirstResponse.Client"
-             xmlns:triggers="clr-namespace:MSCorp.FirstResponse.Client.Triggers;assembly=MSCorp.FirstResponse.Client"
-             BackgroundColor="{StaticResource DarkGrayColor}">
+             xmlns:triggers="clr-namespace:MSCorp.FirstResponse.Client.Triggers;assembly=MSCorp.FirstResponse.Client">
+    <ContentPage.BackgroundColor>
+        <OnPlatform 
+                x:TypeArguments="Color" 
+                Android="Transparent"
+                iOS="{StaticResource DarkGrayColor}"
+                WinPhone="{StaticResource DarkGrayColor}"/>
+    </ContentPage.BackgroundColor>
     <ContentPage.Resources>
         <ResourceDictionary>
 

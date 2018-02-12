@@ -1,5 +1,6 @@
 ﻿[
   {
+    "id": "1",
     "Name": "Jay Henningsen",
     "EyeColor": "Blue",
     "HairColor": "Brown",
@@ -8,6 +9,7 @@
     "SuspectSearchImage": "JayHenningsen.jpg"
   },
   {
+    "id": "2",
     "Name": "Joe Andreshak",
     "EyeColor": "Brown",
     "HairColor": "Black",
@@ -16,6 +18,7 @@
     "SuspectSearchImage": "JoeAndreshak.jpg"
   },
   {
+    "id": "3",
     "Name": "Joy Miller",
     "EyeColor": "Green",
     "HairColor": "Black",
@@ -24,6 +27,7 @@
     "SuspectSearchImage": "JoyMiller.jpg"
   },
   {
+    "id": "4",
     "Name": "Joao Casqueiro",
     "EyeColor": "Brown",
     "HairColor": "Red",
@@ -32,6 +36,7 @@
     "SuspectSearchImage": "JoaoCasqueiro.jpg"
   },
   {
+    "id": "5",
     "Name": "Billie Jo Murray",
     "EyeColor": "Blue",
     "HairColor": "Black",

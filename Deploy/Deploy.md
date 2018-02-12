@@ -22,7 +22,7 @@ Before starting the deployment, make sure you have access to an Azure subscripti
   * -ResourceGroupLocation westus (optional : default westus)  
     This is the location where the resource group is created, if not specified it will default to westus.
   * -WebConfigPath (mandatory)  
-    Part of this demo relies on debugging using Visual Studio. To reduce the overhead of taking the connection strings and Azure search credentials from the Azure Portal after deployment we will programmatically replace keys created from deployment into the web.config for debugging. This is a one-time replacement, running a deployment the second time will retain the previous keys. 
+    Part of this demo relies on debugging using Visual Studio. To reduce the overhead of taking the connection strings and Azure search credentials from the Azure Portal after deployment we will programmatically replace keys created from deployment into the Web.config for debugging. This is a one-time replacement, running a deployment the second time will retain the previous keys. Please take care about the file path, it is case sensitive.
 To re-apply the changes to the web.confg file replace with the web.config.backup.
   * –AzureADAccount (optional)  
     The AzureADAccount is a user you have credentials for to login. This will be used to show Azure AD Authentication to SQL server. 

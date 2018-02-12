@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dt</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.ConsoleHost.Configuration.IInfrastructureConfiguration">
+            <summary>
+            Configuration for data transfer process infrastructure.
+            </summary>
+            <remarks>
+            This needs to be public to allow automatic proxy class generation.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ConsoleHost.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.CriticalFailurePrefix">
+            <summary>
+              Looks up a localized string similar to Critical error: .
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.DataAdapterConfigurationFactoryNotFoundFormat">
+            <summary>
+              Looks up a localized string similar to Data adapter configuration of type &apos;{0}&apos; can not be created because there is no factory exists that can instantiate it..
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpAdapterConfigurationOptionFormat">
+            <summary>
+              Looks up a localized string similar to {0}{1}.{2}: {3}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpConfigurationHeader">
+            <summary>
+              Looks up a localized string similar to Options:.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpConfigurationNotAvailableFormat">
+            <summary>
+              Looks up a localized string similar to Failed to get configuration: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpConfigurationOptionFormat">
+            <summary>
+              Looks up a localized string similar to {0}{1}: {2}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpHeaderFormat">
+            <summary>
+              Looks up a localized string similar to DocumentDB Data Migration Tool v{0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpKnownAdapterFormat">
+            <summary>
+              Looks up a localized string similar to {2}: {3}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpKnownSourcesHeader">
+            <summary>
+              Looks up a localized string similar to Available sources:.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpKnownTargetsHeader">
+            <summary>
+              Looks up a localized string similar to Available targets:.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpUsageExample">
+            <summary>
+              Looks up a localized string similar to dt.exe [{0}&lt;option&gt;:&lt;value&gt;] {0}{1}:&lt;source-name&gt; [{0}{1}.&lt;source-option&gt;:&lt;value&gt;] {0}{2}:&lt;target-name&gt; [{0}{2}.&lt;target-option&gt;:&lt;value&gt;].
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.HelpUsageExampleHeader">
+            <summary>
+              Looks up a localized string similar to Usage:.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.SourceNotSpecified">
+            <summary>
+              Looks up a localized string similar to Source adapter should be specified.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.StatisticsFailureItemFormat">
+            <summary>
+              Looks up a localized string similar to {0}: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.StatisticsFailuresHeader">
+            <summary>
+              Looks up a localized string similar to Failures:.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.StatisticsProgressFormat">
+            <summary>
+              Looks up a localized string similar to Transferred: {0}; Failed: {1}; Elapsed Time: {2}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.StatisticsResultFormat">
+             <summary>
+               Looks up a localized string similar to Transferred: {0}
+            Failed: {1}
+            Time spent: {2}.
+             </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.TargetNotSpecified">
+            <summary>
+              Looks up a localized string similar to Target adapter should be specified.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.UnknownSourceFormat">
+            <summary>
+              Looks up a localized string similar to Source with the name &apos;{0}&apos; is not known.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.Resources.UnknownTargetFormat">
+            <summary>
+              Looks up a localized string similar to Target with the name &apos;{0}&apos; is not known.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

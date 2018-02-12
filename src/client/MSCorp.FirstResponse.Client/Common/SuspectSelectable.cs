@@ -30,12 +30,13 @@ namespace MSCorp.FirstResponse.Client.Common
 
         public SuspectSelectable(SuspectModel model, bool suspectSelected) : base()
         {
-            base.Name = model.Name;
-            base.HairColor = model.HairColor;
-            base.EyeColor = model.EyeColor;
-            base.SkinColor = model.SkinColor;
-            base.Sex = model.Sex;
-            base.SuspectSearchImage = model.SuspectSearchImage;
+            Id = model.Id;
+            Name = model.Name;
+            HairColor = model.HairColor;
+            EyeColor = model.EyeColor;
+            SkinColor = model.SkinColor;
+            Sex = model.Sex;
+            SuspectSearchImage = model.SuspectSearchImage;
             _suspectSelected = suspectSelected;
         }
     }

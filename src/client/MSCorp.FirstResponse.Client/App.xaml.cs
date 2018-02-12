@@ -1,4 +1,5 @@
-﻿using MSCorp.FirstResponse.Client.Services.Navigation;
+﻿using MSCorp.FirstResponse.Client.Maps.Routes.GoogleApi;
+using MSCorp.FirstResponse.Client.Services.Navigation;
 using MSCorp.FirstResponse.Client.ViewModels.Base;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -11,7 +12,9 @@ namespace MSCorp.FirstResponse.Client
         {
             InitializeComponent();
 
-            if (Device.OS == TargetPlatform.Windows)
+            DrivingRouterProvider.GoogleMapsApiKey = GlobalSetting.GoogleMapsApiKey;
+
+            if (Device.RuntimePlatform == Device.UWP)
             {
                 InitNavigation();
             }
@@ -27,7 +30,7 @@ namespace MSCorp.FirstResponse.Client
         {
             base.OnStart();
 
-            if (Device.OS != TargetPlatform.Windows)
+            if (Device.RuntimePlatform != Device.UWP)
             {
                 await InitNavigation();
             }

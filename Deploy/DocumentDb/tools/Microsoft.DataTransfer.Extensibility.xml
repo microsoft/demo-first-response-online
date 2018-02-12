@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.Extensibility</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.Extensibility.IDataAdapterFactory">
+            <summary>
+            Provides basic information about data adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.IDataAdapterFactory.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.IDataItem">
+            <summary>
+            Represents data artifact that can be transferred between source and sink.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.IDataItem.GetFieldNames">
+            <summary>
+            Provides collection of field names available in the data artifact.
+            </summary>
+            <returns>Collection of field names.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.IDataItem.GetValue(System.String)">
+            <summary>
+            Provides a value of the specified data artifact field.
+            </summary>
+            <param name="fieldName">Name of data artifact field.</param>
+            <returns>Value of the field.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.IDataSinkAdapter">
+            <summary>
+            Represents write-only data storage.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.IDataSinkAdapter.WriteAsync(Microsoft.DataTransfer.Extensibility.IDataItem,System.Threading.CancellationToken)">
+            <summary>
+            Writes one data artifact to the storage.
+            </summary>
+            <param name="dataItem">Data artifact to write.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous write operation.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.IDataSinkAdapter.CompleteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Signals that no more data artifacts will be sent.
+            </summary>
+            <remarks>
+            Call to this method can occur before all write tasks (returned by WriteAsync) have completed,
+            thus no resources should be disposed in this method. Instead, this method is useful when
+            implementing batch operations, e.g. last batch can be submitted to the underlying storage.
+            </remarks>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous write operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.IDataSinkAdapter.MaxDegreeOfParallelism">
+            <summary>
+            Gets number of maximum supported parallel write operations.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapterFactory`1">
+            <summary>
+            Provides data source adapters capable of reading data.
+            </summary>
+            <typeparam name="TConfiguration">Type of the data source adapter configuration.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.IDataSourceAdapterFactory`1.CreateAsync(`0,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data source adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.IDataSinkAdapterFactory`1">
+            <summary>
+            Provides data sink adapters capable of writing data.
+            </summary>
+            <typeparam name="TConfiguration">Type of the data sink adapter configuration.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.IDataSinkAdapterFactory`1.CreateAsync(`0,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSinkAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data sink adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter">
+            <summary>
+            Represents read-only data storage.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter.ReadNextAsync(Microsoft.DataTransfer.Extensibility.ReadOutputByRef,System.Threading.CancellationToken)">
+            <summary>
+            Reads one data artifact from the storage.
+            </summary>
+            <param name="readOutput">
+            Object holding additional information about the data artifact.
+            Instance of <see cref="T:Microsoft.DataTransfer.Extensibility.ReadOutputByRef"/> will be provided, implementation only need to fill in the properties.
+            </param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous read operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.IDataTransferContext">
+            <summary>
+            Provides additional information about the data transfer operation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.IDataTransferContext.SourceName">
+            <summary>
+            Gets name of the data source adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.IDataTransferContext.SinkName">
+            <summary>
+            Gets name of the data sink adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.NonFatalReadException">
+            <summary>
+            Represents non-critical data read error.
+            </summary>
+            <remarks>
+            This exception can be thrown when data source adapter encounters an error, but can continue reading next data artifacts.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.NonFatalReadException.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.NonFatalReadException"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.NonFatalReadException.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.NonFatalReadException"/>.
+            </summary>
+            <param name="message">Error message.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.NonFatalReadException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.NonFatalReadException"/>.
+            </summary>
+            <param name="message">Error message.</param>
+            <param name="innerException">Inner exception.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.NonFatalReadException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.NonFatalReadException"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.NonFatalReadException.Convert(System.Exception)">
+            <summary>
+            Converts provided <paramref name="source"/> <see cref="T:System.Exception"/> to <see cref="T:Microsoft.DataTransfer.Extensibility.NonFatalReadException"/>.
+            </summary>
+            <param name="source">Source <see cref="T:System.Exception"/> to extract message and inner exception from.</param>
+            <returns>New instance of <see cref="T:Microsoft.DataTransfer.Extensibility.NonFatalReadException"/> with source message and inner exception.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.ReadOutputByRef">
+            <summary>
+            Container for additional information of data read operation.
+            </summary>
+            <remarks>
+            Since passing variables by reference is not supported with async operations, this container class is used to obtain additional information.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.DataTransfer.Extensibility.ReadOutputByRef.None">
+            <summary>
+            Singleton instance to use where actual value does not matter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.ReadOutputByRef.Wipe">
+            <summary>
+            Removes all values from the current container.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.ReadOutputByRef.DataItemId">
+            <summary>
+            Gets or sets data artifact identifier.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

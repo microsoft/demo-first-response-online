@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.Autofac</name>
+    </assembly>
+    <members>
+        <member name="T:Autofac.Configuration.ComponentConfigurationElement">
+            <summary>
+            Represents an autofac component configuration element.
+            </summary>
+        </member>
+        <member name="M:Autofac.Configuration.ComponentConfigurationElement.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Autofac.Configuration.ComponentConfigurationElement"/>.
+            </summary>
+        </member>
+        <member name="M:Autofac.Configuration.ComponentConfigurationElement.PostDeserialize">
+            <summary>
+            Populates <see cref="P:Autofac.Configuration.ComponentConfigurationElement.ComponentType"/> from the <see cref="P:Autofac.Configuration.ComponentConfigurationElement.TypeString"/>.
+            </summary>
+        </member>
+        <member name="M:Autofac.Configuration.ComponentConfigurationElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)">
+            <summary>
+            Adds property to metadata collection.
+            </summary>
+            <param name="name">Property name.</param>
+            <param name="value">Property value.</param>
+            <returns>true as property is added to metadata collection.</returns>
+        </member>
+        <member name="P:Autofac.Configuration.ComponentConfigurationElement.Name">
+            <summary>
+            Gets a component name.
+            </summary>
+        </member>
+        <member name="P:Autofac.Configuration.ComponentConfigurationElement.TypeString">
+            <summary>
+            Gets component type name.
+            </summary>
+        </member>
+        <member name="P:Autofac.Configuration.ComponentConfigurationElement.ComponentType">
+            <summary>
+            Gets component type.
+            </summary>
+        </member>
+        <member name="P:Autofac.Configuration.ComponentConfigurationElement.Metadata">
+            <summary>
+            Gets additional component metadata.
+            </summary>
+        </member>
+        <member name="T:Autofac.Configuration.ComponentConfigurationElementCollection">
+            <summary>
+            Represents a collection of autofac component configuration elements.
+            </summary>
+        </member>
+        <member name="M:Autofac.Configuration.ComponentConfigurationElementCollection.CreateNewElement">
+            <summary>
+            Creates a new instance of autofac component configuration element.
+            </summary>
+            <returns>Autofac component configuration element.</returns>
+        </member>
+        <member name="M:Autofac.Configuration.ComponentConfigurationElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            Gets the element key for autofac component configuration element composed from component name and type.
+            </summary>
+            <param name="element">Autofac component configuration element</param>
+            <returns>An <see cref="T:System.Object"/> that acts as the key for the specified <see cref="T:System.Configuration.ConfigurationElement"/>.</returns>
+        </member>
+        <member name="T:Autofac.Configuration.ComponentsConfigurationSection">
+            <summary>
+            Represents an autofac components configuration section.
+            </summary>
+        </member>
+        <member name="P:Autofac.Configuration.ComponentsConfigurationSection.Components">
+            <summary>
+            Gets the collection of autofac component configuration elements.
+            </summary>
+        </member>
+        <member name="T:Autofac.Configuration.SimpleComponentsConfigurationSettingsReader">
+            <summary>
+            Registrar of simple components defined in the application configuration file.
+            </summary>
+        </member>
+        <member name="M:Autofac.Configuration.SimpleComponentsConfigurationSettingsReader.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Autofac.Configuration.SimpleComponentsConfigurationSettingsReader"/>.
+            </summary>
+            <param name="sectionName">Name of the configuration section to read components registration data from.</param>
+        </member>
+        <member name="M:Autofac.Configuration.SimpleComponentsConfigurationSettingsReader.Load(Autofac.ContainerBuilder)">
+            <summary>
+            Registers components in the container.
+            </summary>
+            <param name="builder">The builder through which components can be registered.</param>
+        </member>
+        <member name="M:Autofac.Configuration.SimpleComponentsConfigurationSettingsReader.CreateService(System.String,System.Type)">
+            <summary>
+            Creates new instance of autofac service definition.
+            </summary>
+            <param name="name">Name of the service for named services.</param>
+            <param name="type">Type of the service.</param>
+            <returns>Autofac service definition.</returns>
+        </member>
+        <member name="M:Autofac.Configuration.SimpleComponentsConfigurationSettingsReader.IsInterfaceOfInterest(System.Type)">
+            <summary>
+            Determines if implementor of provided interface type should be registered in the container.
+            </summary>
+            <param name="interfaceType">Type of the implemented interface.</param>
+            <returns>true if implementor should be registered; otherwise, false.</returns>
+        </member>
+        <member name="T:Autofac.Configuration.TypeLimitedComponentsConfigurationSettingsReader">
+            <summary>
+            Registrar of the components defined in the application configuration file limited by specific type.
+            </summary>
+        </member>
+        <member name="M:Autofac.Configuration.TypeLimitedComponentsConfigurationSettingsReader.#ctor(System.String,System.Type)">
+            <summary>
+            Creates a new instance of <see cref="T:Autofac.Configuration.TypeLimitedComponentsConfigurationSettingsReader"/>.
+            </summary>
+            <param name="sectionName">Name of the configuration section to read components registration data from.</param>
+            <param name="baseType">Type limit.</param>
+        </member>
+        <member name="M:Autofac.Configuration.TypeLimitedComponentsConfigurationSettingsReader.CreateService(System.String,System.Type)">
+            <summary>
+            Creates new instance of autofac service definition.
+            </summary>
+            <param name="name">Name of the service for named services.</param>
+            <param name="type">Type of the service.</param>
+            <returns>Autofac service definition.</returns>
+        </member>
+        <member name="M:Autofac.Configuration.TypeLimitedComponentsConfigurationSettingsReader.IsInterfaceOfInterest(System.Type)">
+            <summary>
+            Determines if specified type limit is assignable from provided interface type.
+            </summary>
+            <param name="interfaceType">Interface type.</param>
+            <returns>true if specified type limit is assignable from provided interface type; otherwise, false.</returns>
+        </member>
+        <member name="T:Autofac.ContainerBuilderExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:Autofac.ContainerBuilder"/> to enable complex registrations.
+            </summary>
+        </member>
+        <member name="M:Autofac.ContainerBuilderExtensions.RegisterAggregationDecorator``1(Autofac.ContainerBuilder,System.Func{Autofac.IComponentContext,System.Collections.Generic.IEnumerable{``0},``0})">
+            <summary>
+            Registers aggregation decorator (decorator that will broadcast all calls to all decorated instances)
+            for the services of type <typeparamref name="TService" />.
+            </summary>
+            <typeparam name="TService">Type of the decorated services.</typeparam>
+            <param name="builder">Container builder.</param>
+            <param name="decoratorFactory">Factory delegate that can create new instances of the aggregate decorator.</param>
+            <returns>Registration builder to continue the registration.</returns>
+        </member>
+        <member name="M:Autofac.ContainerBuilderExtensions.RegisterDecorator``1(Autofac.ContainerBuilder,System.Func{Autofac.IComponentContext,``0,``0})">
+            <summary>
+            Registers default decorator for the services of type <typeparamref name="TService" />.
+            </summary>
+            <typeparam name="TService">Type of the decorated services.</typeparam>
+            <param name="builder">Container builder.</param>
+            <param name="decoratorFactory">Factory delegate that can create new instances of the decorator.</param>
+            <returns>Registration builder to continue the registration.</returns>
+        </member>
+        <member name="T:Autofac.DataTransferContainerBuilder">
+            <summary>
+            Autofac container builder with custom registration sources.
+            </summary>
+        </member>
+        <member name="M:Autofac.DataTransferContainerBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Autofac.DataTransferContainerBuilder"/>.
+            </summary>
+        </member>
+        <member name="T:Autofac.OpenGenerics.OpenGenericLooselyNamedService">
+            <summary>
+            Lookup key to resolve named open generic services.
+            </summary>
+        </member>
+        <member name="T:Autofac.OpenGenerics.OpenGenericTypedService">
+            <summary>
+            Lookup key to resolve open generic services.
+            </summary>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericTypedService.#ctor(System.Type)">
+            <summary>
+            Creates a new instance of <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/>.
+            </summary>
+            <param name="serviceType">Type of the service.</param>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericTypedService.ChangeType(System.Type)">
+            <summary>
+            Return a new service of the same kind, but carrying <paramref name="newType"/>
+            as the <see cref="P:Autofac.Core.IServiceWithType.ServiceType"/>.
+            </summary>
+            <param name="newType">The new service type.</param>
+            <returns>A new service with the service type.</returns>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericTypedService.Equals(System.Object)">
+            <summary>
+            Determines if the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/>
+            is the same generic as the service type of the specified <see cref="T:System.Object"/>.
+            </summary>
+            <param name="obj">
+            The <see cref="T:System.Object"/> whose service type is to be compared with
+            the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/>.
+            </param>
+            <returns>
+            True if the service type of <paramref name="obj"/> is the same generic as
+            the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/>, otherwise False.
+            </returns>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericTypedService.Equals(Autofac.OpenGenerics.OpenGenericTypedService)">
+            <summary>
+            Determines if the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/>
+            is the same generic as the service type of the specified <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/>.
+            </summary>
+            <param name="other">
+            The <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/> whose service type is to be compared with
+            the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/>.
+            </param>
+            <returns>
+            True if the service type of <paramref name="other"/> is the same generic as
+            the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericTypedService"/>, otherwise False.
+            </returns>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericTypedService.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>The hash code for this instance.</returns>
+        </member>
+        <member name="P:Autofac.OpenGenerics.OpenGenericTypedService.ServiceType">
+            <summary>
+            Gets the type of the service.
+            </summary>
+        </member>
+        <member name="P:Autofac.OpenGenerics.OpenGenericTypedService.Description">
+            <summary>
+            Gets a human-readable description of the service.
+            </summary>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericLooselyNamedService.#ctor(System.String,System.Type)">
+            <summary>
+            Creates a new instance of <see cref="T:Autofac.OpenGenerics.OpenGenericLooselyNamedService"/>.
+            </summary>
+            <param name="name">Name of the service.</param>
+            <param name="type">Type of the service.</param>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericLooselyNamedService.ChangeType(System.Type)">
+            <summary>
+            Return a new service of the same kind, but carrying <paramref name="newType"/>
+            as the <see cref="P:Autofac.Core.IServiceWithType.ServiceType"/>.
+            </summary>
+            <param name="newType">The new service type.</param>
+            <returns>A new service with the service type.</returns>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericLooselyNamedService.Equals(System.Object)">
+            <summary>
+            Determines if the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericLooselyNamedService"/>
+            is the same generic as the service type of the specified <see cref="T:System.Object"/>.
+            </summary>
+            <param name="obj">
+            The <see cref="T:System.Object"/> whose service type is to be compared with
+            the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericLooselyNamedService"/>.
+            </param>
+            <returns>
+            True if the service type of <paramref name="obj"/> is the same generic as
+            the service type of the current <see cref="T:Autofac.OpenGenerics.OpenGenericLooselyNamedService"/>, otherwise False.
+            </returns>
+        </member>
+        <member name="M:Autofac.OpenGenerics.OpenGenericLooselyNamedService.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>The hash code for this instance.</returns>
+        </member>
+        <member name="P:Autofac.OpenGenerics.OpenGenericLooselyNamedService.Name">
+            <summary>
+            Gets the name of the service.
+            </summary>
+        </member>
+        <member name="P:Autofac.OpenGenerics.OpenGenericLooselyNamedService.Description">
+            <summary>
+            Gets a human-readable description of the service.
+            </summary>
+        </member>
+        <member name="T:Autofac.LooseNamingContainerBuilderExtensions">
+            <summary>
+            Contains extension methods to enable registration and resolution of loosely named services.
+            </summary>
+        </member>
+        <member name="M:Autofac.LooseNamingContainerBuilderExtensions.LooselyNamed``1(Autofac.Builder.IRegistrationBuilder{``0,Autofac.Builder.ConcreteReflectionActivatorData,Autofac.Builder.SingleRegistrationStyle},System.String)">
+            <summary>
+            Registers the service as typed service with the name.
+            </summary>
+            <typeparam name="TService">Type of the service.</typeparam>
+            <param name="builder">Registration builder.</param>
+            <param name="name">Name of the service.</param>
+            <returns>Registration builder to continue the registration.</returns>
+        </member>
+        <member name="M:Autofac.LooseNamingContainerBuilderExtensions.ResolveAllLooselyNamed``1(Autofac.IComponentContext)">
+            <summary>
+            Resolves all loosely named services.
+            </summary>
+            <typeparam name="TService">Type of the service.</typeparam>
+            <param name="context">Component context to lookup registrations in.</param>
+            <returns>Collection of all loosely named services.</returns>
+        </member>
+        <member name="T:Autofac.LooseNaming.LooselyNamedService">
+            <summary>
+            Lookup key to resolve named services.
+            </summary>
+        </member>
+        <member name="M:Autofac.LooseNaming.LooselyNamedService.#ctor(System.String,System.Type)">
+            <summary>
+            Creates a new instance of <see cref="T:Autofac.LooseNaming.LooselyNamedService"/>.
+            </summary>
+            <param name="name">Name of the service.</param>
+            <param name="serviceType">Type of the service.</param>
+        </member>
+        <member name="M:Autofac.LooseNaming.LooselyNamedService.ChangeType(System.Type)">
+            <summary>
+            Return a new service of the same kind, but carrying <paramref name="newType"/>
+            as the <see cref="P:Autofac.Core.IServiceWithType.ServiceType"/>.
+            </summary>
+            <param name="newType">The new service type.</param>
+            <returns>A new service with the service type.</returns>
+        </member>
+        <member name="M:Autofac.LooseNaming.LooselyNamedService.Equals(System.Object)">
+            <summary>
+            Determines if the service type of the current <see cref="T:Autofac.LooseNaming.LooselyNamedService"/>
+            is the same as the service type of the specified <see cref="T:System.Object"/>.
+            </summary>
+            <param name="obj">
+            The <see cref="T:System.Object"/> whose service type is to be compared with
+            the service type of the current <see cref="T:Autofac.LooseNaming.LooselyNamedService"/>.
+            </param>
+            <returns>
+            True if the service type of <paramref name="obj"/> is the same as
+            the service type of the current <see cref="T:Autofac.LooseNaming.LooselyNamedService"/>, otherwise False.
+            </returns>
+        </member>
+        <member name="M:Autofac.LooseNaming.LooselyNamedService.Equals(Autofac.LooseNaming.LooselyNamedService)">
+            <summary>
+            Determines if the service type of the current <see cref="T:Autofac.LooseNaming.LooselyNamedService"/>
+            is the same as the service type of the specified <see cref="T:Autofac.LooseNaming.LooselyNamedService"/>.
+            </summary>
+            <param name="other">
+            The <see cref="T:Autofac.LooseNaming.LooselyNamedService"/> whose service type is to be compared with
+            the service type of the current <see cref="T:Autofac.LooseNaming.LooselyNamedService"/>.
+            </param>
+            <returns>
+            True if the service type of <paramref name="other"/> is the same as
+            the service type of the current <see cref="T:Autofac.LooseNaming.LooselyNamedService"/>, otherwise False.
+            </returns>
+        </member>
+        <member name="M:Autofac.LooseNaming.LooselyNamedService.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>The hash code for this instance.</returns>
+        </member>
+        <member name="P:Autofac.LooseNaming.LooselyNamedService.Name">
+            <summary>
+            Gets the name of the service.
+            </summary>
+        </member>
+        <member name="P:Autofac.LooseNaming.LooselyNamedService.ServiceType">
+            <summary>
+            Gets the type of the service.
+            </summary>
+        </member>
+        <member name="P:Autofac.LooseNaming.LooselyNamedService.Description">
+            <summary>
+            Gets a human-readable description of the service.
+            </summary>
+        </member>
+        <member name="T:Autofac.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Autofac.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Autofac.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Autofac.Resources.NonGenericTypeForOpenGenericFormat">
+            <summary>
+              Looks up a localized string similar to Non-generic type &apos;{0}&apos; was provided when trying to register an open generic..
+            </summary>
+        </member>
+        <member name="P:Autofac.Resources.TypeNotFoundFormat">
+            <summary>
+              Looks up a localized string similar to Type &apos;{0}&apos; referenced in the configuration file could not be loaded. Try specifying assembly name in the following format: &apos;Type, Assembly&apos; and make sure that assembly containing a type is bin-placed..
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

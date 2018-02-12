@@ -41,6 +41,13 @@ namespace MSCorp.FirstResponse.Client.Helpers
         private const string PowerBIUrlKey = "power_bi_key";
 
         private const string UserSpeedKey = "user_speed";
+
+        private const string IncidentCenterLatitudeOffsetKey = "incident_center_latitude_offset";
+
+        private const string IncidentCenterLongitudeOffsetKey = "incident_center_longitude_offset";
+
+        private const string IncidentPanelShowDelayKey = "incident_panel_show_delay";
+
         #endregion
 
         public static double AmbulanceLatitude
@@ -130,6 +137,42 @@ namespace MSCorp.FirstResponse.Client.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue<double>(UserSpeedKey, value);
+            }
+        }
+
+        public static double IncidentCenterLatitudeOffset
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault<double>(IncidentCenterLatitudeOffsetKey, 0.08);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<double>(IncidentCenterLatitudeOffsetKey, value);
+            }
+        }
+
+        public static double IncidentCenterLongitudeOffset
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault<double>(IncidentCenterLongitudeOffsetKey, -0.08);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<double>(IncidentCenterLongitudeOffsetKey, value);
+            }
+        }
+
+        public static int IncidentPanelShowDelay
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault<int>(IncidentPanelShowDelayKey, 500);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<int>(IncidentPanelShowDelayKey, value);
             }
         }
 

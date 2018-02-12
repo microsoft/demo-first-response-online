@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.AzureTable</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.AzureTable.Client.AzureTableProbeClient">
+            <summary>
+            Simple Azure Table storage client to verify the connection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.AzureTable.Client.AzureTableProbeClient.TestConnection(System.String,System.Nullable{Microsoft.DataTransfer.AzureTable.Shared.AzureStorageLocationMode})">
+            <summary>
+            Tests the Azure Table storage connection.
+            </summary>
+            <param name="connectionString">Azure Table storage connection string to use to connect to the account.</param>
+            <param name="locationMode">Location mode to use when connecting to Azure Table storage.</param>
+            <returns>Task that represents asynchronous connection operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.ConfigurationResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.ConfigurationResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.ConfigurationResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.ConfigurationResources.ConnectionString">
+            <summary>
+              Looks up a localized string similar to Connection string for the Azure Table storage.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.ConfigurationResources.LocationModeFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Specifies which location mode to use when connecting to Azure Table storage: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.ConfigurationResources.Source_Filter">
+            <summary>
+              Looks up a localized string similar to Optional. Filter string to apply.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.ConfigurationResources.Source_InternalFieldsFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default {0}. Specifies which internal Azure Table fields should be preserve in the output: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.ConfigurationResources.Source_Projection">
+            <summary>
+              Looks up a localized string similar to Optional. List of columns to select.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.ConfigurationResources.Source_Table">
+            <summary>
+              Looks up a localized string similar to Name of the Azure Table.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.Defaults">
+            <summary>
+            Contains default configuration for Azure Table storage data adapters.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.AzureTable.Defaults.SetCurrent(Microsoft.DataTransfer.AzureTable.IDefaults)">
+            <summary>
+            Changes default configuration for Azure Table storage data adapters.
+            </summary>
+            <param name="defaults">New default configuration.</param>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Defaults.Current">
+            <summary>
+            Gets current default configuration for Azure Table storage data adapters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.IDefaults">
+            <summary>
+            Contains default configuration for Azure Table storage data adapters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.IDefaults.LocationMode">
+            <summary>
+            Gets the default value that indicates which location mode should be used when connecting to Azure Table storage.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.IDefaults.SourceInternalFields">
+            <summary>
+            Gets the default value that indicates which internal Azure Table fields should be preserved in the source adapter output.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.DynamicConfigurationResources">
+            <summary>
+            Contains dynamic resources for data adapters configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.DynamicConfigurationResources.LocationMode">
+            <summary>
+            Gets the description for location mode configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.DynamicConfigurationResources.Source_InternalFields">
+            <summary>
+            Gets the description for source internal fields configuration property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Resources.ConnectionStringMissing">
+            <summary>
+              Looks up a localized string similar to Azure Table storage connection string cannot be empty.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Resources.DataSourceDescription">
+            <summary>
+              Looks up a localized string similar to Reads data from Azure Table storage.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Resources.EmptyResponseReceived">
+            <summary>
+              Looks up a localized string similar to Empty response was received from Azure Table storage.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.Shared.AzureStorageLocationMode">
+            <summary>
+            Azure Storage location modes enumeration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.AzureTable.Shared.AzureStorageLocationMode.PrimaryOnly">
+            <summary>
+            Connect to the primary replica only.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.AzureTable.Shared.AzureStorageLocationMode.PrimaryThenSecondary">
+            <summary>
+            Try connect to the primary replica and fallback to secondary.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.AzureTable.Shared.AzureStorageLocationMode.SecondaryOnly">
+            <summary>
+            Connect to the secondary replica only.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.AzureTable.Shared.AzureStorageLocationMode.SecondaryThenPrimary">
+            <summary>
+            Try connect to the secondary replica and fallback to primary.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.Shared.IAzureTableAdapterConfiguration">
+            <summary>
+            Contains basic configuration for Azure Table storage data adapters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Shared.IAzureTableAdapterConfiguration.ConnectionString">
+            <summary>
+            Gets the connection string for the Azure Table storage.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Shared.IAzureTableAdapterConfiguration.LocationMode">
+            <summary>
+            Gets the location mode to use when connecting to Azure Storage.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.Source.AzureTableInternalFields">
+            <summary>
+            Azure Table storage internal fields enumeration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.AzureTable.Source.AzureTableInternalFields.None">
+            <summary>
+            None of the internal fields.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.AzureTable.Source.AzureTableInternalFields.RowKey">
+            <summary>
+            RowKey field.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.AzureTable.Source.AzureTableInternalFields.All">
+            <summary>
+            All internal fields.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.Source.AzureTableSourceAdapterFactory">
+            <summary>
+            Provides data source adapters capable of reading data from Azure Table storage.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.AzureTable.Source.AzureTableSourceAdapterFactory.CreateAsync(Microsoft.DataTransfer.AzureTable.Source.IAzureTableSourceAdapterConfiguration,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data source adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Source.AzureTableSourceAdapterFactory.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.AzureTable.Source.IAzureTableSourceAdapterConfiguration">
+            <summary>
+            Contains configuration for Azure Table storage data source adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Source.IAzureTableSourceAdapterConfiguration.Table">
+            <summary>
+            Gets the source name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Source.IAzureTableSourceAdapterConfiguration.InternalFields">
+            <summary>
+            Gets the value that indicates which internal Azure Table fields should be preserved in the output.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Source.IAzureTableSourceAdapterConfiguration.Filter">
+            <summary>
+            Gets the filter string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.AzureTable.Source.IAzureTableSourceAdapterConfiguration.Projection">
+            <summary>
+            Gets the names of the columns to select.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

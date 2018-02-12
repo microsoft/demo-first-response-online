@@ -11,10 +11,10 @@ namespace MSCorp.FirstResponse.Client.Converters
             string suspectName = (string)value;
             suspectName = suspectName.Replace(" ", string.Empty);
 
-            if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
+            if (Device.RuntimePlatform == Device.WinPhone || Device.RuntimePlatform == Device.UWP)
                 return string.Format("Assets/Suspect/{0}", suspectName);
 
-            if (Device.OS == TargetPlatform.iOS)
+            if (Device.RuntimePlatform == Device.iOS)
                 return string.Format("suspects/suspect_{0}", suspectName);
 
             return string.Format("suspect_{0}", suspectName);
