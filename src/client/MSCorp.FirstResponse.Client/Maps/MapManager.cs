@@ -147,8 +147,20 @@ namespace MSCorp.FirstResponse.Client.Maps
 
             if (incident != null)
             {
+                PushpinManager.HideIncidentInformationPanel();
+
+                var position = new Geoposition
+                {
+                    Latitude = incident.GeoLocation.Latitude + Settings.IncidentCenterLatitudeOffset,
+                    Longitude = incident.GeoLocation.Longitude + Settings.IncidentCenterLongitudeOffset
+                };
+
+                //position = incident.GeoLocation;
+
+                FormsMap.SetPosition(position);
+                await Task.Delay(Settings.IncidentPanelShowDelay);
+
                 PushpinManager.ShowIncidentInformationPanel(incident);
-                FormsMap.SetPosition(incident.GeoLocation);
 
                 if (CurrentUserStatus.CanNavigate)
                 {

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.CsvFile.Wpf</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.DataTransfer.CsvFile.Wpf.Source.CsvFileSourceAdapterConfigurationPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.CsvFile.Wpf.Source.CsvFileSourceAdapterConfigurationProvider">
+            <summary>
+            Provides configuration for CSV files data source.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.CsvFile.Wpf.Source.CsvFileSourceAdapterConfigurationProvider.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.CsvFile.Wpf.Source.CsvFileSourceAdapterConfigurationProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.CsvFile.Wpf.Source.CsvFileSourceAdapterConfigurationSummaryPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

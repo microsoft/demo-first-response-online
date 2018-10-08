@@ -1,0 +1,37 @@
+﻿[
+  {
+    "id": "1",
+    "MedicationAllergies": "Antibiotics containing sulfonamides",
+    "CurrentMedication": "",
+    "HealthIssues": "",
+    "BloodType": "B+"
+  },
+  {
+    "id": "2",
+    "MedicationAllergies": "",
+    "CurrentMedication": "",
+    "HealthIssues": "Diabetes",
+    "BloodType": "O-"
+  },
+  {
+    "id": "3",
+    "MedicationAllergies": "",
+    "CurrentMedication": "",
+    "HealthIssues": "",
+    "BloodType": "A-"
+  },
+  {
+    "id": "4",
+    "MedicationAllergies": "penicillin",
+    "CurrentMedication": "",
+    "HealthIssues": "High Blood pressure",
+    "BloodType": "A+"
+  },
+  {
+    "id": "5",
+    "MedicationAllergies": "",
+    "CurrentMedication": "Ibuprofen",
+    "HealthIssues": "Asthma",
+    "BloodType": "AB+"
+  }
+]

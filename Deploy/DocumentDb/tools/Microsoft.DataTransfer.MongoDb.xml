@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.MongoDb</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.MongoDb.ConfigurationResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.MongoexportSource_Decompress">
+            <summary>
+              Looks up a localized string similar to Optional. If source files should be decompressed with GZip.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.MongoexportSource_Files">
+            <summary>
+              Looks up a localized string similar to One or more file search patterns to read MongoDB export (mongoexport) JSON from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.Online_Collection">
+            <summary>
+              Looks up a localized string similar to Name of the documents collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.Online_ConnectionString">
+            <summary>
+              Looks up a localized string similar to Connection string including database name (example: &quot;mongodb://localhost/database&quot;).
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.OnlineSource_Projection">
+            <summary>
+              Looks up a localized string similar to Optional. Document that defines fields to include or exclude (example: {&quot;state&quot;: true, &quot;city&quot;: true} or {&quot;state&quot;:1, &quot;city&quot;:1}).
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.OnlineSource_ProjectionFile">
+            <summary>
+              Looks up a localized string similar to Optional. Path to the file containing projection document.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.OnlineSource_Query">
+            <summary>
+              Looks up a localized string similar to Optional. Mongo query document.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.ConfigurationResources.OnlineSource_QueryFile">
+            <summary>
+              Looks up a localized string similar to Optional. Path to the file containing query document.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.MongoDb.Shared.IMongoDbAdapterConfiguration">
+            <summary>
+            Contains basic configuration for MongoDB data adapters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Shared.IMongoDbAdapterConfiguration.ConnectionString">
+            <summary>
+            Gets the connection string for the MongoDB instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Shared.IMongoDbAdapterConfiguration.Collection">
+            <summary>
+            Gets the name of the MongoDB collection.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.MongoDb.Client.MongoDbProbeClient">
+            <summary>
+            Simple MongoDB client to verify the connection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.MongoDb.Client.MongoDbProbeClient.TestConnection(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Tests the MongoDB connection.
+            </summary>
+            <param name="connectionString">MongoDB connection string to use to connect.</param>
+            <param name="cancellation">Cancellation token</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.MongoDb.Source.Online.IMongoDbSourceAdapterConfiguration">
+            <summary>
+            Contains configuration for MongoDB data source adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Source.Online.IMongoDbSourceAdapterConfiguration.Query">
+            <summary>
+            Gets the mongo query document.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Source.Online.IMongoDbSourceAdapterConfiguration.QueryFile">
+            <summary>
+            Gets the path to the file that contains mongo query document.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Source.Online.IMongoDbSourceAdapterConfiguration.Projection">
+            <summary>
+            Gets the mongo projection document.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Source.Online.IMongoDbSourceAdapterConfiguration.ProjectionFile">
+            <summary>
+            Gets the path to the file that contains mongo projection document.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.MongoDb.Source.Online.MongoDbSourceAdapterFactory">
+            <summary>
+            Provides data source adapters capable of reading data from MongoDB instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.MongoDb.Source.Online.MongoDbSourceAdapterFactory.CreateAsync(Microsoft.DataTransfer.MongoDb.Source.Online.IMongoDbSourceAdapterConfiguration,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data source adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Source.Online.MongoDbSourceAdapterFactory.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.MongoDb.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.AmbiguousProjection">
+            <summary>
+              Looks up a localized string similar to Both Projection and ProjectionFile cannot be set at the same time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.AmbiguousQuery">
+            <summary>
+              Looks up a localized string similar to Both Query and QueryFile cannot be set at the same time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.CollectionNameMissing">
+            <summary>
+              Looks up a localized string similar to Documents collection name have to be provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.ConnectionStringMissing">
+            <summary>
+              Looks up a localized string similar to MongoDB connection string cannot be empty.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.DataItemIdFormat">
+            <summary>
+              Looks up a localized string similar to {0} ({1}).
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.InvalidProjectionFormat">
+            <summary>
+              Looks up a localized string similar to Projection document is invalid.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.MongoexportSourceDescription">
+            <summary>
+              Looks up a localized string similar to Reads data from MongoDB export (mongoexport) JSON files.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Resources.OnlineSourceDescription">
+            <summary>
+              Looks up a localized string similar to Reads data from MongoDB documents collection.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.MongoDb.Source.Mongoexport.IMongoexportFileSourceAdapterConfiguration">
+            <summary>
+            Contains configuration for mongoexport JSON files data adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Source.Mongoexport.IMongoexportFileSourceAdapterConfiguration.Files">
+            <summary>
+            Gets the list of file names to read mongoexport JSON data from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Source.Mongoexport.IMongoexportFileSourceAdapterConfiguration.Decompress">
+            <summary>
+            Gets the value that indicates whether input files should be decompressed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.MongoDb.Source.Mongoexport.MongoexportFileSourceAdapterFactory">
+            <summary>
+            Provides data source adapters capable of reading data from one or more mongoexport JSON files.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.MongoDb.Source.Mongoexport.MongoexportFileSourceAdapterFactory.CreateAsync(Microsoft.DataTransfer.MongoDb.Source.Mongoexport.IMongoexportFileSourceAdapterConfiguration,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data source adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.MongoDb.Source.Mongoexport.MongoexportFileSourceAdapterFactory.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

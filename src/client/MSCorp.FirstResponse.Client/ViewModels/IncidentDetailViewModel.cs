@@ -38,14 +38,16 @@ namespace MSCorp.FirstResponse.Client.ViewModels
 
         public ICommand IdentifySuspectCommand => new Command(IdentifySuspect);
 
-        public ICommand NewTicketCommand => new Command(NewTicket);
+        public ICommand NewTicketCommand => new Command<SuspectModel>(NewTicket);
+
+        public ICommand NewEpcrCommand => new Command<SuspectModel>(NewEpcr);
 
         public ICommand CloseIncidentCommand => new Command(CloseIncident);        
 
         public IncidentDetailViewModel()
         {
             MessagingCenter.Subscribe<IncidentListViewModel>(this, MessengerKeys.SelectedIncidentChanged, UpdateCurrentIncidentFromMessage);
-            MessagingCenter.Subscribe<List<SuspectModel>>(this, MessengerKeys.SelectedSuspectsChanged, updateSuspectsInIncidentModel);
+            MessagingCenter.Subscribe<List<SuspectModel>>(this, MessengerKeys.SelectedSuspectsChanged, UpdateSuspectsInIncidentModel);
         }
 
         private void UpdateCurrentIncidentFromMessage(IncidentListViewModel list)
@@ -53,7 +55,7 @@ namespace MSCorp.FirstResponse.Client.ViewModels
             Incident = list.SelectedIncident;
         }
 
-        private void updateSuspectsInIncidentModel(List<SuspectModel> suspects)
+        private void UpdateSuspectsInIncidentModel(List<SuspectModel> suspects)
         {
             Suspects = suspects;
         }        
@@ -68,9 +70,16 @@ namespace MSCorp.FirstResponse.Client.ViewModels
             await NavigationService.NavigateToPopupAsync<SuspectViewModel>(true);
         }
 
-        private async void NewTicket()
+        private async void NewTicket(SuspectModel suspect)
         {
-            await NavigationService.NavigateToPopupAsync<NewTicketViewModel>(_incident, true);
+            var navParameter = new IncidentInvolvedNavigationParameter(suspect, Incident);
+            await NavigationService.NavigateToPopupAsync<NewTicketViewModel>(navParameter, true);
+        }
+
+        private async void NewEpcr(SuspectModel person)
+        {
+            var navParameter = new IncidentInvolvedNavigationParameter(person, Incident);
+            await NavigationService.NavigateToPopupAsync<NewEpcrViewModel>(navParameter, true);
         }
     }
 }

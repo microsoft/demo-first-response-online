@@ -109,7 +109,7 @@ namespace MSCorp.FirstResponse.Client.Maps
 
                 // calculate route from the actual point to the route start point
                 Geoposition responderPosition = PushpinManager.GetResponderPosition(responder);
-                IEnumerable<Geoposition> routeToStartPosition = await RouteManager.CalculateRoute(responderPosition, routeInstance.RoutePositions.First());
+                IEnumerable<Geoposition> routeToStartPosition = await RouteManager.GetRoute(responderPosition, routeInstance.RoutePositions.First());
                 if (!routeToStartPosition.Any())
                 {
                     // if routes api dont return any points, route directly to the position.
@@ -190,7 +190,7 @@ namespace MSCorp.FirstResponse.Client.Maps
                 {
                     userNotified = true;
 
-                    if (Device.OS == TargetPlatform.iOS)
+                    if (Device.RuntimePlatform == Device.iOS)
                     {
                         IDialogService notificator = ViewModelLocator.Instance.Resolve<IDialogService>();
                         notificator.ShowLocalNotification("Dispatch updated incident", () => {});
@@ -265,7 +265,7 @@ namespace MSCorp.FirstResponse.Client.Maps
                 };
 
                 // create route from ambulance to incident
-                var routeAmbulance = await this.RouteManager.CalculateRoute(fromPosition, toPosition);
+                var routeAmbulance = await this.RouteManager.GetRoute(fromPosition, toPosition);
 
                 if (!routeAmbulance.Any())
                 {
@@ -381,7 +381,16 @@ namespace MSCorp.FirstResponse.Client.Maps
             FormsMap.IsForceNavigation = false;
 
             // Center and zoom map
-            FormsMap.SetPosition(currentIncident.GeoLocation, Distance.FromMiles(1));
+
+            var position = new Geoposition
+            {
+                Latitude = currentIncident.GeoLocation.Latitude + Settings.IncidentCenterLatitudeOffset,
+                Longitude = currentIncident.GeoLocation.Longitude + Settings.IncidentCenterLongitudeOffset
+            };
+
+            position = currentIncident.GeoLocation;
+
+            FormsMap.SetPosition(position, Distance.FromMiles(1));
         }
     }
 }

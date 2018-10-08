@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.Extensibility.Basics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.Extensibility.Basics.Collections.EmptyAsyncEnumerator`1">
+            <summary>
+            Represents a no-op asynchronous enumerator.
+            </summary>
+            <typeparam name="T">The type of objects to enumerate.</typeparam>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.Basics.Collections.IAsyncEnumerator`1">
+            <summary>
+            Supports an asynchronous iteration over a generic collection.
+            </summary>
+            <typeparam name="T">The type of objects to enumerate.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Collections.IAsyncEnumerator`1.MoveNextAsync(System.Threading.CancellationToken)">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>
+            true if the enumerator was successfully advanced to the next element; false
+            if the enumerator has passed the end of the collection.
+            </returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.Basics.Collections.IAsyncEnumerator`1.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.Extensibility.Basics.Collections.EmptyAsyncEnumerator`1.Instance">
+            <summary>
+            Singleton instance of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Collections.EmptyAsyncEnumerator`1.MoveNextAsync(System.Threading.CancellationToken)">
+            <summary>
+            Always returns false.
+            </summary>
+            <returns>false</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Collections.EmptyAsyncEnumerator`1.Dispose">
+            <summary>
+            Releases all associated resources.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.Basics.Collections.EmptyAsyncEnumerator`1.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.Basics.DataAdapterFactoryBase">
+            <summary>
+            Provides basic functionality for the data adapter factories.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.DataAdapterFactoryBase.StringValueOrFile(System.String,System.String,System.Func{System.Exception})">
+            <summary>
+            Picks a value from raw input or the file.
+            </summary>
+            <param name="value">Raw string value.</param>
+            <param name="fileName">Name of the file to read value from.</param>
+            <param name="ambiguousErrorProvider">An <see cref="T:System.Exception"/> factory delegate to use when both arguments are set.</param>
+            <returns>Raw input value or file content.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.Basics.Source.AggregateDataSourceAdapter">
+            <summary>
+            Encapsulates multiple data source adapters and aggregates read results.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.AggregateDataSourceAdapter.#ctor(System.Collections.Generic.IEnumerable{Microsoft.DataTransfer.Extensibility.IDataSourceAdapter})">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.Basics.Source.AggregateDataSourceAdapter"/>.
+            </summary>
+            <param name="adapters">Collection of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter"/> to encapsulate.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.AggregateDataSourceAdapter.ReadNextAsync(Microsoft.DataTransfer.Extensibility.ReadOutputByRef,System.Threading.CancellationToken)">
+            <summary>
+            Reads one data artifact from the encapsulated data source adapters.
+            </summary>
+            <param name="readOutput">Object holding additional information about the data artifact.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous read operation.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.AggregateDataSourceAdapter.Dispose">
+            <summary>
+            Releases all resources.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.Basics.Sink.DataSinkAdapterFactoryWrapper`1">
+            <summary>
+            Encapsulates instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSinkAdapterFactory`1"/> to hide implementation details.
+            </summary>
+            <typeparam name="TConfiguration">Type of the data sink adapter configuration.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Sink.DataSinkAdapterFactoryWrapper`1.#ctor(Microsoft.DataTransfer.Extensibility.IDataSinkAdapterFactory{`0})">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.Basics.Sink.DataSinkAdapterFactoryWrapper`1"/>.
+            </summary>
+            <param name="factory">Instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSinkAdapterFactory`1"/> to encapsulate.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Sink.DataSinkAdapterFactoryWrapper`1.CreateAsync(`0,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSinkAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data sink adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.Basics.Sink.DataSinkAdapterFactoryWrapper`1.Factory">
+            <summary>
+            Encapsulated <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSinkAdapterFactory`1"/> instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.Basics.Sink.DataSinkAdapterFactoryWrapper`1.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.Basics.Source.DataSourceAdapterFactoryWrapper`1">
+            <summary>
+            Encapsulates instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapterFactory`1"/> to hide implementation details.
+            </summary>
+            <typeparam name="TConfiguration">Type of the data source adapter configuration.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.DataSourceAdapterFactoryWrapper`1.#ctor(Microsoft.DataTransfer.Extensibility.IDataSourceAdapterFactory{`0})">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.Basics.Source.DataSourceAdapterFactoryWrapper`1"/>.
+            </summary>
+            <param name="factory">Instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapterFactory`1"/> to encapsulate.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.DataSourceAdapterFactoryWrapper`1.CreateAsync(`0,Microsoft.DataTransfer.Extensibility.IDataTransferContext,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapter"/> with the provided configuration.
+            </summary>
+            <param name="configuration">Data source adapter configuration.</param>
+            <param name="context">Data transfer operation context.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.Basics.Source.DataSourceAdapterFactoryWrapper`1.Factory">
+            <summary>
+            Gets the encapsulated <see cref="T:Microsoft.DataTransfer.Extensibility.IDataSourceAdapterFactory`1"/> instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Extensibility.Basics.Source.DataSourceAdapterFactoryWrapper`1.Description">
+            <summary>
+            Gets the description of the data adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.Basics.Source.DictionaryDataItem">
+            <summary>
+            Represents data artifact that encapsulates collection of fields in a form of
+            <see cref="T:System.String"/>-<see cref="T:System.Object"/> dictionary.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.DictionaryDataItem.#ctor(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object})">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.Basics.Source.DictionaryDataItem"/>.
+            </summary>
+            <param name="fields">Encapsulated fields collection.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.DictionaryDataItem.GetFieldNames">
+            <summary>
+            Provides collection of field names available in the data artifact.
+            </summary>
+            <returns>Collection of field names.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.DictionaryDataItem.GetValue(System.String)">
+            <summary>
+            Provides a value of the specified data artifact field.
+            </summary>
+            <param name="fieldName">Name of data artifact field.</param>
+            <returns>Value of the field.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Extensibility.Basics.Source.NestedDataItem">
+            <summary>
+            Represents data artifact that can represent nested documents by splitting property names with the given separator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.NestedDataItem.Create(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.Basics.Source.NestedDataItem"/> without any data in it.
+            </summary>
+            <param name="nestingSeparator">Separator to use when splitting property names into nested documents.</param>
+            <returns>New instance of <see cref="T:Microsoft.DataTransfer.Extensibility.Basics.Source.NestedDataItem"/>.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.NestedDataItem.Create(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Extensibility.Basics.Source.NestedDataItem"/> without any data in it.
+            </summary>
+            <param name="properties">Collection of properties to initialize data artifact with.</param>
+            <param name="nestingSeparator">Separator to use when splitting property names into nested documents.</param>
+            <returns>New instance of <see cref="T:Microsoft.DataTransfer.Extensibility.Basics.Source.NestedDataItem"/>.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Extensibility.Basics.Source.NestedDataItem.AddProperty(System.String,System.Object)">
+            <summary>
+            Adds new property to the data artifact.
+            </summary>
+            <remarks>
+            In case property name contains nesting separator - property will be treated as property of the sub-document.
+            </remarks>
+            <param name="name">Property name.</param>
+            <param name="value">Property value.</param>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

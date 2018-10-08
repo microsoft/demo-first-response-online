@@ -21,7 +21,6 @@ namespace MSCorp.FirstResponse.Client.Services.Incidents
 
         public async Task<ObservableCollection<IncidentModel>> GetIncidentsAsync()
         {
-
             UriBuilder builder = new UriBuilder(Settings.ServiceEndpoint);
             builder.Path = $"api/city/{Settings.SelectedCity}/incidents";
 

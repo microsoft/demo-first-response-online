@@ -143,8 +143,11 @@ namespace MSCorp.FirstResponse.Client.ViewModels
             string search = string.Join(" %2B ", terms);
             var currentSuspects = await _suspectService.GetSuspectsAsync(search);
 
-            Males = currentSuspects.Where(q => q.Sex.Equals(SuspectSexType.Male.ToString())).Select(q => new SuspectSelectable(q, false)).ToObservableCollection();
-            Females = currentSuspects.Where(q => q.Sex.Equals(SuspectSexType.Female.ToString())).Select(q => new SuspectSelectable(q, false)).ToObservableCollection();
+            if (currentSuspects != null)
+            {
+                Males = currentSuspects.Where(q => q.Sex.Equals(SuspectSexType.Male.ToString())).Select(q => new SuspectSelectable(q, false)).ToObservableCollection();
+                Females = currentSuspects.Where(q => q.Sex.Equals(SuspectSexType.Female.ToString())).Select(q => new SuspectSelectable(q, false)).ToObservableCollection();
+            }
         }
 
         private void OnSelectItem(SuspectSelectable suspect)

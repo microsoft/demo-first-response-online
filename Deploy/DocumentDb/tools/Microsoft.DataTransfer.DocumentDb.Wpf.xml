@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.DocumentDb.Wpf</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Wpf.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Wpf.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Wpf.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Wpf.Resources.InvalidRetryInterval">
+            <summary>
+              Looks up a localized string similar to Non-negative retry interval should be provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Wpf.Resources.TestConnectionResultTitle">
+            <summary>
+              Looks up a localized string similar to Verify Connection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Wpf.Resources.TestConnectionSuccessMessage">
+            <summary>
+              Looks up a localized string similar to Successfully connected to DocumentDB account.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Shared.DocumentDbAdapterAdvancedConfigurationControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Bulk.DocumentDbBulkSinkAdapterConfigurationPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Bulk.DocumentDbBulkSinkAdapterConfigurationProvider">
+            <summary>
+            Provides configuration for bulk DocumentDB data sink.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Bulk.DocumentDbBulkSinkAdapterConfigurationProvider.#ctor(Microsoft.DataTransfer.WpfHost.Extensibility.IImportSharedStorage)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Bulk.DocumentDbBulkSinkAdapterConfigurationProvider"/>.
+            </summary>
+            <param name="sharedStorage">Storage to share some configuration values for current import.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Bulk.DocumentDbBulkSinkAdapterConfigurationSummaryPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.DocumentDbSinkAdapterAdvancedConfigurationControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.DocumentDbSinkAdapterCommonConfigurationControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Shared.DocumentDbAdapterConnectionConfigurationControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Parallel.DocumentDbParallelSinkAdapterConfigurationPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Parallel.DocumentDbParallelSinkAdapterConfigurationProvider">
+            <summary>
+            Provides configuration for parallel DocumentDB data sink.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Parallel.DocumentDbParallelSinkAdapterConfigurationProvider.#ctor(Microsoft.DataTransfer.WpfHost.Extensibility.IImportSharedStorage)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Parallel.DocumentDbParallelSinkAdapterConfigurationProvider"/>.
+            </summary>
+            <param name="sharedStorage">Storage to share some configuration values for current import.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Parallel.DocumentDbParallelSinkAdapterConfigurationSummaryPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Source.DocumentDbSourceAdapterConfigurationPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Wpf.Source.DocumentDbSourceAdapterConfigurationProvider">
+            <summary>
+            Provides configuration for DocumentDB data source.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Source.DocumentDbSourceAdapterConfigurationProvider.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Wpf.Source.DocumentDbSourceAdapterConfigurationProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Wpf.Source.DocumentDbSourceAdapterConfigurationSummaryPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -10,9 +10,10 @@ namespace MSCorp.FirstResponse.Client
         public const string ResponderRoutesJsonDataFile = "Data/ResponderRoutes.json";
         public const string UserRolesJsonDataFile = "Data/UserRoles.json";
         public const string SuspectJsonDataFile = "Data/SuspectData.json";
+        public const string PatientsJsonDataFile = "Data/PatientsData.json";
         public const string HeatPointsJsonDataFile = "Data/HeatData.json";
 
-		public const string ServiceEndpoint = "http://localhost:50002/";
+        public const string ServiceEndpoint = "http://froxmts01-api.azurewebsites.net/";
 
         public const bool UseMockServiceDefault = false;
         public const int DefaultMockCityId= 0;
@@ -23,6 +24,7 @@ namespace MSCorp.FirstResponse.Client
         public const double AmbulanceLongitude = -122.019949;
 
         public const string BingMapsAPIKey = "40mgB3YEUPMAewdi02Hm~HM0JyrqUSuQqAz9WoBg0Iw~Ar-hXz2S6oaN-ZJRM3VzCSS1lpPhUlNmParkTwh6zuaG7AcSb9j2N0Oe2wRpr5qz";
+        public const string GoogleMapsApiKey = "AIzaSyDDKvhUqz1fnEImpiC8zrflraQdgo8PaMo";
 
         public static TimeSpan TimeToResolve { get; } = TimeSpan.FromSeconds(30);
 

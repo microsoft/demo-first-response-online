@@ -1,5 +1,4 @@
-﻿using MSCorp.FirstResponse.Client.Helpers;
-using MSCorp.FirstResponse.Client.Models;
+﻿using MSCorp.FirstResponse.Client.Models;
 using MSCorp.FirstResponse.Client.Services.Incidents;
 using MSCorp.FirstResponse.Client.ViewModels.Base;
 using System.Collections.ObjectModel;

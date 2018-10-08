@@ -169,6 +169,7 @@ namespace MSCorp.FirstResponse.Client.Services.Navigation
         private void CreatePageViewModelMappings()
         {
             _mappings.Add(typeof(NewTicketViewModel), typeof(NewTicketPopupView));
+            _mappings.Add(typeof(NewEpcrViewModel), typeof(NewEpcrPopupView));
             _mappings.Add(typeof(SuspectViewModel), typeof(SuspectPopupView));
             _mappings.Add(typeof(CitiesViewModel), typeof(CitiesView));
             _mappings.Add(typeof(LoginViewModel), typeof(LoginView));

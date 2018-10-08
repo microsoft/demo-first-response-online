@@ -14,7 +14,13 @@ namespace MSCorp.FirstResponse.Client.ViewModels
         public string ServiceEndpoint { get; set; } = Settings.ServiceEndpoint;
 
         public double UserSpeed { get; set; } = Settings.UserSpeed;
-        
+
+        public double IncidentLatitudeOffset { get; set; } = Settings.IncidentCenterLatitudeOffset;
+
+        public double IncidentLongitudeOffset { get; set; } = Settings.IncidentCenterLongitudeOffset;
+
+        public int IncidentPanelShowDelay { get; set; } = Settings.IncidentPanelShowDelay;
+
         public ICommand SaveChangesCommand => new Command(SaveChanges);
 
         private async void SaveChanges()
@@ -43,6 +49,10 @@ namespace MSCorp.FirstResponse.Client.ViewModels
 
             Settings.ServiceEndpoint = ServiceEndpoint;
             Settings.UserSpeed = UserSpeed;
+            Settings.IncidentCenterLatitudeOffset = IncidentLatitudeOffset;
+            Settings.IncidentCenterLongitudeOffset = IncidentLongitudeOffset;
+            Settings.IncidentPanelShowDelay = IncidentPanelShowDelay;
+
             await NavigationService.NavigateToAsync<LoginViewModel>();
             await NavigationService.RemoveBackStackAsync();
         }

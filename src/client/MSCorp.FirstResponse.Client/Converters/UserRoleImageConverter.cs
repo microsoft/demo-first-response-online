@@ -8,7 +8,7 @@ namespace MSCorp.FirstResponse.Client.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
+            if (Device.RuntimePlatform == Device.WinPhone || Device.RuntimePlatform == Device.UWP)
                 return string.Format("Assets/Profile/{0}", value);
 
             return value;

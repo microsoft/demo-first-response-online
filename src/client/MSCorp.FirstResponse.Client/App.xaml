@@ -32,6 +32,9 @@
             <converters:UserRoleImageConverter x:Key="UserRoleImageConverter" />
             <converters:UserRoleToBoolConverter x:Key="UserRoleToBoolConverter" />
             <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
+            <converters:IntConverter x:Key="IntConverter" />
+            <converters:FloatConverter x:Key="FloatConverter" />
+            <converters:EmptyStringConverter x:Key="EmptyStringConverter" />
 
             <!-- FONT TYPES -->
             <OnPlatform x:Key="TitilliumLight"
@@ -138,9 +141,69 @@
                 <Setter Property="BackgroundColor" 
                         Value="Transparent" />
             </Style>
-
             
-          
+            <!-- POPUPS -->
+
+            <Style x:Key="PopupLogoStyle" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="PopupCloseButtonStyle" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="PopupHeaderStyle" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="{StaticResource TitilliumLight}" />
+            </Style>
+
+            <Style x:Key="PopupSeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="Color" Value="{StaticResource GrayColor}" />
+            </Style>
+
+            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}" >
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="Margin" Value="0, 10, 0, 0"/>
+                <Setter Property="TextColor" Value="{StaticResource GrayColor}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="FontFamily" Value="{StaticResource TitilliumRegular}" />
+            </Style>
+
+            <Style x:Key="PopupLabelValueStyle" TargetType="{x:Type Label}" >
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Margin" Value="0, 1, 0, 0"/>
+                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="FontFamily" Value="{StaticResource TitilliumRegular}" />
+            </Style>
+
+            <Style x:Key="PopupEntryStyle" TargetType="{x:Type Entry}" >
+                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkGrayColor}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HeightRequest" Value="54" />
+                <Setter Property="Margin" Value="0, 10, 0, 0"/>
+                <Setter Property="effects:ApplyFormEntryNativeStyleEffect.ApplyFormEntryNativeStyle" Value="True" />
+            </Style>
+
+            <Style x:Key="PopupPickerStyle" TargetType="{x:Type Picker}" >
+                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkGrayColor}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="effects:ApplyFormEntryNativeStyleEffect.ApplyFormEntryNativeStyle" Value="True" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -7,6 +7,7 @@
   <Grid.GestureRecognizers>
     <TapGestureRecognizer
         Command="{Binding ImageButtonCommand, Source={x:Reference Control}}"
+        CommandParameter="{Binding ImageButtonCommandParameter, Source={x:Reference Control}}"
         NumberOfTapsRequired="1" />
   </Grid.GestureRecognizers>
   <Image Aspect="AspectFit"

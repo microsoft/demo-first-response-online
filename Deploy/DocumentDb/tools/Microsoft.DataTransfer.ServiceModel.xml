@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.ServiceModel</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.ConfigurationResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.ConfigurationResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.ConfigurationResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.ConfigurationResources.Errors_DetailsFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Specifies that detailed error information should be displayed for the following errors: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.ConfigurationResources.Statistics_ErrorLog">
+            <summary>
+              Looks up a localized string similar to Optional. Name of the CSV file to redirect data transfer failures.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.ConfigurationResources.Statistics_OverwriteErrorLog">
+            <summary>
+              Looks up a localized string similar to Optional. Overwrite error log file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.ConfigurationResources.Statistics_ProgressUpdateIntervalFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Time interval to refresh on-screen data transfer progress.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProviderFactory">
+            <summary>
+            Provides <see cref="T:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProvider"/> instances to extract error details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProviderFactory.Create(Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsConfiguration)">
+            <summary>
+            Creates a new instance of data transfer error details provider.
+            </summary>
+            <param name="configuration">Error details configuration.</param>
+            <returns>An instance of <see cref="T:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProvider"/> that can be used to get error details.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.InfrastructureDefaults">
+            <summary>
+            Contains default configuration for data transfer infrastructure.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.InfrastructureDefaults.SetCurrent(Microsoft.DataTransfer.ServiceModel.IInfrastructureDefaults)">
+            <summary>
+            Changes default configuration for data transfer infrastructure.
+            </summary>
+            <param name="defaults">New default configuration.</param>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.InfrastructureDefaults.Current">
+            <summary>
+            Gets current default configuration for data transfer infrastructure.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.IInfrastructureDefaults">
+            <summary>
+            Contains default configuration for data transfer infrastructure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.IInfrastructureDefaults.ErrorDetails">
+            <summary>
+            Gets the default data transfer error details configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.IInfrastructureDefaults.ProgressUpdateInterval">
+            <summary>
+            Gets the default data transfer progress update interval.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.DynamicConfigurationResources">
+            <summary>
+            Contains dynamic resources for data transfer infrastructure configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.DynamicConfigurationResources.Errors_Details">
+            <summary>
+            Gets the description for data transfer error details.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.DynamicConfigurationResources.Statistics_ProgressUpdateInterval">
+            <summary>
+            Gets the description for data transfer progress update interval.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Errors.ErrorDetails">
+            <summary>
+            Data transfer error details enumeration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.ServiceModel.Errors.ErrorDetails.None">
+            <summary>
+            No detailed error information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.ServiceModel.Errors.ErrorDetails.Critical">
+            <summary>
+            Detailed error information for critical errors only.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.ServiceModel.Errors.ErrorDetails.All">
+            <summary>
+            Detailed error information for all errors.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsConfiguration">
+            <summary>
+            Configuration for detailed data transfer errors information.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsConfiguration.ErrorDetails">
+            <summary>
+            Gets the data transfer error details configuration.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProvider">
+            <summary>
+            Provides the error details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProvider.Get(System.Exception)">
+            <summary>
+            Provides the details for non-critical data transfer error.
+            </summary>
+            <param name="error">An <see cref="T:System.Exception"/> that defines non-critical error.</param>
+            <returns>Error details.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProvider.GetCritical(System.Exception)">
+            <summary>
+            Provides the details for critical data transfer error.
+            </summary>
+            <param name="error">An <see cref="T:System.Exception"/> that defines critical error.</param>
+            <returns>Error details.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsConfiguration">
+            <summary>
+            Configuration for data transfer process statistics.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsConfiguration.ErrorLog">
+            <summary>
+            Gets the name of the file to persist data transfer failures.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsConfiguration.OverwriteErrorLog">
+            <summary>
+            Gets the value that indicates whether error log file can be overwritten.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsConfiguration.ProgressUpdateInterval">
+            <summary>
+            Gets the data transfer progress update interval.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Entities.IDataAdapterDefinition">
+            <summary>
+            Contains basic information about data adapter. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Entities.IDataAdapterDefinition.DisplayName">
+            <summary>
+            Gets the display name of data adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Entities.IDataAdapterDefinition.Description">
+            <summary>
+            Gets the description of data adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Entities.IDataAdapterDefinition.ConfigurationType">
+            <summary>
+            Gets the type of data adapter configuration.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics">
+            <summary>
+            Maintains data transfer process statistics.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics.Start">
+            <summary>
+            Starts measuring elapsed time.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics.Stop">
+            <summary>
+            Stops measuring elapsed time.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics.AddTransferred">
+            <summary>
+            Reports one transferred data artifact.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics.AddError(System.String,System.Exception)">
+            <summary>
+            Reports one failed data artifact.
+            </summary>
+            <param name="dataItemId">Identifier of the failed data artifact.</param>
+            <param name="error">Transfer error.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics.GetSnapshot">
+            <summary>
+            Takes the snapshot of current transfer statistics.
+            </summary>
+            <returns>Transfer statistics snapshot.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsSnapshot">
+            <summary>
+            Contains snapshot of data transfer statistics.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsSnapshot.GetErrors">
+            <summary>
+            Gets the collection of failed data artifacts with error information.
+            </summary>
+            <returns>Collection of failed data artifacts.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsSnapshot.ElapsedTime">
+            <summary>
+            Gets the time spent in data transfer.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsSnapshot.Transferred">
+            <summary>
+            Gets the number of transferred data artifacts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsSnapshot.Failed">
+            <summary>
+            Gets the number of failed data artifacts.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.IDataTransferAction">
+            <summary>
+            Represents data transfer action.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.IDataTransferAction.ExecuteAsync(Microsoft.DataTransfer.Extensibility.IDataSourceAdapter,Microsoft.DataTransfer.Extensibility.IDataSinkAdapter,Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics,System.Threading.CancellationToken)">
+            <summary>
+            Performs data transfer from the provided source to the provided sink.
+            </summary>
+            <param name="source">Source data adapter to read data from.</param>
+            <param name="sink">Sink data adapter to write data to.</param>
+            <param name="statistics">Instance of <see cref="T:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics"/> to report data transfer progress to.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous data transfer operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.IDataTransferService">
+            <summary>
+            Represents core data transfer service.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.IDataTransferService.GetKnownSources">
+            <summary>
+            Gets the list of known data source adapters.
+            </summary>
+            <returns>Collection of known data sources.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.IDataTransferService.GetKnownSinks">
+            <summary>
+            Gets the list of known data sink adapters.
+            </summary>
+            <returns>Collection of known data sinks.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.IDataTransferService.TransferAsync(System.String,System.Object,System.String,System.Object,Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics,System.Threading.CancellationToken)">
+            <summary>
+            Performs data transfer from the specified source to the specified sink.
+            </summary>
+            <param name="sourceName">Name of the source data adapter.</param>
+            <param name="sourceConfiguration">Source data adapter configuration.</param>
+            <param name="sinkName">Name of the target data adapter.</param>
+            <param name="sinkConfiguration">Target data adapter configuration.</param>
+            <param name="statistics">Instance of <see cref="T:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatistics"/> to report data transfer progress to.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous data transfer operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsFactory">
+            <summary>
+            Provides data transfer statistics.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsFactory.Create(Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProvider,Microsoft.DataTransfer.ServiceModel.Statistics.ITransferStatisticsConfiguration,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new instance of data transfer statistics.
+            </summary>
+            <param name="errorDetailsProvider">An instance of <see cref="T:Microsoft.DataTransfer.ServiceModel.Errors.IErrorDetailsProvider"/> to use to extract error details.</param>
+            <param name="configuration">Configuration for the data transfer statistics.</param>
+            <param name="cancellation">Cancellation token.</param>
+            <returns>Task that represents asynchronous create operation.</returns>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

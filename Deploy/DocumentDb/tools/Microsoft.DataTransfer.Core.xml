@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.Core.CoreServiceImplementation">
+            <summary>
+            Registrar of core data transfer service components implementation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Core.CoreServiceImplementation.Load(Autofac.ContainerBuilder)">
+            <summary>
+            Registers components in the container.
+            </summary>
+            <param name="builder">The builder through which components can be registered.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Core.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Core.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Core.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Core.Resources.InvalidDataAdapterConfigrationTypeFormat">
+            <summary>
+              Looks up a localized string similar to Data adapter expects configuration of type &apos;{0}&apos;, but &apos;{1}&apos; was provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Core.Resources.InvalidDataAdapterFactoryTypeFormat">
+            <summary>
+              Looks up a localized string similar to Data adapter factory of type &apos;{0}&apos; was expected, but &apos;{1}&apos; was provided.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Core.Resources.NonGenericDataAdapterFactoryTypeFormat">
+            <summary>
+              Looks up a localized string similar to Non-generic data adapter factory type &apos;{0}&apos; not supported. All factories should be generic by configuration type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Core.Resources.UnknownDataSinkFormat">
+            <summary>
+              Looks up a localized string similar to Data sink &apos;{0}&apos; is not known.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Core.Resources.UnknownDataSourceFormat">
+            <summary>
+              Looks up a localized string similar to Data source &apos;{0}&apos; is not known.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

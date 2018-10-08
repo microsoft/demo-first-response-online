@@ -8,9 +8,11 @@ using MSCorp.FirstResponse.Client.UWP.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.ApplicationModel.Core;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Maps;
 
@@ -22,7 +24,7 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
         private readonly MapItemsControl _mapItems;
         private readonly Dictionary<MapIcon, int> _pushpinMappings;
 
-        public PushpinManager(MapControl nativeMap, CustomMap formsMap) 
+        public PushpinManager(MapControl nativeMap, CustomMap formsMap)
             : base(formsMap)
         {
             _nativeMap = nativeMap;
@@ -33,7 +35,7 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
             _nativeMap.MapElementClick += MapElementClick;
         }
 
-        public override void AddUser()
+        public override async void AddUser()
         {
             var geoposition = new Models.Geoposition
             {
@@ -41,21 +43,27 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
                 Longitude = Settings.UserLongitude
             };
 
-            var userIcon = new UserIcon();
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+              () =>
+              {
+                  var userIcon = new UserIcon();
 
-            _mapItems.Items.Add(userIcon);
-            SetMapIconPosition(userIcon, geoposition, new Point(0.5, 0.5));
+                  _mapItems.Items.Add(userIcon);
+                  SetMapIconPosition(userIcon, geoposition, new Point(0.5, 0.5));
+              });
         }
 
         protected override async void AddIncidentToMap(IncidentModel incident)
         {
             var geoLocation = CoordinateConverter.ConvertToNative(incident.GeoLocation);
 
-            var mapIcon = new MapIcon();
-            mapIcon.CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible;
-            mapIcon.Location = geoLocation;
-            mapIcon.NormalizedAnchorPoint = new Point(0.5, 1.0);
-            mapIcon.ZIndex = 1000;
+            var mapIcon = new MapIcon
+            {
+                CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible,
+                Location = geoLocation,
+                NormalizedAnchorPoint = new Point(0.5, 1.0),
+                ZIndex = 1000
+            };
 
             var iconImageUri = default(Uri);
 
@@ -90,24 +98,36 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
             RandomAccessStreamReference stream = RandomAccessStreamReference.CreateFromUri(iconImageUri);
             mapIcon.Image = await stream.ScaleTo(40, 58);
 
-            _nativeMap.MapElements.Add(mapIcon);
-            _pushpinMappings.Add(mapIcon, incident.Id);
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                _nativeMap.MapElements.Add(mapIcon);
+                _pushpinMappings.Add(mapIcon, incident.Id);
+            });
         }
 
-        protected override void AddResponderToMap(ResponderModel responder)
+        protected override async void AddResponderToMap(ResponderModel responder)
         {
-            var responderIcon = new ResponderIcon(responder);
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                var responderIcon = new ResponderIcon(responder);
 
-            _mapItems.Items.Add(responderIcon);
-            SetMapIconPosition(responderIcon, responder.GeoLocation, new Point(0.5, 0.5));
+                _mapItems.Items.Add(responderIcon);
+                SetMapIconPosition(responderIcon, responder.GeoLocation, new Point(0.5, 0.5));
+            });
         }
 
-        protected override void AddTicketToMap(TicketModel ticket)
+        protected override async void AddTicketToMap(TicketModel ticket)
         {
-            var ticketIcon = new TicketIcon(ticket);
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                var ticketIcon = new TicketIcon(ticket);
 
-            _mapItems.Items.Add(ticketIcon);
-            SetMapIconPosition(ticketIcon, ticket.Location, new Point(0.5, 0.5));
+                _mapItems.Items.Add(ticketIcon);
+                SetMapIconPosition(ticketIcon, ticket.Location, new Point(0.5, 0.5));
+            });
         }
 
         public override void UnloadTickets()
@@ -195,7 +215,7 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
             MapControl.SetLocation(icon, nativeCoordinate);
             MapControl.SetNormalizedAnchorPoint(icon, anchorPoint);
         }
-        
+
         private void MapElementClick(MapControl sender, MapElementClickEventArgs args)
         {
             MapIcon icon = args.MapElements.OfType<MapIcon>()
@@ -252,34 +272,46 @@ namespace MSCorp.FirstResponse.Client.UWP.Maps
             RemoveIcons(allResponderIcons);
         }
 
-        public override void RemoveResponder(ResponderModel responder)
+        public override async void RemoveResponder(ResponderModel responder)
         {
             var responderIcon = _mapItems.Items.OfType<ResponderIcon>().FirstOrDefault(icon => icon.Responder.Id == responder.Id);
             if (responderIcon != null)
             {
-                _mapItems?.Items?.Remove(responderIcon);
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    _mapItems?.Items?.Remove(responderIcon);
+                });
             }
         }
 
-        private void RemoveIncidentsIcons(List<MapIcon> icons)
+        private async void RemoveIncidentsIcons(List<MapIcon> icons)
         {
             if (icons != null)
             {
                 foreach (var icon in icons)
                 {
-                    _nativeMap?.MapElements?.Remove(icon);
-                    _pushpinMappings.Remove(icon);
+                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                    () =>
+                    {
+                        _nativeMap?.MapElements?.Remove(icon);
+                        _pushpinMappings.Remove(icon);
+                    });
                 }
             }
         }
 
-        private void RemoveIcons(IEnumerable<DependencyObject> icons)
+        private async void RemoveIcons(IEnumerable<DependencyObject> icons)
         {
             if (icons != null)
             {
                 foreach (var icon in icons)
                 {
-                    _mapItems?.Items?.Remove(icon);
+                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                    () =>
+                    {
+                        _mapItems?.Items?.Remove(icon);
+                    });
                 }
             }
         }

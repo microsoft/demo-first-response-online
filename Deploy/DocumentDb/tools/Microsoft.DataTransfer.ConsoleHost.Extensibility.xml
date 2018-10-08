@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.ConsoleHost.Extensibility</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.ConsoleHost.Extensibility.IDataAdapterConfigurationFactory">
+            <summary>
+            Creates an instance of known configuration types from command line arguments and
+            provides configuration options description.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ConsoleHost.Extensibility.IDataAdapterConfigurationFactory.TryCreate(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})">
+            <summary>
+            Creates an instance of known configuration types from command line arguments.
+            </summary>
+            <param name="configurationType">Required configuration type.</param>
+            <param name="arguments">Command line arguments.</param>
+            <returns>New instance of configuration populated from command line arguments.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ConsoleHost.Extensibility.IDataAdapterConfigurationFactory.TryGetConfigurationOptions(System.Type)">
+            <summary>
+            Provides description for configuration options of known configuration types.
+            </summary>
+            <param name="configurationType">Type of configuration.</param>
+            <returns>Description of available configuration options.</returns>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

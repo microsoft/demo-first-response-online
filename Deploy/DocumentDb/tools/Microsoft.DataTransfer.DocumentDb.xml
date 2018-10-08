@@ -1,0 +1,752 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.DocumentDb</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Client.DocumentDbProbeClient">
+            <summary>
+            Simple DocumentDB client to verify the connection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Client.DocumentDbProbeClient.TestConnection(System.String,System.Nullable{Microsoft.DataTransfer.DocumentDb.Shared.DocumentDbConnectionMode})">
+            <summary>
+            Tests the DocumentDB connection.
+            </summary>
+            <param name="connectionString">DocumentDB connection string to use to connect to the account.</param>
+            <param name="connectionMode">DocumentDB connectio mode to use when testing the connection.</param>
+            <returns>Task that represents asynchronous connection operation.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.ConfigurationResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.BulkSink_BatchSizeFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Number of documents in one batch.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.BulkSink_Collection">
+            <summary>
+              Looks up a localized string similar to One or more documents collection names. Use &quot;[a-b]&quot; placeholder to automatically generate collection index, e.g. &quot;Data[0-2]&quot; will result in the following collection names: Data0, Data1, Data2.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.BulkSink_MaxScriptSizeFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Size (in bytes) of the bulk insertion JSON array.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.BulkSink_PartitionKey">
+            <summary>
+              Looks up a localized string similar to Optional. Name of the property to use as hash partitioning key. If not provided - records will be randomly distributed across all target collections.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.BulkSink_StoredProcFileFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Name of the file containing bulk insert stored procedure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.ConnectionModeFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Specifies how to connect to DocumentDB account: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.ConnectionString">
+            <summary>
+              Looks up a localized string similar to Connection string (example: &quot;AccountEndpoint=xyz;AccountKey=xyz;Database=xyz&quot;).
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.ParallelSink_Collection">
+            <summary>
+              Looks up a localized string similar to Name of the documents collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.ParallelSink_ParallelRequestsFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Number of parallel document create requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.ParallelSink_PartitionKey">
+            <summary>
+              Looks up a localized string similar to Optional. Path to the property to use as hash partitioning key (example: &quot;/deviceId&quot;).
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.RetriesFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Number of retries on transient failures.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.RetryIntervalFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Retry interval on transient failures.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Sink_CollectionThroughputFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Specifies maximum throughput of the collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Sink_DatesFormat">
+            <summary>
+              Looks up a localized string similar to Optional, default is {0}. Specifies how timestamps should be persisted: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Sink_DisableIdGeneration">
+            <summary>
+              Looks up a localized string similar to Optional. Disable automatic generation of document ids.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Sink_IdField">
+            <summary>
+              Looks up a localized string similar to Optional. Name of the source field that should be treated as document ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Sink_IndexingPolicy">
+            <summary>
+              Looks up a localized string similar to Optional. Indexing policy for the collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Sink_IndexingPolicyFile">
+            <summary>
+              Looks up a localized string similar to Optional. Path to the file containing indexing policy for the collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Sink_UpdateExisting">
+            <summary>
+              Looks up a localized string similar to Optional. Update existing documents with the same ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Source_Collection">
+            <summary>
+              Looks up a localized string similar to Regex pattern to match one or more documents collection names.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Source_InternalFields">
+            <summary>
+              Looks up a localized string similar to Optional. Preserve internal DocumentDB fields in the output.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Source_Query">
+            <summary>
+              Looks up a localized string similar to Optional. Documents query to execute.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.ConfigurationResources.Source_QueryFile">
+            <summary>
+              Looks up a localized string similar to Optional. Path to the file containing documents query.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Defaults">
+            <summary>
+            Contains default configuration for DocumentDB data adapters.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Defaults.SetCurrent(Microsoft.DataTransfer.DocumentDb.IDefaults)">
+            <summary>
+            Changes default configuration for DocumentDB data adapters.
+            </summary>
+            <param name="defaults">New default configuration.</param>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Defaults.Current">
+            <summary>
+            Gets current default configuration for DocumentDB data adapters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.IDefaults">
+            <summary>
+            Contains default configuration for DocumentDB data adapters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.ConnectionMode">
+            <summary>
+            Gets the default DocumentDB connection mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.NumberOfRetries">
+            <summary>
+            Gets the default number of retries on transient failures.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.RetryInterval">
+            <summary>
+            Gets the default time interval between retries on transient failures.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.SinkCollectionThroughput">
+            <summary>
+            Gets the default collection throughput.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.SinkDateTimeHandling">
+            <summary>
+            Gets the default date and time handling strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.BulkSinkStoredProcFile">
+            <summary>
+            Gets the default bulk import stored procedure file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.BulkSinkBatchSize">
+            <summary>
+            Gets the default number of data artifacts bundled into one batch.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.BulkSinkMaxScriptSize">
+            <summary>
+            Gets the default maximum size of the JSON payload that can be sent to the server.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.IDefaults.ParallelSinkNumberOfParallelRequests">
+            <summary>
+            Gets the default maximum number of parallel insert operations.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources">
+            <summary>
+            Contains dynamic resources for data adapters configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.ConnectionMode">
+            <summary>
+            Gets the description for connection mode configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.Retries">
+            <summary>
+            Gets the description for retries configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.RetryInterval">
+            <summary>
+            Gets the description for retry interval configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.Sink_CollectionThroughput">
+            <summary>
+            Gets the description for collection throughput configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.Sink_Dates">
+            <summary>
+            Gets the description for date and time handling configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.BulkSink_BatchSize">
+            <summary>
+            Gets the description for batch size configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.BulkSink_MaxScriptSize">
+            <summary>
+            Gets the description for max script size configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.BulkSink_StoredProcFile">
+            <summary>
+            Gets the description for bulk insert stored procedure file configuration property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.DynamicConfigurationResources.ParallelSink_ParallelRequests">
+            <summary>
+            Gets the description for parallel requests configuration property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Exceptions.DocumentSizeExceedsScriptSizeLimitException.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Exceptions.DocumentSizeExceedsScriptSizeLimitException"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Exceptions.DocumentSizeExceedsScriptSizeLimitException.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Exceptions.DocumentSizeExceedsScriptSizeLimitException"/>.
+            </summary>
+            <param name="message">Error message.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Exceptions.DocumentSizeExceedsScriptSizeLimitException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Exceptions.DocumentSizeExceedsScriptSizeLimitException"/>.
+            </summary>
+            <param name="message">Error message.</param>
+            <param name="inner">Inner exception.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Exceptions.DocumentSizeExceedsScriptSizeLimitException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Exceptions.DocumentSizeExceedsScriptSizeLimitException"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Shared.DocumentDbConnectionMode">
+            <summary>
+            DocumentDB connection modes enumeration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.DocumentDb.Shared.DocumentDbConnectionMode.DirectTcp">
+            <summary>
+            Direct connection using binary TCP protocol.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.DocumentDb.Shared.DocumentDbConnectionMode.DirectHttps">
+            <summary>
+            Direct connection using HTTPS protocol.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.DocumentDb.Shared.DocumentDbConnectionMode.Gateway">
+            <summary>
+            Connect through the gateway.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.AccountEndpointMissing">
+            <summary>
+              Looks up a localized string similar to DocumentDB account end-point URL should be provided as part of the connection string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.AccountKeyMissing">
+            <summary>
+              Looks up a localized string similar to DocumentDB account key should be provided as part of the connection string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.AmbiguousIndexingPolicy">
+            <summary>
+              Looks up a localized string similar to Both IndexingPolicy and IndexingPolicyFile cannot be set at the same time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.AmbiguousQuery">
+            <summary>
+              Looks up a localized string similar to Both Query and QueryFile cannot be set at the same time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.BufferSlotIsOccupied">
+            <summary>
+              Looks up a localized string similar to Failed to buffer an item, slot is already occupied.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.BulkSinkDescription">
+            <summary>
+              Looks up a localized string similar to Uploads data into one or more single partition DocumentDB collections in batches.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.CollectionNameMissing">
+            <summary>
+              Looks up a localized string similar to Documents collection name is required.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.ConnectionStringMissing">
+            <summary>
+              Looks up a localized string similar to DocumentDB connection string is required.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.CustomUserAgentSuffixFormat">
+            <summary>
+              Looks up a localized string similar to {0}-{1}-{2}-{3}{4}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.DatabaseNameMissing">
+            <summary>
+              Looks up a localized string similar to Documents database name should be provided as part of the connection string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.DataItemAlreadyContainsField">
+            <summary>
+              Looks up a localized string similar to Data item already contains field &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.DocumentIsNotDataItem">
+            <summary>
+              Looks up a localized string similar to Input does not represent a valid document.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.DocumentSizeExceedsBulkScriptSize">
+            <summary>
+              Looks up a localized string similar to Document cannot be indexed in bulk because it exceeds specified script size limit.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.FailedToCreateCollectionFormat">
+            <summary>
+              Looks up a localized string similar to Failed to create documents collection &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.FailedToCreateDatabaseFormat">
+            <summary>
+              Looks up a localized string similar to Failed to create documents database &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.FailedToCreateDocumentFormat">
+            <summary>
+              Looks up a localized string similar to Failed to create document: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.FailedToCreateStoredProcedureFormat">
+            <summary>
+              Looks up a localized string similar to Failed to create stored procedure &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.FailedToExtractPartitionKeyFormat">
+            <summary>
+              Looks up a localized string similar to Failed to extract partition ket: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.FailedToReadJavascriptMemberExpressionFormat">
+            <summary>
+              Looks up a localized string similar to Failed to read javascript member expression: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.FailedToReadSubstituionFormat">
+            <summary>
+              Looks up a localized string similar to Failed to read substitution: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.ImportErrorActivityIdFormat">
+            <summary>
+              Looks up a localized string similar to {0}ActivityId: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.InvalidBatchSize">
+            <summary>
+              Looks up a localized string similar to Batch size should be greater than zero.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.InvalidCollectionThroughput">
+            <summary>
+              Looks up a localized string similar to Collection throughput should be greater than zero.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.InvalidMaxScriptSize">
+            <summary>
+              Looks up a localized string similar to Max script size should be greater than zero.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.InvalidNumberOfParallelRequests">
+            <summary>
+              Looks up a localized string similar to Number of parallel requests should be greater than zero.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.InvalidNumberOfRetries">
+            <summary>
+              Looks up a localized string similar to Number of retries should be greater than zero.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.InvalidRangeFormat">
+            <summary>
+              Looks up a localized string similar to Range from {0} to {1} is not valid.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.InvalidRetryInterval">
+            <summary>
+              Looks up a localized string similar to Retry interval cannot be negative.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.NotANumberFormat">
+            <summary>
+              Looks up a localized string similar to Value &quot;{0}&quot; does not represent a valid number.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.OperationNotSupportedFormat">
+            <summary>
+              Looks up a localized string similar to Operation &quot;{0}&quot; is not supported.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.ParallelSinkDescription">
+            <summary>
+              Looks up a localized string similar to Uploads data into partitioned DocumentDB collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.ShardedImportDesignator">
+            <summary>
+              Looks up a localized string similar to -Sharded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.SinkIsNotInitialized">
+            <summary>
+              Looks up a localized string similar to DocumentDB sink adapter should be initialized before it can be used.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.SourceDescription">
+            <summary>
+              Looks up a localized string similar to Reads data from DocumentDB collections.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.SourceIsNotInitialized">
+            <summary>
+              Looks up a localized string similar to DocumentDB source adapter should be initialized before it can be used.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.UnexpectedAsyncFlushErrorMessageFormat">
+            <summary>
+              Looks up a localized string similar to Failed to persist documents bulk: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.UnexpectedCharacterFormat">
+            <summary>
+              Looks up a localized string similar to Unexpected character at position {0}: &quot;{1}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.UnexpectedPartitionCollectionFormat">
+            <summary>
+              Looks up a localized string similar to Partition collection &quot;{0}&quot; is not expected.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Resources.UnknownEntryAssembly">
+            <summary>
+              Looks up a localized string similar to dtr.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Shared.IDocumentDbAdapterConfiguration">
+            <summary>
+            Contains basic configuration for DocumentDB data adapters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Shared.IDocumentDbAdapterConfiguration.ConnectionString">
+            <summary>
+            Gets the connection string for the DocumentDB account.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Shared.IDocumentDbAdapterConfiguration.ConnectionMode">
+            <summary>
+            Gets the DocumentDB connection mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Shared.IDocumentDbAdapterConfiguration.Retries">
+            <summary>
+            Gets the number of retries to perform on transient failures.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Shared.IDocumentDbAdapterConfiguration.RetryInterval">
+            <summary>
+            Gets the time interval between retries on transient failures.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException">
+            <summary>
+            Represents errors that occur when DocumentDB document cannot be created.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException"/>.
+            </summary>
+            <param name="message">Error message.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException"/>.
+            </summary>
+            <param name="message">Error message.</param>
+            <param name="inner">Inner exception.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Exceptions.FailedToCreateDocumentException"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.DocumentDbBulkSinkAdapterFactory">
+            <summary>
+            Provides data sink adapters capable of writing data to DocumentDB account in batches.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.DocumentDbBulkSinkAdapterFactory.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.DocumentDbBulkSinkAdapterFactory"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.IDocumentDbBulkSinkAdapterConfiguration">
+            <summary>
+            Contains configuration for bulk DocumentDB data sink adapter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Sink.IDocumentDbSinkAdapterConfiguration">
+            <summary>
+            Contains basic configuration for DocumentDB data sink adapters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.IDocumentDbSinkAdapterConfiguration.CollectionThroughput">
+            <summary>
+            Gets the collection throughput.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.IDocumentDbSinkAdapterConfiguration.IndexingPolicy">
+            <summary>
+            Gets the document collection indexing policy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.IDocumentDbSinkAdapterConfiguration.IndexingPolicyFile">
+            <summary>
+            Gets the path to the file that contains collection indexing policy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.IDocumentDbSinkAdapterConfiguration.IdField">
+            <summary>
+            Gets the name of source field that should be treated as document id.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.IDocumentDbSinkAdapterConfiguration.DisableIdGeneration">
+            <summary>
+            Gets the value that indicates whether document ids should not be created automatically.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.IDocumentDbSinkAdapterConfiguration.UpdateExisting">
+            <summary>
+            Gets the value that indicates whether documents with the same id should be updated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.IDocumentDbSinkAdapterConfiguration.Dates">
+            <summary>
+            Gets the DocumentDB date and time handling strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.IDocumentDbBulkSinkAdapterConfiguration.Collection">
+            <summary>
+            Gets the documents collection name patterns.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.IDocumentDbBulkSinkAdapterConfiguration.PartitionKey">
+            <summary>
+            Gets the name of the property used as partition key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.IDocumentDbBulkSinkAdapterConfiguration.StoredProcFile">
+            <summary>
+            Gets the bulk import stored procedure file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.IDocumentDbBulkSinkAdapterConfiguration.BatchSize">
+            <summary>
+            Gets the number of data artifacts bundled into one batch.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.Bulk.IDocumentDbBulkSinkAdapterConfiguration.MaxScriptSize">
+            <summary>
+            Gets the maximum size of the JSON payload that can be sent to the server.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Sink.Parallel.DocumentDbParallelSinkAdapterFactory">
+            <summary>
+            Provides data sink adapters capable of writing data to DocumentDB account in parallel.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Sink.Parallel.DocumentDbParallelSinkAdapterFactory.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Sink.Parallel.DocumentDbParallelSinkAdapterFactory"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Sink.Parallel.IDocumentDbParallelSinkAdapterConfiguration">
+            <summary>
+            Contains configuration for parallel DocumentDB data sink adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.Parallel.IDocumentDbParallelSinkAdapterConfiguration.Collection">
+            <summary>
+            Gets the documents collection name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.Parallel.IDocumentDbParallelSinkAdapterConfiguration.PartitionKey">
+            <summary>
+            Gets the path to the property used as partition key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Sink.Parallel.IDocumentDbParallelSinkAdapterConfiguration.ParallelRequests">
+            <summary>
+            Gets the maximum number of parallel insert operations.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Sink.DateTimeHandling">
+            <summary>
+            DocumentDB date and time handling strategy enumeration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.DocumentDb.Sink.DateTimeHandling.String">
+            <summary>
+            Persist date and time as string.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.DocumentDb.Sink.DateTimeHandling.Epoch">
+            <summary>
+            Persist date and time as epoch time.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.DocumentDb.Sink.DateTimeHandling.Both">
+            <summary>
+            Persist date and time as string and as epoch time.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Source.DocumentDbSourceAdapterFactory">
+            <summary>
+            Provides data source adapters capable of reading data from DocumentDB.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.DocumentDb.Source.DocumentDbSourceAdapterFactory.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.DocumentDb.Source.DocumentDbSourceAdapterFactory"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.DocumentDb.Source.IDocumentDbSourceAdapterConfiguration">
+            <summary>
+            Contains configuration for DocumentDB data source adapter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Source.IDocumentDbSourceAdapterConfiguration.Collection">
+            <summary>
+            Gets the documents collection name pattern.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Source.IDocumentDbSourceAdapterConfiguration.InternalFields">
+            <summary>
+            Gets the value that indicates whether internal DocumentDB fields should be emitted in the output.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Source.IDocumentDbSourceAdapterConfiguration.Query">
+            <summary>
+            Gets the documents query.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.DocumentDb.Source.IDocumentDbSourceAdapterConfiguration.QueryFile">
+            <summary>
+            Gets the path to the file that contains documents query.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

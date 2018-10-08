@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.Basics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.Basics.Collections.FastForwardBuffer`1">
+            <summary>
+            Light-weight forward-only linked list.
+            </summary>
+            <typeparam name="T">Type of the element</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.FastForwardBuffer`1.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Basics.Collections.FastForwardBuffer`1"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.FastForwardBuffer`1.Add(`0)">
+            <summary>
+            Adds new element to the end of the list.
+            </summary>
+            <param name="element">Element to add.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.FastForwardBuffer`1.SkipForward(System.Int32)">
+            <summary>
+            Removes elements from the beginning of the list.
+            </summary>
+            <param name="numberOfElements">Number of elements to remove.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.FastForwardBuffer`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the list.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the list.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.FastForwardBuffer`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the list.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator"/> that can be used to iterate through the list.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Collections.FastForwardBuffer`1.Count">
+            <summary>
+            Gets the count of elements in the list.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Collections.IReadOnlyMap`2">
+            <summary>
+            Read-only mapping collection.
+            </summary>
+            <typeparam name="TKey">Type of the mapping key.</typeparam>
+            <typeparam name="TValue">Type of the mapped value.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.IReadOnlyMap`2.TryGetValue(`0,`1@)">
+            <summary>
+            Performs forward lookup of the value by the given key.
+            </summary>
+            <param name="key">Mapping key to lookup.</param>
+            <param name="value">Matching mapped value.</param>
+            <returns>true if requested key presents in the map; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.IReadOnlyMap`2.TryGetKey(`1,`0@)">
+            <summary>
+            Performs reverse lookup of the key by the given value.
+            </summary>
+            <param name="value">Mapped value to lookup.</param>
+            <param name="key">Matching mapping key.</param>
+            <returns>true if requested value presents in the map; otherwise, false.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Collections.Map`2">
+            <summary>
+            Mapping table with two-way lookup support.
+            </summary>
+            <typeparam name="TKey">Type of the mapping key.</typeparam>
+            <typeparam name="TValue">Type of the mapped value.</typeparam>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.Map`2.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Basics.Collections.Map`2"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.Map`2.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Basics.Collections.Map`2"/>.
+            </summary>
+            <param name="source">Collection of key-value pairs to initialize the lookup table from.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.Map`2.Add(`0,`1)">
+            <summary>
+            Adds new mapping to the lookup table.
+            </summary>
+            <param name="key">Mapping key.</param>
+            <param name="value">Mapped value.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.Map`2.TryGetValue(`0,`1@)">
+            <summary>
+            Performs forward lookup of the value by the given key.
+            </summary>
+            <param name="key">Mapping key to lookup.</param>
+            <param name="value">Matching mapped value.</param>
+            <returns>true if requested key presents in the map; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.Map`2.TryGetKey(`1,`0@)">
+            <summary>
+            Performs reverse lookup of the key by the given value.
+            </summary>
+            <param name="value">Mapped value to lookup.</param>
+            <param name="key">Matching mapping key.</param>
+            <returns>true if requested value presents in the map; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.Map`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the list.
+            </summary>
+            <returns>A collection of <see cref="T:System.Collections.Generic.KeyValuePair`2"/> that can be used to iterate through the list.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Collections.Map`2.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the list.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator"/> that can be used to iterate through the list.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.CommonErrors">
+            <summary>
+            Base class for errors provider.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.CommonErrors.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Basics.CommonErrors"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.CommonErrors.DataItemFieldNotFound(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:System.Collections.Generic.KeyNotFoundException"/> to be thrown in cases when 
+            data artifact does not contain requested field.
+            </summary>
+            <param name="name">Name of the requested field.</param>
+            <returns>New instance of <see cref="T:System.Collections.Generic.KeyNotFoundException"/> representing the error.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.CommonErrors.FormatMessage(System.String,System.Object[])">
+            <summary>
+            Formats the message using <see cref="P:System.Globalization.CultureInfo.InvariantCulture"/> culture.
+            </summary>
+            <param name="format">Message format.</param>
+            <param name="args">Format arguments.</param>
+            <returns>Formatted message.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.CommonResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.CommonResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.CommonResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.CommonResources.UnknownError">
+            <summary>
+              Looks up a localized string similar to Unknown error.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.DynamicResourcesBase">
+            <summary>
+            Provides base functionality for dynamic resources.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.DynamicResourcesBase.Format(System.String,System.Object[])">
+            <summary>
+            Formats the string resource using <see cref="P:System.Globalization.CultureInfo.InvariantCulture"/> culture.
+            </summary>
+            <param name="format">String format.</param>
+            <param name="args">Format arguments.</param>
+            <returns>Formatted string resource.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Net.BlobUri">
+            <summary>
+            Provides an object representation of a BLOB uniform resource identifier (URI)
+            and easy access to the parts of the URI.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Net.BlobUri.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Basics.Net.BlobUri"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Net.BlobUri.TryParse(System.String,Microsoft.DataTransfer.Basics.Net.BlobUri@)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.DataTransfer.Basics.Net.BlobUri"/> using the specified <see cref="T:System.String"/> instance.
+            </summary>
+            <param name="url">The <see cref="T:System.String"/> representing the <see cref="T:Microsoft.DataTransfer.Basics.Net.BlobUri"/>.</param>
+            <param name="blobUri">When this method returns, contains the constructed <see cref="T:Microsoft.DataTransfer.Basics.Net.BlobUri"/>.</param>
+            <returns>true if the <see cref="T:Microsoft.DataTransfer.Basics.Net.BlobUri"/> was successfully created; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Net.BlobUri.IsValid(System.String)">
+            <summary>
+            Validates whether provided <see cref="T:System.String"/> represents a valid <see cref="T:Microsoft.DataTransfer.Basics.Net.BlobUri"/>.
+            </summary>
+            <param name="url">The <see cref="T:System.String"/> to validate.</param>
+            <returns>true if provided <see cref="T:System.String"/> represents a valid <see cref="T:Microsoft.DataTransfer.Basics.Net.BlobUri"/>; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Net.BlobUri.ContainerUri">
+            <summary>
+            Gets the address of the storage container.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Net.BlobUri.AccountName">
+            <summary>
+            Gets the name of the storage account.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Net.BlobUri.AccountKey">
+            <summary>
+            Gets the storage account key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Net.BlobUri.BlobName">
+            <summary>
+            Gets the name of the BLOB.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.IO.DirectoryHelper">
+            <summary>
+            Defines helper methods for working with directories.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.IO.DirectoryHelper.EnumerateFiles(System.String)">
+            <summary>
+            Enumerates files matching specified search pattern.
+            </summary>
+            <remarks>
+            Recursive search can be expressed by using special sequence ("**") in the pattern.
+            </remarks>
+            <param name="searchPattern">Files search pattern.</param>
+            <returns>List of files matching the search pattern.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Guard">
+            <summary>
+            Simple helper to validate method arguments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Guard.NotNull``1(System.String,``0)">
+            <summary>
+            Validates that provided argument is not null.
+            </summary>
+            <typeparam name="T">Type of the argument.</typeparam>
+            <param name="argumentName">Name of the argument.</param>
+            <param name="value">Argument value to validate.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Guard.NotEmpty(System.String,System.String)">
+            <summary>
+            Validates that provided string argument is not null or empty.
+            </summary>
+            <param name="argumentName">Name of the argument.</param>
+            <param name="value">Argument value to validate.</param>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Extensions.ObjectExtensions">
+            <summary>
+            Provides a set of static methods to extend functionality of <see cref="T:System.Object"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Extensions.ObjectExtensions.MemberName``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Extracts member name from the provided expression.
+            </summary>
+            <typeparam name="T">Type of the member's owner.</typeparam>
+            <param name="target">Member's owner.</param>
+            <param name="memberSelector">Expression that evaluates to the desired member.</param>
+            <returns>Name of the member.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Extensions.ObjectExtensions.MemberName``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Extracts member name from the provided expression.
+            </summary>
+            <typeparam name="T">Type of the member's owner.</typeparam>
+            <param name="memberSelector">Expression that evaluates to the desired member.</param>
+            <returns>Name of the member.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.Extensions.ObjectExtensions.MemberName``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Extracts member name from the provided expression.
+            </summary>
+            <typeparam name="TOwner">Type of the member's owner.</typeparam>
+            <typeparam name="TMember">Type of the member.</typeparam>
+            <param name="target">Member's owner.</param>
+            <param name="memberSelector">Expression that evaluates to the desired member.</param>
+            <returns>Name of the member.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.IO.PathHelper">
+            <summary>
+            Helper class for working with paths.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.IO.PathHelper.Combine(System.String,System.String)">
+            <summary>
+            Appends path segment to the base path.
+            </summary>
+            <param name="basePath">Base path.</param>
+            <param name="segment">Segment of the path to append.</param>
+            <returns>Single path string representing combined path.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.IO.SimpleStringReader">
+            <summary>
+            Reads characters from a <see cref="T:System.String"/> in a streaming fashion.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.IO.SimpleStringReader.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.Basics.IO.SimpleStringReader"/>.
+            </summary>
+            <param name="source"><see cref="T:System.String"/> to read data from.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.IO.SimpleStringReader.ReadNext(System.Char@)">
+            <summary>
+            Adjusts the position to the next <see cref="T:System.Char"/> and reads it.
+            </summary>
+            <param name="character">Next <see cref="T:System.Char"/>.</param>
+            <returns>true if there is a <see cref="T:System.Char"/> available to read; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.IO.SimpleStringReader.Read(System.Char@)">
+            <summary>
+            Reads current <see cref="T:System.Char"/> from the source <see cref="T:System.String"/>.
+            </summary>
+            <param name="character">Current <see cref="T:System.Char"/>.</param>
+            <returns>true if there is a <see cref="T:System.Char"/> available to read; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.IO.SimpleStringReader.Position">
+            <summary>
+            Gets the index of current <see cref="T:System.Char"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Resources.DataItemFieldNotFoundFormat">
+            <summary>
+              Looks up a localized string similar to Field &quot;{0}&quot; does not belong to the data item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.Basics.Resources.NonEmptyStringExpected">
+            <summary>
+              Looks up a localized string similar to Non-empty string expected.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.Threading.TaskHelper">
+            <summary>
+            Helper class for working with <see cref="T:System.Threading.Tasks.Task"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.DataTransfer.Basics.Threading.TaskHelper.NoOp">
+            <summary>
+            Singleton instance of <see cref="T:System.Threading.Tasks.Task"/> that does not perform any operations.
+            </summary>
+        </member>
+        <member name="T:Microsoft.DataTransfer.Basics.TrashCan">
+            <summary>
+            Helper class to simplify objects disposing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.TrashCan.Throw``1(``0@)">
+            <summary>
+            Disposes provided object instance and removes the reference.
+            </summary>
+            <typeparam name="T">Type of the object.</typeparam>
+            <param name="disposable">Object instance reference.</param>
+        </member>
+        <member name="M:Microsoft.DataTransfer.Basics.TrashCan.Throw``1(``0@,System.Action{``0})">
+            <summary>
+            Disposes provided object instance and removes the reference.
+            </summary>
+            <typeparam name="T">Type of the object.</typeparam>
+            <param name="disposable">Object instance reference.</param>
+            <param name="finalizer">Delegate to perform before the dispose.</param>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>

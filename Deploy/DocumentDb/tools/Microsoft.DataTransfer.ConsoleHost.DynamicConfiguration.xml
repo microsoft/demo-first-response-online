@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.DynamicConfigurationFactory">
+            <summary>
+            Generates a proxy class for a given configuration type based on the input command line arguments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.DynamicConfigurationFactory.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.DynamicConfigurationFactory"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.DynamicConfigurationFactory.TryCreate(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})">
+            <summary>
+            Creates a new proxy intance of required configuration type, populating it from the command line arguments.
+            </summary>
+            <param name="configurationType">Type of the required configuration.</param>
+            <param name="arguments">Command line arguments.</param>
+            <returns>New instance of required configuration type.</returns>
+        </member>
+        <member name="M:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.DynamicConfigurationFactory.TryGetConfigurationOptions(System.Type)">
+            <summary>
+            Based on the configuration type assumes description for configuration options.
+            </summary>
+            <param name="configurationType">Type of the configuration to get description for.</param>
+            <returns>Description of configuration options for specified type.</returns>
+        </member>
+        <member name="T:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.Resources.ConfigurationEnumOptionDescriptionFormat">
+            <summary>
+              Looks up a localized string similar to One of the following: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.Resources.ConfigurationOptionDescriptionFormat">
+            <summary>
+              Looks up a localized string similar to Expects value of type {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.Resources.DynamicConfigurationGenerationFailedFormat">
+            <summary>
+              Looks up a localized string similar to Failed to generate dynamic configuration class of type &apos;{0}&apos;. Try defining custom configuration factory.
+            </summary>
+        </member>
+        <member name="P:Microsoft.DataTransfer.ConsoleHost.DynamicConfiguration.Resources.UnknownOptionFormat">
+            <summary>
+              Looks up a localized string similar to Unknown configuration option &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="T:AssemblyRef">
+            <summary>
+            Sets public key string for friend assemblies.
+            </summary>
+        </member>
+        <member name="F:AssemblyRef.ProductPublicKey">
+            <summary>ProductPublicKey is an official MS supported public key for external releases. TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+        </member>
+    </members>
+</doc>
